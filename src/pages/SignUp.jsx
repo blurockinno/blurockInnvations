@@ -1,0 +1,195 @@
+import axios from "axios";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+const SignUp = () => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    companyName: "",
+    phoneNumber: "",
+    employeeRange: "",
+    termsAccepted: false,
+  });
+
+  const [error, setError] = useState(false);
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(false);
+
+    try {
+      const response = await axios.post("/api/v1/auth/sign-up", {
+        companyName: formData.companyName,
+        fullName: formData.fullName,
+        mobileNumber: formData.phoneNumber,
+        email: formData.email,
+        industrySize: formData.employeeRange,
+        isAgreed: formData.termsAccepted,
+      });
+      console.log("Sign Up Successful:", response);
+      navigate("/sign-in");
+    } catch (error) {
+      console.error(
+        "Error during sign up:",
+        error.response?.data?.message || error.message
+      );
+      setError(true);
+    }
+  };
+
+  return (
+    <>
+      <div className="flex flex-col md:flex-row justify-between h-screen -z-10">
+        <div className="md:w-1/2 w-full h-screen flex flex-col justify-center items-center p-4 md:p-10 gap-4 mt-40 md:mt-0 mb-10 md:mb-0">
+          <span className="text-lg md:text-xl font-semibold text-violet-800">
+            Blurock Innovations
+          </span>
+          <span className="w-full text-center font-semibold text-4xl md:text-7xl uppercase bg-gradient-to-l from-blue-500 to-pink-500 bg-clip-text text-transparent">
+            Get started with your free trial
+          </span>
+          <span className="md:text-3xl text-xl font-normal text-blue-500 uppercase">
+            | Sales teams from good to great
+          </span>
+        </div>
+
+        <div className="flex w-full md:w-1/2 justify-center items-center p-10 md:p-0">
+          <div className="flex flex-col p-4 md:p-6 rounded-md w-full md:w-1/2 shadow-lg border gap-2">
+            <form onSubmit={handleSubmit}>
+              <div className="flex flex-col">
+                <label className="font-semibold text-sm" htmlFor="companyName">
+                  Company Name
+                </label>
+                <input
+                  id="companyName"
+                  name="companyName"
+                  className="border mt-1 p-2 rounded-md"
+                  placeholder="Enter Company Name"
+                  type="text"
+                  value={formData.companyName}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label className="font-semibold text-sm" htmlFor="fullName">
+                  Name
+                </label>
+                <input
+                  id="fullName"
+                  name="fullName"
+                  className="border mt-1 p-2 rounded-md"
+                  placeholder="Full Name"
+                  type="text"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label className="font-semibold text-sm" htmlFor="phoneNumber">
+                  Phone Number
+                </label>
+                <input
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  className="border mt-1 p-2 rounded-md"
+                  placeholder="Phone Number"
+                  type="tel"
+                  value={formData.phoneNumber}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="flex flex-col relative">
+                <label className="font-semibold text-sm" htmlFor="email">
+                  Email
+                </label>
+                <div className="relative">
+                  <input
+                    id="email"
+                    name="email"
+                    required
+                    className="border mt-1 p-2 rounded-md w-full"
+                    placeholder="Email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-col relative">
+                <label
+                  className="font-semibold text-sm"
+                  htmlFor="employeeRange"
+                >
+                  Employee Range
+                </label>
+                <div className="relative">
+                  <input
+                    id="employeeRange"
+                    name="employeeRange"
+                    required
+                    className="border mt-1 p-2 rounded-md w-full"
+                    placeholder="Employee Range"
+                    type="text"
+                    value={formData.employeeRange}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-col relative mt-3">
+                <label className="text-sm" htmlFor="terms">
+                  <input
+                    id="terms"
+                    name="termsAccepted"
+                    type="checkbox"
+                    className="mr-2"
+                    checked={formData.termsAccepted}
+                    onChange={handleChange}
+                  />
+                  I agree to the terms and conditions
+                </label>
+              </div>
+
+              <div className="flex flex-col justify-center mt-4">
+                <button
+                  type="submit"
+                  disabled={error}
+                  className={`text-sm py-2 px-3 text-white rounded-md ${
+                    error
+                      ? "bg-gray-500 cursor-not-allowed"
+                      : "bg-blue-500 hover:bg-blue-700"
+                  } text-center`}
+                >
+                  {error ? "Please wait..." : "Create Account"}
+                </button>
+                <div className="text-center">
+                  <span className="text-xs mt-5">
+                    Already have an account.{" "}
+                    <Link to={"/sign-in"}>
+                      <span>Sign In</span>
+                    </Link>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default SignUp;
