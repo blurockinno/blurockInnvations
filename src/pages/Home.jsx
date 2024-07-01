@@ -1,6 +1,5 @@
 import { useState } from "react";
-import bg from "../assets/home_bg.jpg";
-import kite from "../assets/kite.png";
+import bg from "../assets/linegroup3.svg";
 import oms from "../assets/oms.jpg";
 import ems from "../assets/ems.jpg";
 import { Link } from "react-router-dom";
@@ -77,10 +76,15 @@ const Home = () => {
       {/* carousel  */}
       <section className="relative w-full h-screen">
         <div
-          style={{ backgroundImage: `url(${bg})` }}
-          className="absolute top-0 left-0 w-full h-full bg-cover bg-center opacity-40 -z-10"
+          style={{
+            backgroundImage: `url(${bg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+          className="absolute top-0 left-0 w-full h-full bg-cover bg-center opacity-20  -z-10 "
         />
-        <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-20">
+        <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-20 ">
           <div className="pl-20 bg-opacity-50 rounded-lg w-3/4 ">
             <p className="text-sm font-bold mb-2 bg-gradient-to-r from-[#EC4899] to-[#7E22CE] bg-clip-text text-transparent">
               CUTTING EDGE CREATION
@@ -101,14 +105,14 @@ const Home = () => {
               Get Started
             </button>
           </div>
-          <div
+          {/* <div
             className=" h-[400px] w-3/4  mr-20 "
             style={{
               backgroundImage: `url(${kite})`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "900px auto",
             }}
-          ></div>
+          ></div> */}
         </div>
       </section>
       {/* carousel end */}

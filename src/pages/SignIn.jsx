@@ -7,7 +7,6 @@ import {
   signInFailure,
 } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
-import OAuth from "../components/OAuth";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -15,7 +14,7 @@ const SignIn = () => {
     email: "",
     password: "",
   });
-  // const { loading, error } = useSelector((state) => state.user);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -27,6 +26,7 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       dispatch(signInStart());
@@ -37,77 +37,91 @@ const SignIn = () => {
       console.log("Sign In Successful:", response.data);
       const { user } = response.data;
       console.log(user);
-      //success despatch
       dispatch(signInSuccess(user));
       navigate("/profile");
     } catch (error) {
       dispatch(signInFailure(error));
-      console.error("Error during sign in:", error.response.data.message);
+      console.error(
+        "Error during sign in:",
+        error.response?.data?.message || error.message
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-        <h2 className="text-2xl font-bold mb-6">Sign In</h2>
-        {/* {error && (
-          <div className="bg-red-100 text-red-700 p-3 rounded mb-4">
-            {error}
-          </div>
-        )} */}
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="email"
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              required
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              required
-            />
-          </div>
-          <div className="flex items-center justify-between">
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              <span> Sign In</span>
-            </button>
-            <OAuth />
-          </div>
-          <p>
-            Don&apos;t have an account?{" "}
-            <Link to={"/sign-up"}>
-              <span>Sing up</span>
-            </Link>
-          </p>
-        </form>
+    <>
+      <div className="flex flex-col">
+        <div className="flex flex-row justify-center items-center w-full h-[100vh]">
+          <form
+            className="bg-white border w-[350px] rounded-md px-8 shadow-md"
+            onSubmit={handleSubmit}
+          >
+            <p className="text-3xl font-bold flex justify-center xl:text-2xl xl:pt-6 xl:mb-6 xl:mt-0">
+              Continue with Blurock
+            </p>
+            <div className="flex flex-col gap-2 my-4">
+              <label className="font-semibold text-sm" htmlFor="email">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                className="border mt-1 p-2 rounded-md"
+                placeholder="Email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="font-semibold text-sm" htmlFor="password">
+                Password
+              </label>
+              <input
+                id="password"
+                name="password"
+                className="border mt-1 p-2 rounded-md"
+                placeholder="Password"
+                type="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="flex flex-row justify-center xl:mt-6">
+              <button
+                type="submit"
+                disabled={loading}
+                className={`flex items-center bg-blue-500 hover:bg-blue-700 px-8 py-2 text-lg rounded-md text-white mt-20 xl:w-auto xl:mt-4 xl:mb-6 ${
+                  loading ? "cursor-not-allowed" : ""
+                }`}
+              >
+                {loading ? "Please wait" : "Submit"}
+              </button>
+            </div>
+
+            <div className="flex justify-end">
+              <span className="cursor-pointer text-[12px]">
+                Forgot your password?
+              </span>
+            </div>
+
+            <div className="flex flex-row justify-center xl:mt-2 xl:mb-6 p-2 text-sm">
+              <Link to="/signup">
+                New User?{" "}
+                <span className="cursor-pointer text-blue-800">
+                  Create Account
+                </span>
+              </Link>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

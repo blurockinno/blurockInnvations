@@ -5,68 +5,70 @@ const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
 
   return (
-    <header className="w-full text-blue-700 p-7 absolute top-0 bg-transparent z-50">
-      <nav className="container mx-auto flex justify-between items-center px-12">
-        <div className="text-xl font-bold cursor-pointer ">
-          Blurock Innovations
-        </div>
-        <div className="space-x-12 flex text-md font-semibold">
-          <NavLink
-            to="/"
-            exact
-            className="hover:underline"
-            activeClassName="underline"
-          >
-            Home
-          </NavLink>
-          {currentUser && (
+    <>
+      <div className="w-full p-11 absolute top-0  z-50 opacity-80 bg-white shadow-sm shadow-blue-50"></div>
+      <header className="w-full text-blue-700 p-7 absolute top-0  z-50">
+        <nav className="container mx-auto flex justify-between items-center px-12 opacity-100 ">
+          <div className="text-xl font-bold cursor-pointer">
+            Blurock Innovations
+          </div>
+          <div className="space-x-12 flex text-md font-semibold">
             <NavLink
-              to="/our-product"
+              to="/"
+              exact
               className="hover:underline"
               activeClassName="underline"
             >
-              Our Product
+              Home
             </NavLink>
-          )}
-          <NavLink
-            to="/service"
-            className="hover:underline"
-            activeClassName="underline"
-          >
-            Services
-          </NavLink>
-
-          <NavLink
-            to="/about"
-            className="hover:underline"
-            activeClassName="underline"
-          >
-            About
-          </NavLink>
-          {currentUser ? (
+            {currentUser && (
+              <NavLink
+                to="/our-product"
+                className="hover:underline"
+                activeClassName="underline"
+              >
+                Our Product
+              </NavLink>
+            )}
             <NavLink
-              to="/profile"
+              to="/service"
               className="hover:underline"
               activeClassName="underline"
             >
-              <img
-                src={currentUser.profilePicture}
-                alt="profile picture"
-                className="rounded-full h-7 w-7 object-cover"
-              />
+              Services
             </NavLink>
-          ) : (
             <NavLink
-              to="/sign-in"
+              to="/about"
               className="hover:underline"
               activeClassName="underline"
             >
-              Sign In
+              About
             </NavLink>
-          )}
-        </div>
-      </nav>
-    </header>
+            {currentUser ? (
+              <NavLink
+                to="/profile"
+                className="hover:underline"
+                activeClassName="underline"
+              >
+                <img
+                  src={currentUser.profilePicture}
+                  alt="profile picture"
+                  className="rounded-full h-7 w-7 object-cover"
+                />
+              </NavLink>
+            ) : (
+              <NavLink
+                to="/sign-in"
+                className="hover:underline"
+                activeClassName="underline"
+              >
+                Sign In
+              </NavLink>
+            )}
+          </div>
+        </nav>
+      </header>
+    </>
   );
 };
 
