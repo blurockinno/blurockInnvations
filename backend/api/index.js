@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 // Import routes
 import userRoute from "./routes/user.route.js";
 import authRoute  from "./routes/auth.route.js"
+import subscriptionRoute  from "./routes/subscription.route.js"
 
 // Initialize express app
 const app = express();
@@ -35,7 +36,12 @@ app.get("/", (req, res) => {
 // Use user routes
 const baseUrl =  "/api/v1/"
 app.use(`/api/v1/auth`, authRoute);
-app.use(`${baseUrl}/user`, userRoute);
+
+//subscription route
+app.use(`/api/v1/subscription`, subscriptionRoute);
+
+//user route
+app.use(`/api/v1/user`, userRoute);
 
 // Start the server
 const PORT = process.env.PORT || 3000;

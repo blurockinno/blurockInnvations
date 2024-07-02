@@ -2,64 +2,66 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
+import { AuthUser } from "../models/auth.model.js";
+import crypto from "crypto"
 
-//sign in
-export const signIn = async (req, res, next) => {
-  const { email, password } = req.body;
+// //sign in
+// export const signIn = async (req, res, next) => {
+//   const { email, password } = req.body;
 
-  try {
-    const user = await User.findOne({ email });
+//   try {
+//     const user = await User.findOne({ email });
 
-    if (!user) return res.status(404).json({ message: "User not found" });
+//     if (!user) return res.status(404).json({ message: "User not found" });
 
-    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+//     const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
-    if (!isPasswordCorrect)
-      return res.status(400).json({ message: "Invalid credentials" });
+//     if (!isPasswordCorrect)
+//       return res.status(400).json({ message: "Invalid credentials" });
 
-    const token = jwt.sign(
-      { email: user.email, id: user._id },
-      "dfahdirieirhfdajf",
-      {
-        expiresIn: "1h",
-      }
-    );
+//     const token = jwt.sign(
+//       { email: user.email, id: user._id },
+//       "dfahdirieirhfdajf",
+//       {
+//         expiresIn: "1h",
+//       }
+//     );
 
-    res.status(200).json({ user: user, token });
-  } catch (error) {
-    next(errorHandler(500, "Something went wrong"));
-  }
-};
+//     res.status(200).json({ user: user, token });
+//   } catch (error) {
+//     next(errorHandler(500, "Something went wrong"));
+//   }
+// };
 
-//sign up
-export const signUp = async (req, res) => {
-  const { username, email, password } = req.body;
+// //sign up
+// export const signUp = async (req, res) => {
+//   const { username, email, password } = req.body;
 
-  try {
-    const existingUser = await User.findOne({ email });
+//   try {
+//     const existingUser = await User.findOne({ email });
 
-    if (existingUser)
-      return res.status(400).json({ message: "User already exists" });
+//     if (existingUser)
+//       return res.status(400).json({ message: "User already exists" });
 
-    const hashedPassword = await bcrypt.hash(password, 12);
+//     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const result = await User.create({
-      username,
-      email,
-      password: hashedPassword,
-    });
+//     const result = await User.create({
+//       username,
+//       email,
+//       password: hashedPassword,
+//     });
 
-    const token = jwt.sign(
-      { email: result.email, id: result._id },
-      "dfahdirieirhfdajf",
-      { expiresIn: "1h" }
-    );
+//     const token = jwt.sign(
+//       { email: result.email, id: result._id },
+//       "dfahdirieirhfdajf",
+//       { expiresIn: "1h" }
+//     );
 
-    res.status(201).json({ result, token });
-  } catch (error) {
-    res.status(500).json({ message: "Something went wrong" });
-  }
-};
+//     res.status(201).json({ result, token });
+//   } catch (error) {
+//     res.status(500).json({ message: "Something went wrong" });
+//   }
+// };
 
 //google mail authentication
 export const google = async (req, res, next) => {
@@ -150,5 +152,112 @@ export const updateDetails = async (req, res, next) => {
     });
   } catch (error) {
     next(error);
+  }
+};
+
+// User Registration Controller
+export const registerUser = async (req, res) => {
+  const { fullName, companyId, email, role } = req.body;
+
+  try {
+    // Check if the user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "Email already exists." });
+    }
+
+    // Create a verification token
+    const verificationToken = crypto.randomBytes(20).toString("hex");
+
+    // Create a new user
+    const newUser = new User({
+      fullName,
+      companyId,
+      email,
+      password: fullName.splice(0, 4) + "3223",
+      temPassword: fullName.splice(0, 4) + "3223",
+      verificationToken,
+      role,
+    });
+
+    // Save the user to the database
+    await newUser.save();
+
+    res.status(201).json({
+      message: "User registered successfully. Please verify your email.",
+    });
+  } catch (error) {
+    console.error("Error registering user:", error);
+    res.status(500).json({ error: "Internal server error." });
+  }
+};
+
+// User Login Controller
+export const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Check if the user exists
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ message: "Invalid email or password." });
+    }
+
+    // Check if the user's email is verified
+    if (!user.isVerified) {
+      return res.status(401).json({ message: "Email not verified." });
+    }
+
+    // Check if the password matches
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid email or password." });
+    }
+
+    // Generate JWT token
+    const token = jwt.sign(
+      { id: user._id, role: user.role },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1h",
+      }
+    );
+
+    res.status(200).json({ token, message: "Login successful." });
+  } catch (error) {
+    console.error("Error logging in user:", error);
+    res.status(500).json({ error: "Internal server error." });
+  }
+};
+
+//verify user
+export const verifyUser = async (req, res) => {
+  try {
+    console.log("working");
+    // extract token from cookie
+    const { token } = req.cookies;
+
+    //check token exist or not
+    if (!token) {
+      return res.status(400).json({
+        success: false,
+        message: "Please Login!",
+      });
+    }
+
+    //verify token
+    const decode = jwt.verify(token, process.env.JWT_SECRET);
+
+    // check user exist or not
+    req.user = await AuthUser.findById(decode._id);
+
+    res.status(200).json({
+      success: true,
+      message: "Verified",
+      token,
+      user: req.user,
+    });
+  } catch (error) {
+    console.log(error);
   }
 };

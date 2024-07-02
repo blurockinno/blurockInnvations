@@ -1,5 +1,9 @@
-const OmsMemebershipCard = () => {
-  const handleOnPayment = () => {};
+const OmsMemebershipCard = ({ handleOnPaymentSend }) => {
+
+  // hnalde on subscribe 
+  const handleOnPayment = (money) => {
+    handleOnPaymentSend(money, "order management system");
+  };
   return (
     <section className="flex justify-evenly h-screen items-center">
       <div className="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
@@ -71,7 +75,7 @@ const OmsMemebershipCard = () => {
               <span className="text-2xl font-bold text-gray-900">/month</span>
             </div>
             <button
-              onClick={(e) => handleOnPayment(e, 3000)}
+              onClick={() => handleOnPayment(3000)}
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
             >
               Subscribe
@@ -148,7 +152,7 @@ const OmsMemebershipCard = () => {
               <span className="text-2xl font-bold text-gray-900">/month</span>
             </div>
             <button
-              onClick={(e) => handleOnPayment(e, 4000)}
+              onClick={() => handleOnPayment(4000)}
               className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300"
             >
               Subscribe
@@ -225,7 +229,7 @@ const OmsMemebershipCard = () => {
               <span className="text-2xl font-bold text-gray-900">/month</span>
             </div>
             <button
-              onClick={(e) => handleOnPayment(e, 5000)}
+              onClick={() => handleOnPayment(5000)}
               className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300"
             >
               Subscribe
