@@ -1,4 +1,4 @@
-const SoftwareProductCard = ({ product }) => {
+const SoftwareProductCard = ({ product, handleOnOpenSoftware }) => {
   return (
     <>
       <div className="max-w-sm rounded overflow-hidden shadow-lg m-4">
@@ -19,7 +19,7 @@ const SoftwareProductCard = ({ product }) => {
         </div>
         <div className="px-6 py-4 flex justify-between items-center">
           <span className="font-bold text-xl"></span>
-          <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
+          <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700" onClick={handleOnOpenSoftware}>
             Open now
           </button>
         </div>

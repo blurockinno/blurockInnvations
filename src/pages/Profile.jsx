@@ -18,17 +18,18 @@ import {
   AppWindowIcon,
   CreditCard,
   History,
-  Home,
   LogOut,
-  ReceiptIcon,
   Settings,
-  SubscriptIcon,
   Target,
   User,
   UserPlus,
 } from "lucide-react";
 import SoftwareProductCard from "../components/SoftwareProductCard";
-import ProfileCard from "../components/ProfileCard";
+import PaymentMethod from "../components/PaymentMethod";
+import PaymentHistory from "../components/PaymentHistory";
+import SubscriptionPlanPurchaseHistory from "../components/SubscriptionPlanPurchaseHistory";
+import Setting from "../components/Setting";
+import ManageUser from "../components/ManageUser";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -129,6 +130,18 @@ const Profile = () => {
     setIsTabOpen(true);
   };
 
+  //handle on open now
+  const handleOnOpenNow = (productName) => {
+    if (productName === "Order Management System") {
+      window.open(
+        "http://localhost:3000/orderManagement-dashboard/order",
+        "_blank"
+      );
+    } else {
+      console.log("Please provide a valid link for the product:", productName);
+    }
+  };
+
   if (!currentUser) {
     return <div>Please log in to view your profile.</div>;
   }
@@ -140,62 +153,75 @@ const Profile = () => {
           {/* profile page  */}
 
           {tab === "profile" && isTabOpen && (
-            <div className="min-h-screen flex justify-center items-center">
+            <div className="min-h-screen w-full px-10 py-4">
               <div className="flex items-center space-x-4">
-                <input
-                  type="file"
-                  ref={fileRef}
-                  hidden
-                  accept="image/*"
-                  onChange={(e) => setImage(e.target.files[0])}
-                />
-                <img
-                  src={formData.profilePicture || currentUser.profilePicture}
-                  alt="Profile"
-                  className="w-24 h-24 rounded-full cursor-pointer"
-                  onClick={() => fileRef.current.click()}
-                />
-                <p>
-                  {imageUploadError ? (
-                    <span className="text-red-600">
-                      Error uploading image (file size must be less than 2 MB)
-                    </span>
-                  ) : imagePercentage > 0 && imagePercentage < 100 ? (
-                    <span>{`Uploading: ${imagePercentage}% `}</span>
-                  ) : imagePercentage === 100 ? (
-                    <span className="text-green-600">
-                      {" "}
-                      Image uploaded successfully
-                    </span>
-                  ) : (
-                    ""
-                  )}
-                </p>
-                <div>
+                <div className="flex flex-col">
                   <input
-                    id="username"
-                    type="text"
-                    className="text-2xl font-bold"
-                    value={currentUser.fullName}
-                    onChange={handleChange}
+                    type="file"
+                    ref={fileRef}
+                    hidden
+                    accept="image/*"
+                    onChange={(e) => setImage(e.target.files[0])}
                   />
-                  <input
-                    id="email"
-                    type="email"
-                    className="text-gray-600"
-                    value={currentUser.email}
-                    onChange={handleChange}
+                  <img
+                    src={formData.profilePicture || currentUser.profilePicture}
+                    alt="Profile"
+                    className="w-28 h-28 rounded-md cursor-pointer"
+                    onClick={() => fileRef.current.click()}
                   />
-                  <input
-                    id="password"
-                    type="password"
-                    className="text-gray-600"
-                    value={formData.password}
-                    onChange={handleChange}
-                  />
+                  <p>
+                    {imageUploadError ? (
+                      <span className="text-red-600">
+                        Error uploading image (file size must be less than 2 MB)
+                      </span>
+                    ) : imagePercentage > 0 && imagePercentage < 100 ? (
+                      <span>{`Uploading: ${imagePercentage}% `}</span>
+                    ) : imagePercentage === 100 ? (
+                      <span className="text-green-600">
+                        {" "}
+                        Image uploaded successfully
+                      </span>
+                    ) : (
+                      ""
+                    )}
+                  </p>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex flex-col">
+                    <label htmlFor="username">Name</label>
+                    <input
+                      id="username"
+                      type="text"
+                      className="text-lg font-bold border px-3"
+                      value={currentUser.fullName}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <label htmlFor="email">Email</label>
+                    <input
+                      id="email"
+                      type="email"
+                      className="text-lg font-bold border px-3"
+                      value={currentUser.email}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="flex flex-col">
+                    <label htmlFor="password">Password</label>
+                    <input
+                      id="password"
+                      type="password"
+                      className="text-lg font-bold border px-3"
+                      value={formData.password}
+                      onChange={handleChange}
+                    />
+                  </div>
                 </div>
                 <button
-                  className="bg-green-500 px-4 py-1 text-white rounded-full"
+                  className="bg-green-50 px-4 py-1 text-black rounded-md"
                   onClick={handleOnSubmit}
                 >
                   Update
@@ -211,21 +237,48 @@ const Profile = () => {
 
           {/* profile page end */}
 
+          {/* http://localhost:3000/orderManagement-dashboard/order */}
           {/* <software card  */}
           {tab === "software" && isTabOpen && (
             <div className="flex flex-wrap justify-center">
               {products.map((product, index) => (
-                <SoftwareProductCard key={index} product={product} />
+                <SoftwareProductCard
+                  key={index}
+                  product={product}
+                  handleOnOpenSoftware={() => handleOnOpenNow(product.name)}
+                />
               ))}
             </div>
           )}
           {/* <software card end*/}
+
+          {/* payment method  */}
+          {tab === "payment method" && isTabOpen && <PaymentMethod />}
+          {/* payment method end */}
+
+          {/* payment history  */}
+          {tab === "payment history" && isTabOpen && <PaymentHistory />}
+          {/* payment history end  */}
+
+          {/* subscription plan  */}
+          {tab === "subscription plan" && isTabOpen && (
+            <SubscriptionPlanPurchaseHistory />
+          )}
+          {/* subscription plan end */}
+
+          {/* manage user  */}
+          {tab === "manage user" && isTabOpen && <ManageUser />}
+          {/* manage user end */}
+
+          {/* settting page  */}
+          {tab === "setting" && isTabOpen && <Setting />}
+          {/* settting page end */}
         </div>
         <div className="w-[20%] h-screen ">
           <div className="flex items-center justify-center h-20 bg-gray-100">
             <span className="text-xl font-semibold">Blurock Innovations</span>
           </div>
-          <nav className="flex flex-col flex-1 p-4 text-black border-l">
+          <nav className="flex flex-col flex-1 p-4 text-black border-l ">
             <SidebarLink
               handleOnOpenTab={() => handleToOpenTab("software")}
               icon={<AppWindowIcon />}
@@ -236,12 +289,32 @@ const Profile = () => {
               icon={<User />}
               text="Profile"
             />
-            <SidebarLink to="/profile" icon={<ReceiptIcon />} text="Billing" />
-            <SidebarLink icon={<Target />} text="Subscription plan" />
-            <SidebarLink icon={<CreditCard />} text="Payment method" />
-            <SidebarLink icon={<History />} text="Payment history" />
-            <SidebarLink icon={<UserPlus />} text="Manage User" />
-            <SidebarLink icon={<Settings />} text="Settings" />
+            {/* <SidebarLink to="/profile" icon={<ReceiptIcon />} text="Billing" /> */}
+            <SidebarLink
+              icon={<Target />}
+              text="Subscription plan"
+              handleOnOpenTab={() => handleToOpenTab("subscription plan")}
+            />
+            <SidebarLink
+              icon={<CreditCard />}
+              text="Payment method"
+              handleOnOpenTab={() => handleToOpenTab("payment method")}
+            />
+            <SidebarLink
+              icon={<History />}
+              text="Payment history"
+              handleOnOpenTab={() => handleToOpenTab("payment history")}
+            />
+            <SidebarLink
+              icon={<UserPlus />}
+              text="Manage User"
+              handleOnOpenTab={() => handleToOpenTab("manage user")}
+            />
+            <SidebarLink
+              icon={<Settings />}
+              text="Settings"
+              handleOnOpenTab={() => handleToOpenTab("setting")}
+            />
           </nav>
           <div className="flex items-center justify-center">
             <button className="flex items-center justify-center gap-4 h-16 bg-gray-100 w-full hover:text-red-700">
@@ -250,87 +323,6 @@ const Profile = () => {
             </button>
           </div>
         </div>
-        {/* <div className="flex items-center space-x-4">
-          <input
-            type="file"
-            ref={fileRef}
-            hidden
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-          />
-          <img
-            src={formData.profilePicture || currentUser.profilePicture}
-            alt="Profile"
-            className="w-24 h-24 rounded-full cursor-pointer"
-            onClick={() => fileRef.current.click()}
-          />
-          <p>
-            {imageUploadError ? (
-              <span className="text-red-600">
-                Error uploading image (file size must be less than 2 MB)
-              </span>
-            ) : imagePercentage > 0 && imagePercentage < 100 ? (
-              <span>{`Uploading: ${imagePercentage}% `}</span>
-            ) : imagePercentage === 100 ? (
-              <span className="text-green-600">
-                {" "}
-                Image uploaded successfully
-              </span>
-            ) : (
-              ""
-            )}
-          </p>
-          <div>
-            <input
-              id="username"
-              type="text"
-              className="text-2xl font-bold"
-              value={currentUser.fullName}
-              onChange={handleChange}
-            />
-            <input
-              id="email"
-              type="email"
-              className="text-gray-600"
-              value={currentUser.email}
-              onChange={handleChange}
-            />
-            <input
-              id="password"
-              type="password"
-              className="text-gray-600"
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </div>
-          <button
-            className="bg-green-500 px-4 py-1 text-white rounded-full"
-            onClick={handleOnSubmit}
-          >
-            Update
-          </button>
-        </div>
-        <div className="mt-6">
-          <h3 className="text-xl font-semibold">About Me</h3>
-          <p className="text-gray-700 mt-2">
-            {currentUser.bio || "No bio available."}
-          </p>
-        </div>
-        <div className="mt-6">
-          <h3 className="text-xl font-semibold">Settings</h3>
-          <ul className="list-disc list-inside text-gray-700 mt-2">
-            <li>Change Password</li>
-            <li>Manage Subscriptions</li>
-            <li>Privacy Settings</li>
-          </ul>
-          <button className="bg-green-500 px-4 py-1 text-white rounded-full">
-            Update
-          </button>
-
-          <button className="bg-red-500 px-4 py-1 text-white rounded-full">
-            Logout
-          </button>
-        </div> */}
       </div>
     </div>
   );
