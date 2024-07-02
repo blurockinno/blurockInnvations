@@ -17,9 +17,12 @@ export const initiatePayment = async (req, res) => {
     userId,
     companyId,
     plan,
+    softwareName,
     startDate,
     status,
   } = req.body;
+
+  console.log(req.body);
 
   const options = {
     amount: amount * 100, // Amount is in the smallest currency unit (e.g., paise for INR)
@@ -56,6 +59,7 @@ export const initiatePayment = async (req, res) => {
       startDate,
       endDate: startDate,
       status,
+      softwareName,
       paymentHistory: [paymentHistory],
     });
 
@@ -138,5 +142,26 @@ export const updatePayment = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+};
+
+export const allSubscription = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const subscribed = await Subscription.find({ companyId: id });
+    if (!subscribed) {
+      return res.status(400).json({
+        success: false,
+        message: "Plan not found!",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      plans: subscribed,
+    });
+  } catch (error) {
+    console.log(error);
   }
 };

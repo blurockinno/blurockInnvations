@@ -1,6 +1,8 @@
+import { Plus } from "lucide-react";
 import { useState } from "react";
 
 const ManageUser = () => {
+  const [isModelOpen, setIsModelOpen] = useState(false);
   // Example user data (can be fetched from API or passed as props)
   const [users, setUsers] = useState([
     {
@@ -31,9 +33,24 @@ const ManageUser = () => {
     const updatedUsers = users.filter((user) => user.id !== userId);
     setUsers(updatedUsers);
   };
+
+  const handleOnAddUser = () => {};
+
+  const openAddUserModel = () => {
+    setIsModelOpen((prev) => !prev);
+  };
+
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Manage Users</h1>
+      <div className="flex justify-between">
+        <h1 className="text-2xl font-bold mb-4">Manage Users</h1>
+        <button
+          onClick={openAddUserModel}
+          className="flex bg-blue-700 items-center text-white px-4"
+        >
+          <Plus /> Add user
+        </button>
+      </div>
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
         <table className="min-w-full bg-white">
           <thead className="bg-gray-800 text-white">
@@ -56,6 +73,36 @@ const ManageUser = () => {
             </tr>
           </thead>
           <tbody className="text-gray-700">
+            {isModelOpen && (
+              <tr className="hover:bg-gray-100">
+                <td className="py-3 px-4 border-b border-gray-200">
+                  <label htmlFor="fullname">Name</label>
+                  <input type="text" id="fullname" />
+                </td>
+                <td className="py-3 px-4 border-b border-gray-200">
+                  <label htmlFor="email">Email</label>
+                  <input type="email" id="email" />
+                </td>
+                <td className="py-3 px-4 border-b border-gray-200">
+                  <label htmlFor="role">Role</label>
+                  <select id="role">
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                  </select>
+                </td>
+                <td className="py-3 px-4 border-b border-gray-200">
+                  <select id="role">
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                  </select>
+                </td>
+                <td className="py-3 px-4 border-b border-gray-200">
+                  <button className="text-blue-600 hover:text-blue-800 mr-2">
+                    Add User
+                  </button>
+                </td>
+              </tr>
+            )}
             {users.map((user) => (
               <tr key={user.id} className="hover:bg-gray-100">
                 <td className="py-3 px-4 border-b border-gray-200">

@@ -45,31 +45,32 @@ const Profile = () => {
   });
   const [tab, setTab] = useState("software");
   const [isTabOpen, setIsTabOpen] = useState(true);
+  const [allSubcribedPlans, setAllSubscribedPlans] = useState([]);
 
   const { currentUser } = useSelector((state) => state.user);
-
-  const products = [
-    {
-      name: "Order Management System",
-      description: "This is a great product.",
-      image: "https://via.placeholder.com/200",
-      tags: ["Software", "Productivity", "Tools"],
-    },
-    {
-      name: "Employee Management System",
-      description: "This is another great product.",
-      image: "https://via.placeholder.com/200",
-      tags: ["Development", "Utilities"],
-    },
-    // Add more products here
-  ];
 
   useEffect(() => {
     if (image) {
       handleFileUpload(image);
     }
-  }, [image]);
 
+    // handle for get plans
+    const getAllPlans = async () => {
+      try {
+        const response = await axios.get(
+          `/api/v1/subscription/${currentUser.companyId}`
+        );
+
+        const { plans } = response.data;
+        setAllSubscribedPlans(plans);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getAllPlans();
+  }, [image, currentUser.companyId]);
+
+  //handle for file upload
   const handleFileUpload = async (image) => {
     try {
       const storage = getStorage(app);
@@ -131,12 +132,24 @@ const Profile = () => {
   };
 
   //handle on open now
-  const handleOnOpenNow = (productName) => {
-    if (productName === "Order Management System") {
-      window.open(
-        "http://localhost:3000/orderManagement-dashboard/order",
-        "_blank"
-      );
+  const handleOnOpenNow = async (productName) => {
+    if (productName === "order management system") {
+      try {
+        // Fetch token from the server
+        const response = await axios.post("/api/v1/user/verifyUser");
+
+        const { token, success } = response.data;
+        if (success) {
+          window.open(
+            `http://localhost:3000/orderManagement-dashboard/order?token=${token}`,
+            "_blank"
+          );
+        } else {
+          console.error("Failed to fetch token");
+        }
+      } catch (error) {
+        console.error("Error fetching token:", error);
+      }
     } else {
       console.log("Please provide a valid link for the product:", productName);
     }
@@ -241,11 +254,13 @@ const Profile = () => {
           {/* <software card  */}
           {tab === "software" && isTabOpen && (
             <div className="flex flex-wrap justify-center">
-              {products.map((product, index) => (
+              {allSubcribedPlans.map((product, index) => (
                 <SoftwareProductCard
                   key={index}
                   product={product}
-                  handleOnOpenSoftware={() => handleOnOpenNow(product.name)}
+                  handleOnOpenSoftware={() =>
+                    handleOnOpenNow(product.softwareName)
+                  }
                 />
               ))}
             </div>
@@ -257,12 +272,14 @@ const Profile = () => {
           {/* payment method end */}
 
           {/* payment history  */}
-          {tab === "payment history" && isTabOpen && <PaymentHistory />}
+          {tab === "payment history" && isTabOpen && (
+            <PaymentHistory currentUser={currentUser} />
+          )}
           {/* payment history end  */}
 
           {/* subscription plan  */}
           {tab === "subscription plan" && isTabOpen && (
-            <SubscriptionPlanPurchaseHistory />
+            <SubscriptionPlanPurchaseHistory currentUser={currentUser} />
           )}
           {/* subscription plan end */}
 

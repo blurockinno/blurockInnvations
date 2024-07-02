@@ -12,9 +12,13 @@ const subscriptionSchema = new mongoose.Schema(
       required: true,
     },
     planId: {
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
+    },
+    softwareName: {
+      type: String,
+      required: true,
+    },
     plan: {
       type: String,
       enum: ["Basic", "Standard", "Premium"],
@@ -33,9 +37,9 @@ const subscriptionSchema = new mongoose.Schema(
       enum: ["Active", "Inactive", "Cancelled"],
       default: "Active",
     },
-    paymentStaus:{
-        type: String,
-        default: "Pending"
+    paymentStaus: {
+      type: String,
+      default: "Pending",
     },
     paymentHistory: [
       {
@@ -47,7 +51,7 @@ const subscriptionSchema = new mongoose.Schema(
           enum: ["Paid", "Pending", "Failed"],
           default: "Pending",
         },
-      }
+      },
     ],
   },
   {

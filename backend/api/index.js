@@ -41,7 +41,7 @@ app.use(`/api/v1/auth`, authRoute);
 app.use(`/api/v1/subscription`, subscriptionRoute);
 
 //user route
-app.use(`${baseUrl}/user`, userRoute);
+app.use(`/api/v1/user`, userRoute);
 
 // Start the server
 const PORT = process.env.PORT || 3000;

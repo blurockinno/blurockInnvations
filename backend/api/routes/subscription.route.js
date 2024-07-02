@@ -1,5 +1,5 @@
 import express from "express";
-import { initiatePayment, updatePayment, velidatePayment } from "../controller/subscription.controller.js";
+import { allSubscription, initiatePayment, updatePayment, velidatePayment } from "../controller/subscription.controller.js";
 
 const router = express.Router();
 
@@ -10,5 +10,7 @@ router.post("/createOrder", initiatePayment);
 router.post("/validate-payment", velidatePayment);
 
 router.put("/:id", updatePayment);
+
+router.get("/:id", allSubscription)
 
 export default router;

@@ -2,7 +2,7 @@ const OmsMemebershipCard = ({ handleOnPaymentSend }) => {
 
   // hnalde on subscribe 
   const handleOnPayment = (money) => {
-    handleOnPaymentSend(money);
+    handleOnPaymentSend(money, "order management system");
   };
   return (
     <section className="flex justify-evenly h-screen items-center">

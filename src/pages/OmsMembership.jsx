@@ -2,8 +2,10 @@ import { useSelector } from "react-redux";
 import OmsMemebershipCard from "../components/OmsMemebershipCard";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const OmsMembership = () => {
+  const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
   const [isPaymentDone, setIspayamentDone] = useState(false);
 
@@ -15,6 +17,7 @@ const OmsMembership = () => {
           `/api/v1/subscription/${currentUser.companyId}`
         );
         console.log(response);
+        navigate("/profile");
       } catch (error) {
         console.error("Failed to update payment details:", error);
       } finally {
@@ -28,7 +31,7 @@ const OmsMembership = () => {
   }, [isPaymentDone, currentUser.companyId]);
 
   // handle on payment initiate
-  const handleOnSubscribe = async (rupee) => {
+  const handleOnSubscribe = async (rupee, softwareName) => {
     try {
       const response = await axios.post(
         "/api/v1/subscription/createOrder",
@@ -39,6 +42,7 @@ const OmsMembership = () => {
           userId: currentUser._id,
           companyId: currentUser.companyId,
           plan: "Basic",
+          softwareName: softwareName,
           startDate: Date.now(),
           status: "Active",
         },

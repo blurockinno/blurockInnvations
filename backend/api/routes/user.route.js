@@ -1,16 +1,19 @@
 import express from "express";
 import {
   google,
-  signIn,
-  signUp,
+  loginUser,
+  registerUser,
   updateDetails,
+  verifyUser,
 } from "../controller/user.controller.js";
 
 const router = express.Router();
 
-router.post("/sign-in", signIn);
-router.post("/sign-up", signUp);
+router.post("/sign-in", registerUser);
+router.post("/sign-up", loginUser);
 router.post("/google", google);
-router.post("/update/:id",  updateDetails);
+router.post("/update/:id", updateDetails);
+
+router.post("/verifyUser", verifyUser);
 
 export default router;

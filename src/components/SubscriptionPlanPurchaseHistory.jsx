@@ -1,27 +1,25 @@
-const SubscriptionPlanPurchaseHistory = () => {
-  const plans = [
-    {
-      id: 1,
-      name: "Basic Plan",
-      date: "2023-06-01",
-      price: "$10.00",
-      status: "Active",
-    },
-    {
-      id: 2,
-      name: "Premium Plan",
-      date: "2023-06-15",
-      price: "$20.00",
-      status: "Inactive",
-    },
-    {
-      id: 3,
-      name: "Pro Plan",
-      date: "2023-07-01",
-      price: "$30.00",
-      status: "Active",
-    },
-  ];
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+const SubscriptionPlanPurchaseHistory = ({ currentUser }) => {
+  const [allSubcribedPlans, setAllSubscribedPlans] = useState([]);
+
+  useEffect(() => {
+    // handle for get plans
+    const getAllPlans = async () => {
+      try {
+        const response = await axios.get(
+          `/api/v1/subscription/${currentUser.companyId}`
+        );
+
+        const { plans } = response.data;
+        setAllSubscribedPlans(plans);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getAllPlans();
+  }, [currentUser.companyId]);
 
   return (
     <div className="container mx-auto p-4">
@@ -37,7 +35,7 @@ const SubscriptionPlanPurchaseHistory = () => {
                 Purchase Date
               </th>
               <th className="py-3 px-4 uppercase font-semibold text-sm">
-                Price
+                Amount
               </th>
               <th className="py-3 px-4 uppercase font-semibold text-sm">
                 Status
@@ -45,17 +43,15 @@ const SubscriptionPlanPurchaseHistory = () => {
             </tr>
           </thead>
           <tbody className="text-gray-700">
-            {plans.map((plan) => (
-              <tr key={plan.id} className="hover:bg-gray-100">
+            {allSubcribedPlans.map((plan) => (
+              <tr key={plan.id} className="hover:bg-gray-100 text-center capitalize">
                 <td className="py-3 px-4 border-b border-gray-200">
-                  {plan.name}
+                  {plan.softwareName}
                 </td>
                 <td className="py-3 px-4 border-b border-gray-200">
-                  {plan.date}
+                  {plan.startDate}
                 </td>
-                <td className="py-3 px-4 border-b border-gray-200">
-                  {plan.price}
-                </td>
+                <td className="py-3 px-4 border-b border-gray-200">5000</td>
                 <td className="py-3 px-4 border-b border-gray-200">
                   {plan.status}
                 </td>
