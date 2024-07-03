@@ -1,7 +1,6 @@
 const Setting = () => {
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Settings</h1>
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
         <div className="p-4 border-b">
           <h2 className="text-lg font-semibold mb-2">Profile Settings</h2>
