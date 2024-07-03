@@ -1,8 +1,15 @@
+import axios from "axios";
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const ManageUser = () => {
+  const { currentUser } = useSelector((state) => state.user);
   const [isModelOpen, setIsModelOpen] = useState(false);
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState("Admin");
+  const [status, setStatus] = useState("Active");
   // Example user data (can be fetched from API or passed as props)
   const [users, setUsers] = useState([
     {
@@ -40,10 +47,30 @@ const ManageUser = () => {
     setIsModelOpen((prev) => !prev);
   };
 
+  // handle for add user
+  const handleAddUser = async () => {
+    try {
+      const response = await axios.post("/api/v1/user/sign-up", {
+        fullname,
+        email,
+        role,
+        companyId: currentUser.companyId,
+        status,
+      });
+    } catch (error) {
+      console.error("There was an error adding the user!", error);
+    } finally {
+      // Clear the form
+      setFullname("");
+      setEmail("");
+      setRole("Admin");
+      setStatus("Active");
+    }
+  };
+
   return (
     <div className="container mx-auto p-4">
-      <div className="flex justify-between">
-        <h1 className="text-2xl font-bold mb-4">Manage Users</h1>
+      <div className="flex justify-end p-2">
         <button
           onClick={openAddUserModel}
           className="flex bg-blue-700 items-center text-white px-4"
@@ -53,7 +80,7 @@ const ManageUser = () => {
       </div>
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
         <table className="min-w-full bg-white">
-          <thead className="bg-gray-800 text-white">
+          <thead className="border text-black">
             <tr>
               <th className="py-3 px-4 uppercase font-semibold text-sm">
                 Name
@@ -75,49 +102,63 @@ const ManageUser = () => {
           <tbody className="text-gray-700">
             {isModelOpen && (
               <tr className="hover:bg-gray-100">
-                <td className="py-3 px-4 border-b border-gray-200">
+                <td className="py-3 px-4  border-gray-200">
                   <label htmlFor="fullname">Name</label>
-                  <input type="text" id="fullname" />
+                  <input
+                    type="text"
+                    id="fullname"
+                    value={fullname}
+                    onChange={(e) => setFullname(e.target.value)}
+                  />
                 </td>
-                <td className="py-3 px-4 border-b border-gray-200">
+                <td className="py-3 px-4  border-gray-200">
                   <label htmlFor="email">Email</label>
-                  <input type="email" id="email" />
+                  <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </td>
-                <td className="py-3 px-4 border-b border-gray-200">
+                <td className="py-3 px-4  border-gray-200">
                   <label htmlFor="role">Role</label>
-                  <select id="role">
+                  <select
+                    id="role"
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
+                  >
                     <option value="Admin">Admin</option>
                     <option value="User">User</option>
                   </select>
                 </td>
-                <td className="py-3 px-4 border-b border-gray-200">
-                  <select id="role">
+                <td className="py-3 px-4  border-gray-200">
+                  <label htmlFor="status">Status</label>
+                  <select
+                    id="status"
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value)}
+                  >
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
                   </select>
                 </td>
-                <td className="py-3 px-4 border-b border-gray-200">
-                  <button className="text-blue-600 hover:text-blue-800 mr-2">
+                <td className="py-3 px-4  border-gray-200">
+                  <button
+                    className="text-blue-600 hover:text-blue-800 mr-2"
+                    onClick={handleAddUser}
+                  >
                     Add User
                   </button>
                 </td>
               </tr>
             )}
             {users.map((user) => (
-              <tr key={user.id} className="hover:bg-gray-100">
-                <td className="py-3 px-4 border-b border-gray-200">
-                  {user.name}
-                </td>
-                <td className="py-3 px-4 border-b border-gray-200">
-                  {user.email}
-                </td>
-                <td className="py-3 px-4 border-b border-gray-200">
-                  {user.role}
-                </td>
-                <td className="py-3 px-4 border-b border-gray-200">
-                  {user.status}
-                </td>
-                <td className="py-3 px-4 border-b border-gray-200">
+              <tr key={user.id} className="hover:bg-gray-100 text-center">
+                <td className="py-3 px-4  border-gray-200">{user.name}</td>
+                <td className="py-3 px-4  border-gray-200">{user.email}</td>
+                <td className="py-3 px-4  border-gray-200">{user.role}</td>
+                <td className="py-3 px-4  border-gray-200">{user.status}</td>
+                <td className="py-3 px-4  border-gray-200">
                   <button className="text-blue-600 hover:text-blue-800 mr-2">
                     Edit
                   </button>

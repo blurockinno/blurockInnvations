@@ -1,11 +1,21 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import bg from "../assets/linegroup3.svg";
 import oms from "../assets/oms.jpg";
 import ems from "../assets/ems.jpg";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
+import wd from "../assets/development.png";
+import md from "../assets/app-development.png";
+import graphicDesign from "../assets/web-design.png";
+import seo from "../assets/search-engine-optimisation.png";
+import dm from "../assets/digital-marketing.png";
+import consulting from "../assets/consultant.png";
 
 const Home = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [email, setEmail] = useState("");
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,6 +24,12 @@ const Home = () => {
     // Clear the email input after submission
     setEmail("");
   };
+  const clientStats = [
+    { title: "Clients", count: 1200 },
+    { title: "Projects Completed", count: 350 },
+    { title: "Countries Served", count: 25 },
+    { title: "Years in Business", count: 10 },
+  ];
   const testimonials = [
     {
       id: 1,
@@ -71,10 +87,72 @@ const Home = () => {
       position: "COO, PQR Ltd.",
     },
   ];
+  const services = [
+    {
+      title: "Web Development",
+      description:
+        "Creating stunning and responsive websites tailored to your needs.",
+      icon: `${wd}`, // Replace with your own icon or image URL
+    },
+    {
+      title: "Mobile App Development",
+      description:
+        "Building user-friendly mobile applications for both iOS and Android platforms.",
+      icon: `${md}`, // Replace with your own icon or image URL
+    },
+    {
+      title: "Digital Marketing",
+      description:
+        "Providing comprehensive digital marketing strategies to boost your online presence.",
+      icon: `${dm}`, // Replace with your own icon or image URL
+    },
+    {
+      title: "SEO Optimization",
+      description:
+        "Enhancing your website’s visibility on search engines to attract more traffic.",
+      icon: `${seo}`, // Replace with your own icon or image URL
+    },
+    {
+      title: "Graphic Design",
+      description:
+        "Designing visually appealing graphics for your brand and marketing materials.",
+      icon: `${graphicDesign}`, // Replace with your own icon or image URL
+    },
+    {
+      title: "Consulting Services",
+      description:
+        "Offering expert advice and strategies to help your business grow.",
+      icon: `${consulting}`, // Replace with your own icon or image URL
+    },
+    // Add more services as needed
+  ];
+
+  const nextFeedback = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % feedbacks.length);
+  };
+
+  const prevFeedback = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + feedbacks.length) % feedbacks.length
+    );
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextFeedback();
+    }, 3000); // Change slide every 3 seconds
+
+    return () => clearInterval(interval); // Clear interval on component unmount
+  }, []);
   return (
     <>
       {/* carousel  */}
-      <section className="relative w-full h-screen">
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="relative w-full h-screen "
+      >
         <div
           style={{
             backgroundImage: `url(${bg})`,
@@ -82,28 +160,46 @@ const Home = () => {
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
           }}
-          className="absolute top-0 left-0 w-full h-full bg-cover bg-center opacity-20  -z-10 "
+          className="absolute top-0 left-0 w-full h-full bg-cover bg-center opacity-100  -z-10  bg-[#371B55]"
         />
         <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-20 ">
           <div className="pl-20 bg-opacity-50 rounded-lg w-3/4 ">
-            <p className="text-sm font-bold mb-2 bg-gradient-to-r from-[#EC4899] to-[#7E22CE] bg-clip-text text-transparent">
+            <motion.p
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="text-sm mb-4 font-semibold bg-gradient-to-r from-white w-auto"
+            >
               CUTTING EDGE CREATION
-            </p>
+            </motion.p>
 
-            <p className="text-7xl mb-4 font-semibold bg-gradient-to-r from-[#410377] to-[#EC4899] bg-clip-text text-transparent">
+            <motion.p
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="text-7xl mb-4 font-semibold  bg-gradient-to-r from-white "
+            >
               Software & Tech Development for the Future
-            </p>
-            <p className="mb-6 text-lg font-light bg-gradient-to-r from-[#410377] to-[#000000] bg-clip-text text-transparent">
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 2 }}
+              className="mb-6 text-lg font-light bg-gradient-to-r  from-violet-900  text-white"
+            >
               Sure, you may be able to get by with whatever software your
               business is currently using, but will you grow?
-            </p>
-            <button
-              className="relative px-6 py-2 rounded-md hover:text-white bg-white isolation-auto z-10 border
-                border-blue-600
+            </motion.p>
+            <motion.button
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 3 }}
+              className="relative px-6 py-2  hover:text-white bg-white isolation-auto z-10 border
+                hover:border-white-600
         before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-blue-600 before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
             >
               Get Started
-            </button>
+            </motion.button>
           </div>
           {/* <div
             className=" h-[400px] w-3/4  mr-20 "
@@ -114,134 +210,239 @@ const Home = () => {
             }}
           ></div> */}
         </div>
-      </section>
+      </motion.section>
       {/* carousel end */}
 
+      {/* service section  */}
+      <motion.section
+        className="w-full auto flex flex-col  p-20 bg-[#AB6604]"
+        ref={sectionRef}
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ duration: 1 }}
+      >
+        <motion.span
+          className="text-4xl font-semibold text-start text-white uppercase hover:border-b"
+          initial={{ y: -50, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 0.3 }}
+        >
+          Digital Core Capabilities
+        </motion.span>
+        <motion.p
+          className="text-xl font-semibold mt-3 mb-20 text-start text-white"
+          initial={{ y: -50, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 0.6 }}
+        >
+          Build vital capabilities to deliver digital outcomes.
+        </motion.p>
+        <motion.section
+          className="mb-12"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 0.9 }}
+        >
+          <motion.h2
+            className="text-xl text-white font-semibold mb-8"
+            initial={{ y: -50, opacity: 0 }}
+            animate={isInView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 1, delay: 1.2 }}
+          >
+            What We Offer
+          </motion.h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={service.title}
+                className="p-10 shadow-lg  text-center  bg-gradient-to-t from-white"
+                initial={{ y: 50, opacity: 0 }}
+                animate={isInView ? { y: 0, opacity: 1 } : {}}
+                transition={{ duration: 1, delay: 1.5 + index * 0.3 }}
+              >
+                <div className="mb-4">
+                  <img
+                    src={service.icon}
+                    alt={service.title}
+                    className="w-24 h-24 mx-auto"
+                  />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-blue-800">
+                  {service.title}
+                </h3>
+                <p className="text-gray-700">{service.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+      </motion.section>
+      {/* service setion end */}
+
+      {/* happy client  */}
+      {/* <section className="w-full flex flex-col justify-center items-center py-20">
+        <h2 className="text-3xl font-semibold text-[#AB6604] mb-10">
+          Our Achievements
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-black">
+          {clientStats.map((stat, index) => (
+            <AnimatedCounter
+              key={index}
+              title={stat.title}
+              count={stat.count}
+            />
+          ))}
+        </div>
+      </section> */}
+      {/* happy client end */}
+
       {/* oms product section  */}
-      <section className=" py-12">
-        <div className="max-w-5xl mx-auto ">
-          <p className="text-3xl font-semibold mb-20 text-center">
-            Our Software
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 bg-blue-50 p-6 shadow-lg">
+      <motion.section className="px-20 py-12 bg-[#0271B1]">
+        <motion.span
+          className="text-4xl font-semibold text-start text-white uppercase hover:border-b"
+          initial={{ y: -50, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 0.3 }}
+        >
+          Our Software
+        </motion.span>
+        <motion.p
+          className="text-xl font-semibold mt-3 mb-20 text-start text-white"
+          initial={{ y: -50, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 0.6 }}
+        >
+          Build vital capabilities to deliver digital outcomes.
+        </motion.p>
+        <motion.div
+          className="max-w-7xl mx-auto "
+          initial={{ y: 50, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 1.5 }}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-12  p-6 ">
             <div>
               <img
                 src={oms}
                 alt="Product Screenshot"
-                className="w-full rounded-lg shadow-md"
+                className="w-full rounded-lg shadow-lg shadow-black"
               />
             </div>
             <div className="flex flex-col justify-center">
-              <p className="text-2xl font-semibold mb-4">
+              <p className="text-2xl font-semibold mb-4 text-white uppercase underline">
                 Order Management System
               </p>
-              <p className="text-xl mb-4 text-justify">
+              <p className="text-xl mb-4 text-justify text-gray-200">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
                 convallis libero nec sapien rutrum, at dignissim magna
                 fermentum.
               </p>
               <ul className="text-left mb-6">
-                <li className="mb-2">
-                  <span className="text-blue-600 mr-2">&#x2713;</span> Feature
-                  1: Lorem ipsum dolor sit amet
+                <li className="mb-2 text-white">
+                  <span className="text-white mr-2">&#x2713;</span> Feature 1:
+                  Lorem ipsum dolor sit amet
                 </li>
-                <li className="mb-2">
-                  <span className="text-blue-600 mr-2">&#x2713;</span> Feature
-                  2: Consectetur adipiscing elit
+                <li className="mb-2 text-white">
+                  <span className="text-white mr-2">&#x2713;</span> Feature 2:
+                  Consectetur adipiscing elit
                 </li>
-                <li className="mb-2">
-                  <span className="text-blue-600 mr-2">&#x2713;</span> Feature
-                  3: Nulla convallis libero nec sapien
+                <li className="mb-2 text-white">
+                  <span className="text-white mr-2">&#x2713;</span> Feature 3:
+                  Nulla convallis libero nec sapien
                 </li>
-                <li className="mb-2">
-                  <span className="text-blue-600 mr-2">&#x2713;</span> Feature
-                  4: Dignissim magna fermentum
+                <li className="mb-2 text-white">
+                  <span className="text-white mr-2">&#x2713;</span> Feature 4:
+                  Dignissim magna fermentum
                 </li>
               </ul>
               <Link to={"/oms-plan"}>
-                <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out">
+                <button
+                  className="relative px-6 py-2  hover:text-white bg-white isolation-auto z-10 border
+                hover:border-white-600
+        before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-blue-600 before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
+                >
                   See plan
                 </button>
               </Link>
             </div>
           </div>
-        </div>
-      </section>
-      {/* pms product section end  */}
-      {/* ems product section  */}
-      <section className="py-12">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 bg-blue-50 p-6">
+        </motion.div>
+        {/* ems product section  */}
+        <motion.div
+          className="max-w-7xl mx-auto "
+          initial={{ y: 50, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 1.5 }}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-12  p-6 ">
             <div>
               <img
-                src={ems}
+                src={oms}
                 alt="Product Screenshot"
-                className="w-full rounded-lg shadow-md"
+                className="w-full rounded-lg shadow-lg shadow-black"
               />
             </div>
             <div className="flex flex-col justify-center">
-              <p className="text-2xl font-semibold mb-4">
+              <p className="text-2xl font-semibold mb-4 text-white uppercase underline">
                 Order Management System
               </p>
-              <p className="text-xl mb-4 text-justify">
+              <p className="text-xl mb-4 text-justify text-gray-200">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
                 convallis libero nec sapien rutrum, at dignissim magna
                 fermentum.
               </p>
               <ul className="text-left mb-6">
-                <li className="mb-2">
-                  <span className="text-blue-600 mr-2">&#x2713;</span> Feature
-                  1: Lorem ipsum dolor sit amet
+                <li className="mb-2 text-white">
+                  <span className="text-white mr-2">&#x2713;</span> Feature 1:
+                  Lorem ipsum dolor sit amet
                 </li>
-                <li className="mb-2">
-                  <span className="text-blue-600 mr-2">&#x2713;</span> Feature
-                  2: Consectetur adipiscing elit
+                <li className="mb-2 text-white">
+                  <span className="text-white mr-2">&#x2713;</span> Feature 2:
+                  Consectetur adipiscing elit
                 </li>
-                <li className="mb-2">
-                  <span className="text-blue-600 mr-2">&#x2713;</span> Feature
-                  3: Nulla convallis libero nec sapien
+                <li className="mb-2 text-white">
+                  <span className="text-white mr-2">&#x2713;</span> Feature 3:
+                  Nulla convallis libero nec sapien
                 </li>
-                <li className="mb-2">
-                  <span className="text-blue-600 mr-2">&#x2713;</span> Feature
-                  4: Dignissim magna fermentum
+                <li className="mb-2 text-white">
+                  <span className="text-white mr-2">&#x2713;</span> Feature 4:
+                  Dignissim magna fermentum
                 </li>
               </ul>
-              <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out">
-                See Plan
-              </button>
+              <Link to={"/oms-plan"}>
+                <button
+                  className="relative px-6 py-2  hover:text-white bg-white isolation-auto z-10 border
+                hover:border-white-600
+        before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-blue-600 before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
+                >
+                  See plan
+                </button>
+              </Link>
             </div>
           </div>
-        </div>
-      </section>
-      {/* ems product section end  */}
-
-      {/* service section  */}
-      <section className="w-full auto  flex flex-col justify-center items-center p-20">
-        <h2 className="text-4xl font-bold mb-8">What&apos;s we provide</h2>
-        <div className="flex justify-between max-w-7xl w-full">
-          <div className="flex-1 mx-4 bg-white p-4 rounded-lg shadow-md text-center">
-            {/* Replace with your icon component */}
-            <p>Icon 1</p>
-            <p>Web Development</p>
-          </div>
-          <div className="flex-1 mx-4 bg-white p-4 rounded-lg shadow-md text-center">
-            {/* Replace with your icon component */}
-            <p>Icon 2</p>
-            <p>Mobile Developement</p>
-          </div>
-          <div className="flex-1 mx-4 bg-white p-4 rounded-lg shadow-md text-center">
-            {/* Replace with your icon component */}
-            <p>Icon 3</p>
-            <p>Software solutions</p>
-          </div>
-        </div>
-      </section>
-      {/* service setion end */}
+        </motion.div>
+        {/* ems product section end  */}
+      </motion.section>
+      {/* pms product section end  */}
 
       {/* textimonials sections */}
-      <section className=" py-12">
+      <section className="px-20 py-12 bg-[#F5F5F5]">
+        <motion.span
+          className="text-4xl font-semibold text-start text-black uppercase hover:border-b"
+          initial={{ y: -50, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 0.3 }}
+        >
+          Testominials
+        </motion.span>
+        <motion.p
+          className="text-xl font-semibold mt-3 mb-20 text-start text-black"
+          initial={{ y: -50, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 0.6 }}
+        >
+          Build vital capabilities to deliver digital outcomes.
+        </motion.p>
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-10">Testimonials</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
             {testimonials.map((testimonial) => (
               <div
@@ -268,26 +469,63 @@ const Home = () => {
       {/* textimonials sections end */}
 
       {/* customer feedback  */}
-      <section className="bg-gray-100 py-12">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold mb-8">Customer Feedback</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {feedbacks.map((feedback) => (
-              <div
-                key={feedback.id}
-                className="bg-white p-6 rounded-lg shadow-md"
-              >
-                <p className="mb-4">{feedback.quote}</p>
-                <div className="flex items-center justify-center">
-                  <p className="text-lg font-semibold">{feedback.name}</p>
-                  <p className="text-gray-600 ml-2">{feedback.position}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+
+      {/* endc suctomer feedback  */}
+
+      <section className="flex flex-col px-20 py-20 bg-[#F5F5F5]">
+        <motion.span
+          className="text-4xl font-semibold text-start text-black uppercase hover:border-b "
+          initial={{ y: -50, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 0.3 }}
+        >
+          Cutomer Feedback
+        </motion.span>
+        <motion.p
+          className="text-xl font-semibold mt-3 mb-20 text-start text-balck"
+          initial={{ y: -50, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 0.6 }}
+        >
+          Build vital capabilities to deliver digital outcomes.
+        </motion.p>
+        <div className="relative w-full max-w-7xl flex items-center justify-center">
+          <button
+            onClick={prevFeedback}
+            className="absolute left-0 text-[#AB6604] text-2xl"
+          >
+            &larr;
+          </button>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.5 }}
+              className="p-10 bg-white rounded-lg shadow-md text-center"
+            >
+              <p className="text-xl text-gray-700 flex">
+                <span className="text-6xl mb-3">&ldquo;</span>
+                <br />
+                {feedbacks[currentIndex].quote}
+                <br />
+                <br />
+                <span className="text-6xl">&rdquo;</span>
+              </p>
+              <h3 className="text-2xl font-bold text-[#AB6604] mt-4">
+                {feedbacks[currentIndex].name}
+              </h3>
+            </motion.div>
+          </AnimatePresence>
+          <button
+            onClick={nextFeedback}
+            className="absolute right-0 text-[#AB6604] text-2xl"
+          >
+            &rarr;
+          </button>
         </div>
       </section>
-      {/* endc suctomer feedback  */}
 
       {/* subscribe section  */}
       <section className="bg-gray-200 py-12">

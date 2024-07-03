@@ -31,10 +31,9 @@ const PaymentHistory = ({ currentUser }) => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Payment History</h1>
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
         <table className="min-w-full bg-white">
-          <thead className="bg-gray-800 text-white">
+          <thead className="border text-black">
             <tr>
               <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">
                 Invoice Id
@@ -51,9 +50,7 @@ const PaymentHistory = ({ currentUser }) => {
             {allSubcribedPlans.map((payment, index) => (
               <tr key={index} className="text-center">
                 <td className="w-1/4 py-3 px-4">{payment.invoiceId}</td>
-                <td className="w-1/4 py-3 px-4">
-                  {payment.date}
-                </td>
+                <td className="w-1/4 py-3 px-4">{payment.date}</td>
                 <td className="w-1/4 py-3 px-4">{payment.amount / 100}</td>
               </tr>
             ))}

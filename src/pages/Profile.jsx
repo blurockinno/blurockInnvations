@@ -160,14 +160,20 @@ const Profile = () => {
   }
 
   return (
-    <div className="container mx-auto p-2 h-screen mt-20">
-      <div className="bg-white shadow-md rounded-lg  flex ">
-        <div className="w-[80%]  h-screen">
+    <div className=" mx-auto p-2 h-screen mt-20 mb-10">
+      <div className="bg-white   flex gap-10">
+        <div className="w-[80%]  h-auto mt-2 bg-gray-50">
           {/* profile page  */}
 
           {tab === "profile" && isTabOpen && (
-            <div className="min-h-screen w-full px-10 py-4">
-              <div className="flex items-center space-x-4">
+            <>
+              <div className="p-4">
+                <h1 className="bg-blue-100 px-10 py-2 text-black text-xl ">
+                  Profile
+                </h1>
+              </div>
+
+              <div className="flex items-center space-x-4 bg-white m-4 p-2">
                 <div className="flex flex-col">
                   <input
                     type="file"
@@ -245,7 +251,7 @@ const Profile = () => {
                 name={currentUser.fullName}
                 email={currentUser.email}
               /> */}
-            </div>
+            </>
           )}
 
           {/* profile page end */}
@@ -253,47 +259,97 @@ const Profile = () => {
           {/* http://localhost:3000/orderManagement-dashboard/order */}
           {/* <software card  */}
           {tab === "software" && isTabOpen && (
-            <div className="flex flex-wrap justify-center">
-              {allSubcribedPlans.map((product, index) => (
-                <SoftwareProductCard
-                  key={index}
-                  product={product}
-                  handleOnOpenSoftware={() =>
-                    handleOnOpenNow(product.softwareName)
-                  }
-                />
-              ))}
-            </div>
+            <>
+              <div className="p-4">
+                <h1 className="bg-blue-100 px-10 py-2 text-black text-xl ">
+                  Software
+                </h1>
+              </div>
+              <div className="flex flex-wrap justify-center">
+                {allSubcribedPlans.map((product, index) => (
+                  <SoftwareProductCard
+                    key={index}
+                    product={product}
+                    handleOnOpenSoftware={() =>
+                      handleOnOpenNow(product.softwareName)
+                    }
+                  />
+                ))}
+              </div>
+            </>
           )}
           {/* <software card end*/}
 
           {/* payment method  */}
-          {tab === "payment method" && isTabOpen && <PaymentMethod />}
+          {tab === "payment method" && isTabOpen && (
+            <>
+              <div className="p-4">
+                <h1 className="bg-blue-100 px-10 py-2 text-black text-xl ">
+                  Payment Method
+                </h1>
+              </div>
+              <PaymentMethod />
+            </>
+          )}
           {/* payment method end */}
 
           {/* payment history  */}
           {tab === "payment history" && isTabOpen && (
-            <PaymentHistory currentUser={currentUser} />
+            <>
+              <div className="p-4">
+                <h1 className="bg-blue-100 px-10 py-2 text-black text-xl ">
+                  Payment Hstory
+                </h1>
+              </div>
+              <PaymentHistory currentUser={currentUser} />
+            </>
           )}
           {/* payment history end  */}
 
           {/* subscription plan  */}
           {tab === "subscription plan" && isTabOpen && (
-            <SubscriptionPlanPurchaseHistory currentUser={currentUser} />
+            <>
+              <div className="p-4">
+                <h1 className="bg-blue-100 px-10 py-2 text-black text-xl ">
+                  Plan Purchase History
+                </h1>
+              </div>
+              <SubscriptionPlanPurchaseHistory currentUser={currentUser} />
+            </>
           )}
           {/* subscription plan end */}
 
           {/* manage user  */}
-          {tab === "manage user" && isTabOpen && <ManageUser />}
+          {tab === "manage user" && isTabOpen && (
+            <>
+              <div className="p-4">
+                <h1 className="bg-blue-100 px-10 py-2 text-black text-xl ">
+                  Manage user
+                </h1>
+              </div>
+              <ManageUser />
+            </>
+          )}
           {/* manage user end */}
 
           {/* settting page  */}
-          {tab === "setting" && isTabOpen && <Setting />}
+          {tab === "setting" && isTabOpen && (
+            <>
+              <div className="p-4">
+                <h1 className="bg-blue-100 px-10 py-2 text-black text-xl ">
+                  Setting
+                </h1>
+              </div>
+              <Setting />
+            </>
+          )}
           {/* settting page end */}
         </div>
         <div className="w-[20%] h-screen ">
           <div className="flex items-center justify-center h-20 bg-gray-100">
-            <span className="text-xl font-semibold">Blurock Innovations</span>
+            <span className="text-xl font-semibold capitalize">
+              {currentUser.companyName}
+            </span>
           </div>
           <nav className="flex flex-col flex-1 p-4 text-black border-l ">
             <SidebarLink

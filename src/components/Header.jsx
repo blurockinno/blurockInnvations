@@ -6,13 +6,13 @@ const Header = () => {
 
   return (
     <>
-      <div className="w-full p-11 absolute top-0  z-50 opacity-80 bg-white shadow-sm shadow-blue-50"></div>
+      <div className="w-full p-11 absolute top-0  z-50 bg-white opacity-80 shadow-sm"></div>
       <header className="w-full text-blue-700 p-7 absolute top-0  z-50">
         <nav className="container mx-auto flex justify-between items-center px-12 opacity-100 ">
           <div className="text-xl font-bold cursor-pointer">
             Blurock Innovations
           </div>
-          <div className="space-x-12 flex text-md font-semibold">
+          <div className="space-x-12 flex text-sm font-semibold ">
             <NavLink
               to="/"
               exact
@@ -53,7 +53,7 @@ const Header = () => {
                 <img
                   src={currentUser.profilePicture}
                   alt="profile picture"
-                  className="rounded-full h-7 w-7 object-cover"
+                  className="rounded-full h-7 w-7 object-cover border-black shadow-sm"
                 />
               </NavLink>
             ) : (
