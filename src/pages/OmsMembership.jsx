@@ -3,6 +3,12 @@ import OmsMemebershipCard from "../components/OmsMemebershipCard";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Hero from "../components/memeship-page-component/Hero";
+import Features from "../components/memeship-page-component/Features";
+import Demo from "../components/memeship-page-component/Demo";
+import Subscription from "../components/memeship-page-component/Subscription";
+import BGI from "../assets/Group.svg";
+import BGI2 from "../assets/Group2.svg";
 
 const OmsMembership = () => {
   const navigate = useNavigate();
@@ -117,7 +123,27 @@ const OmsMembership = () => {
   };
   return (
     <div className="mt-20">
-      <OmsMemebershipCard handleOnPaymentSend={handleOnSubscribe} />
+      {/* <OmsMemebershipCard handleOnPaymentSend={handleOnSubscribe} /> */}
+      <div className="font-">
+        <section className="bg-slate-200 bg-cover flex flex-col">
+          {/* <Nav/> */}
+          <hr className="bg-slate-600 " />
+          <Hero />
+        </section>
+        <section
+          className="bg-cover flex flex-col bg-no-repeat bg-center"
+          style={{ backgroundImage: `url(${BGI})` }}
+        >
+          <Features />
+          <Demo />
+        </section>
+        <section
+          className="bg-cover flex flex-col bg-no-repeat bg-end"
+          style={{ backgroundImage: `url(${BGI2})` }}
+        >
+          <Subscription />
+        </section>
+      </div>
     </div>
   );
 };
