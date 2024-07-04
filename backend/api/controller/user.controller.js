@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 import { AuthUser } from "../models/auth.model.js";
-import crypto from "crypto"
+import crypto from "crypto";
 
 // //sign in
 // export const signIn = async (req, res, next) => {
@@ -157,9 +157,17 @@ export const updateDetails = async (req, res, next) => {
 
 // User Registration Controller
 export const registerUser = async (req, res) => {
-  const { fullName, companyId, email, role } = req.body;
+  const { fullName, companyId, email, role, status, softwareName} = req.body;
 
   try {
+    // Validate input
+    if (!fullName || typeof fullName !== "string") {
+      return res.status(400).json({ message: "Invalid full name." });
+    }
+    if (!email || typeof email !== "string") {
+      return res.status(400).json({ message: "Invalid email." });
+    }
+
     // Check if the user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -169,21 +177,29 @@ export const registerUser = async (req, res) => {
     // Create a verification token
     const verificationToken = crypto.randomBytes(20).toString("hex");
 
+    const modifiedPassword = fullName.slice(0, 4) + "3223";
+
+    const hashPassword = await bcrypt.hash(modifiedPassword, 12);
+
     // Create a new user
     const newUser = new User({
       fullName,
       companyId,
       email,
-      password: fullName.splice(0, 4) + "3223",
-      temPassword: fullName.splice(0, 4) + "3223",
+      password: hashPassword,
+      tempPassword: modifiedPassword,
       verificationToken,
       role,
+      status,
+      softwareName
     });
 
     // Save the user to the database
     await newUser.save();
 
     res.status(201).json({
+      success: true,
+      newUser,
       message: "User registered successfully. Please verify your email.",
     });
   } catch (error) {
@@ -259,5 +275,17 @@ export const verifyUser = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+  }
+};
+
+// get all user
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+
+    res.status(200).json({ success: true, users });
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    res.status(500).json({ error: "Internal server error." });
   }
 };

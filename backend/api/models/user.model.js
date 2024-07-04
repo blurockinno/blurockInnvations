@@ -22,11 +22,19 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: "false",
     },
-    temPassword: {
+    tempPassword: {
       type: String,
     },
     password: {
       type: String,
+    },
+    status: {
+      type: String,
+      default: "Inactive",
+    },
+    softwareName: {
+      type: String,
+      required: true,
     },
     profilePicture: {
       type: String,

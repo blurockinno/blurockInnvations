@@ -8,7 +8,6 @@ export const registration = async (req, res) => {
     // Fetch data from request body
     const { companyName, fullName, email, isAgreed, mobileNumber, industrySize } = req.body;
 
-    console.log(req.body)
   
     try {
       // Validation

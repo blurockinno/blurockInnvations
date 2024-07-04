@@ -222,6 +222,7 @@ const Profile = () => {
                     <input
                       id="email"
                       type="email"
+                      disabled
                       className="text-lg font-bold border px-3"
                       value={currentUser.email}
                       onChange={handleChange}
