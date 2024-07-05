@@ -4,6 +4,7 @@ import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 import { AuthUser } from "../models/auth.model.js";
 import crypto from "crypto";
+import mongoose from "mongoose";
 
 // //sign in
 // export const signIn = async (req, res, next) => {
@@ -115,49 +116,10 @@ export const google = async (req, res, next) => {
   }
 };
 
-// update the  profile iamge
-export const updateDetails = async (req, res, next) => {
-  // if (req.user.id !== req.params.id) {
-  //   return next(errorHandler(401, "You can update only your account."));
-  // }
-
-  try {
-    if (req.body.password) {
-      req.body.password = await bcrypt.hash(req.body.password, 12);
-    }
-
-    const updateUser = await User.findByIdAndUpdate(
-      req.params.id,
-      {
-        $set: {
-          username: req.body.username,
-          email: req.body.email,
-          password: req.body.password,
-          profilePicture: req.body.profilePicture,
-        },
-      },
-      {
-        new: true,
-        runValidators: true, // Ensures validation is run
-      }
-    ).lean(); // Converts mongoose document to plain JavaScript object
-
-    // Separate the password
-    const { password, ...rest } = updateUser;
-
-    res.status(200).json({
-      success: true,
-      message: "Updated successfully",
-      user: rest,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
 
 // User Registration Controller
 export const registerUser = async (req, res) => {
-  const { fullName, companyId, email, role, status, softwareName} = req.body;
+  const { fullName, companyId, email, role, status, softwareName } = req.body;
 
   try {
     // Validate input
@@ -191,7 +153,7 @@ export const registerUser = async (req, res) => {
       verificationToken,
       role,
       status,
-      softwareName
+      softwareName,
     });
 
     // Save the user to the database
@@ -286,6 +248,62 @@ export const getAllUsers = async (req, res) => {
     res.status(200).json({ success: true, users });
   } catch (error) {
     console.error("Error fetching users:", error);
+    res.status(500).json({ error: "Internal server error." });
+  }
+};
+
+export const removeUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    // Find and delete user
+    const user = await User.findByIdAndDelete(id);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found!",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "User removed successfully",
+    });
+  } catch (error) {
+    console.error("Error removing user:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
+
+// update user details and change the access right
+export const updateUser = async (req, res) => {
+  const { id } = req.params;
+  const { userData } = req.body;
+  console.log(id);
+
+  try {
+    // Validate input
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid user ID." });
+    }
+
+    // Update user
+    const updatedUser = await User.findByIdAndUpdate(id, userData, { new: true });
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    res.status(200).json({
+      success: true,
+      updatedUser,
+      message: "User updated successfully.",
+    });
+  } catch (error) {
+    console.error("Error updating user:", error);
     res.status(500).json({ error: "Internal server error." });
   }
 };

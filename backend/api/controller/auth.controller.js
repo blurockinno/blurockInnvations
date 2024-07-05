@@ -168,3 +168,45 @@ export const verifyEmail = async (req, res) =>{
     res.status(500).json({ error: "Internal Server Error" });
   }
 }
+
+// update the  profile iamge
+export const updateDetails = async (req, res, next) => {
+  // if (req.user.id !== req.params.id) {
+  //   return next(errorHandler(401, "You can update only your account."));
+  // }
+  console.log("working")
+
+  try {
+    if (req.body.password) {
+      req.body.password = await bcrypt.hash(req.body.password, 12);
+    }
+
+    const updateUser = await AuthUser.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          username: req.body.username,
+          email: req.body.email,
+          password: req.body.password,
+          profilePicture: req.body.profilePicture,
+        },
+      },
+      {
+        new: true,
+        runValidators: true, // Ensures validation is run
+      }
+    ).lean(); // Converts mongoose document to plain JavaScript object
+
+    // Separate the password
+    const { password, ...rest } = updateUser;
+
+    res.status(200).json({
+      success: true,
+      message: "Updated successfully",
+      user: rest,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+

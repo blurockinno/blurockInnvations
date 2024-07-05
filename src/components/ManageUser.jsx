@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Plus } from "lucide-react";
+import { Edit, Plus, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -13,7 +13,10 @@ const ManageUser = () => {
   const [softwareName, setSoftwareName] = useState("Order Management System");
   const [isLoding, setIsLoading] = useState(false);
   const [allUser, setAllUser] = useState([]);
+  const [isClickUpdate, setIsClickUpdate] = useState(false);
+  const [userId, setUserId] = useState("");
 
+  // fetch all users
   useEffect(() => {
     const fetchAllUsers = async () => {
       try {
@@ -25,16 +28,39 @@ const ManageUser = () => {
         console.error("Error fetching users:", error);
       } finally {
         setIsLoading(false);
+        setIsModelOpen(false);
+        setIsClickUpdate(false);
+        setUserId("");
       }
     };
 
     fetchAllUsers();
-  }, [isLoding]); //
+  }, [isLoding]);
 
-  const handleDeleteUser = (userId) => {
-    // // Implement delete functionality (can be API call or local state update)
-    // const updatedUsers = users.filter((user) => user.id !== userId);
-    // setUsers(updatedUsers);
+  useEffect(() => {
+    const filterUser = allUser.filter((user) => user._id === userId);
+    for (let user of filterUser) {
+      setFullName(user?.fullName);
+      setEmail(user?.email);
+      setRole(user?.role);
+      setSoftwareName(user?.softwareName);
+      setStatus(user?.status);
+    }
+  }, [isClickUpdate, allUser, userId]);
+
+  //handle for delete user
+  const handleDeleteUser = async (id) => {
+    try {
+      const response = await axios.delete(`/api/v1/user/${id}`);
+
+      console.log(response);
+      const { success, message } = response.data;
+      if (success) {
+        setIsLoading(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const openAddUserModel = () => {
@@ -70,6 +96,35 @@ const ManageUser = () => {
     }
   };
 
+  // handle for ST THE VALUE FOR UPDATE THE USER DETAILS
+  const handleSetupdateValue = (userId) => {
+    setIsModelOpen(true);
+    setIsClickUpdate(true);
+    setUserId(userId);
+  };
+
+  //handle on edit
+  const handleOnEdit = async () => {
+    const userData = {
+      fullName: fullName,
+      email: email,
+      status: status,
+      softwareName: softwareName,
+      role: role,
+    };
+    try {
+      const response = await axios.put(`/api/v1/user/${userId}`, {
+        userData,
+      });
+      const { success, message } = response.data;
+      if (success) {
+        console.log(message);
+      }
+      setIsLoading(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-end p-2">
@@ -106,53 +161,73 @@ const ManageUser = () => {
           </thead>
           <tbody className="text-gray-700">
             {isModelOpen && (
-              <tr className="hover:bg-gray-100">
+              <tr className="hover:bg-gray-100 bg-gray-200">
                 <td className="py-3 px-4  border-gray-200">
-                  <label htmlFor="fullname">Name</label>
+                  <label htmlFor="fullname" className="text-xs">
+                    Name
+                  </label>
                   <input
                     type="text"
                     id="fullname"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
+                    className="border outline-none rounded-sm bg-gray-50"
+                    required
                   />
                 </td>
                 <td className="py-3 px-4  border-gray-200">
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="email" className="text-xs">
+                    Email
+                  </label>
                   <input
                     type="email"
                     id="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    className="border outline-none rounded-sm bg-gray-50"
+                    required
                   />
                 </td>
                 <td className="py-3 px-4  border-gray-200">
-                  <label htmlFor="role">Role</label>
+                  <label htmlFor="role" className="text-xs">
+                    Role
+                  </label>
                   <select
                     id="role"
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
+                    className="border outline-none rounded-sm bg-gray-50"
+                    required
                   >
                     <option value="Admin">Admin</option>
                     <option value="User">User</option>
                   </select>
                 </td>
                 <td className="py-3 px-4  border-gray-200">
-                  <label htmlFor="status">Status</label>
+                  <label htmlFor="status" className="text-xs">
+                    Status
+                  </label>
                   <select
                     id="status"
                     value={status}
                     onChange={(e) => setStatus(e.target.value)}
+                    className="border outline-none rounded-sm bg-gray-50"
+                    required
                   >
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
                   </select>
                 </td>
                 <td className="py-3 px-4  border-gray-200">
-                  <label htmlFor="status">Status</label>
+                  <label htmlFor="status" className="text-xs">
+                    Status
+                  </label>
                   <select
                     id="status"
                     value={softwareName}
                     onChange={(e) => setSoftwareName(e.target.value)}
+                    className="border outline-none rounded-sm bg-gray-50"
+                    required
                   >
                     <option value="Order Management System">
                       Order Management System
@@ -163,12 +238,21 @@ const ManageUser = () => {
                   </select>
                 </td>
                 <td className="py-3 px-4  border-gray-200">
-                  <button
-                    className="text-blue-600 hover:text-blue-800 mr-2"
-                    onClick={handleAddUser}
-                  >
-                    Add User
-                  </button>
+                  {isClickUpdate ? (
+                    <button
+                      className="text-blue-600 hover:text-blue-800 mr-2"
+                      onClick={handleOnEdit}
+                    >
+                      Update
+                    </button>
+                  ) : (
+                    <button
+                      className="text-blue-600 hover:text-blue-800 mr-2"
+                      onClick={handleAddUser}
+                    >
+                      Add
+                    </button>
+                  )}
                 </td>
               </tr>
             )}
@@ -182,14 +266,17 @@ const ManageUser = () => {
                   {user?.softwareName}
                 </td>
                 <td className="py-3 px-4  border-gray-200">
-                  <button className="text-blue-600 hover:text-blue-800 mr-2">
-                    Edit
+                  <button
+                    onClick={() => handleSetupdateValue(user._id)}
+                    className="text-blue-600 hover:text-blue-800 mr-2"
+                  >
+                    <Edit />
                   </button>
                   <button
                     className="text-red-600 hover:text-red-800"
-                    onClick={() => handleDeleteUser(user.id)}
+                    onClick={() => handleDeleteUser(user._id)}
                   >
-                    Delete
+                    <Trash2 />
                   </button>
                 </td>
               </tr>

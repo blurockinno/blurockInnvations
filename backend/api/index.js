@@ -34,7 +34,6 @@ app.get("/", (req, res) => {
 });
 
 // Use user routes
-const baseUrl =  "/api/v1/"
 app.use(`/api/v1/auth`, authRoute);
 
 //subscription route
