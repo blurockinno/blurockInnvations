@@ -1,6 +1,6 @@
 const Demo = () => {
   return (
-    <div className="h-[800px">
+    <div className="h-[800px]">
       <h1 className="text-[30px] font-bold text-center pt-9">
         Experience the Demo
       </h1>
