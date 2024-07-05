@@ -10,6 +10,7 @@ import Subscription from "../components/memeship-page-component/Subscription";
 import BGI from "../assets/Group.svg";
 import BGI2 from "../assets/Group2.svg";
 
+
 const OmsMembership = () => {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
@@ -34,7 +35,7 @@ const OmsMembership = () => {
     if (isPaymentDone) {
       updatePaymentDetails();
     }
-  }, [isPaymentDone, currentUser.companyId]);
+  }, [isPaymentDone, currentUser?.companyId]);
 
   // handle on payment initiate
   const handleOnSubscribe = async (rupee, softwareName) => {
@@ -125,7 +126,7 @@ const OmsMembership = () => {
     <div className="mt-20">
       {/* <OmsMemebershipCard handleOnPaymentSend={handleOnSubscribe} /> */}
       <div className="font-">
-        <section className="bg-slate-200 bg-cover flex flex-col">
+        <section className=" bg-slate-200 bg-cover bg-center flex flex-col" style={{}}>
           {/* <Nav/> */}
           <hr className="bg-slate-600 " />
           <Hero />
