@@ -1,47 +1,67 @@
 import axios from "axios";
-import { Plus } from "lucide-react";
-import { useState } from "react";
+import { Edit, Plus, Trash2 } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const ManageUser = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [isModelOpen, setIsModelOpen] = useState(false);
-  const [fullname, setFullname] = useState("");
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("Admin");
   const [status, setStatus] = useState("Active");
-  // Example user data (can be fetched from API or passed as props)
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      name: "John Doe",
-      email: "john@example.com",
-      role: "Admin",
-      status: "Active",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      email: "jane@example.com",
-      role: "User",
-      status: "Inactive",
-    },
-    {
-      id: 3,
-      name: "Mike Johnson",
-      email: "mike@example.com",
-      role: "User",
-      status: "Active",
-    },
-  ]);
+  const [softwareName, setSoftwareName] = useState("Order Management System");
+  const [isLoding, setIsLoading] = useState(false);
+  const [allUser, setAllUser] = useState([]);
+  const [isClickUpdate, setIsClickUpdate] = useState(false);
+  const [userId, setUserId] = useState("");
 
-  const handleDeleteUser = (userId) => {
-    // Implement delete functionality (can be API call or local state update)
-    const updatedUsers = users.filter((user) => user.id !== userId);
-    setUsers(updatedUsers);
+  // fetch all users
+  useEffect(() => {
+    const fetchAllUsers = async () => {
+      try {
+        const response = await axios.get("/api/v1/user/all");
+
+        const { users } = response.data;
+        setAllUser(users);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      } finally {
+        setIsLoading(false);
+        setIsModelOpen(false);
+        setIsClickUpdate(false);
+        setUserId("");
+      }
+    };
+
+    fetchAllUsers();
+  }, [isLoding]);
+
+  useEffect(() => {
+    const filterUser = allUser.filter((user) => user._id === userId);
+    for (let user of filterUser) {
+      setFullName(user?.fullName);
+      setEmail(user?.email);
+      setRole(user?.role);
+      setSoftwareName(user?.softwareName);
+      setStatus(user?.status);
+    }
+  }, [isClickUpdate, allUser, userId]);
+
+  //handle for delete user
+  const handleDeleteUser = async (id) => {
+    try {
+      const response = await axios.delete(`/api/v1/user/${id}`);
+
+      console.log(response);
+      const { success, message } = response.data;
+      if (success) {
+        setIsLoading(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-  const handleOnAddUser = () => {};
 
   const openAddUserModel = () => {
     setIsModelOpen((prev) => !prev);
@@ -49,25 +69,62 @@ const ManageUser = () => {
 
   // handle for add user
   const handleAddUser = async () => {
+    console.log(fullName, email, role, status);
     try {
       const response = await axios.post("/api/v1/user/sign-up", {
-        fullname,
+        fullName,
         email,
         role,
         companyId: currentUser.companyId,
         status,
+        softwareName,
       });
+
+      const { success, message } = response.data;
+      if (success) {
+        console.log(message);
+        setIsLoading(true);
+      }
     } catch (error) {
       console.error("There was an error adding the user!", error);
     } finally {
       // Clear the form
-      setFullname("");
+      setFullName("");
       setEmail("");
       setRole("Admin");
       setStatus("Active");
     }
   };
 
+  // handle for ST THE VALUE FOR UPDATE THE USER DETAILS
+  const handleSetupdateValue = (userId) => {
+    setIsModelOpen(true);
+    setIsClickUpdate(true);
+    setUserId(userId);
+  };
+
+  //handle on edit
+  const handleOnEdit = async () => {
+    const userData = {
+      fullName: fullName,
+      email: email,
+      status: status,
+      softwareName: softwareName,
+      role: role,
+    };
+    try {
+      const response = await axios.put(`/api/v1/user/${userId}`, {
+        userData,
+      });
+      const { success, message } = response.data;
+      if (success) {
+        console.log(message);
+      }
+      setIsLoading(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-end p-2">
@@ -95,78 +152,131 @@ const ManageUser = () => {
                 Status
               </th>
               <th className="py-3 px-4 uppercase font-semibold text-sm">
+                Access to
+              </th>
+              <th className="py-3 px-4 uppercase font-semibold text-sm">
                 Actions
               </th>
             </tr>
           </thead>
           <tbody className="text-gray-700">
             {isModelOpen && (
-              <tr className="hover:bg-gray-100">
+              <tr className="hover:bg-gray-100 bg-gray-200">
                 <td className="py-3 px-4  border-gray-200">
-                  <label htmlFor="fullname">Name</label>
+                  <label htmlFor="fullname" className="text-xs">
+                    Name
+                  </label>
                   <input
                     type="text"
                     id="fullname"
-                    value={fullname}
-                    onChange={(e) => setFullname(e.target.value)}
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    className="border outline-none rounded-sm bg-gray-50"
+                    required
                   />
                 </td>
                 <td className="py-3 px-4  border-gray-200">
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="email" className="text-xs">
+                    Email
+                  </label>
                   <input
                     type="email"
                     id="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    className="border outline-none rounded-sm bg-gray-50"
+                    required
                   />
                 </td>
                 <td className="py-3 px-4  border-gray-200">
-                  <label htmlFor="role">Role</label>
+                  <label htmlFor="role" className="text-xs">
+                    Role
+                  </label>
                   <select
                     id="role"
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
+                    className="border outline-none rounded-sm bg-gray-50"
+                    required
                   >
                     <option value="Admin">Admin</option>
                     <option value="User">User</option>
                   </select>
                 </td>
                 <td className="py-3 px-4  border-gray-200">
-                  <label htmlFor="status">Status</label>
+                  <label htmlFor="status" className="text-xs">
+                    Status
+                  </label>
                   <select
                     id="status"
                     value={status}
                     onChange={(e) => setStatus(e.target.value)}
+                    className="border outline-none rounded-sm bg-gray-50"
+                    required
                   >
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
                   </select>
                 </td>
                 <td className="py-3 px-4  border-gray-200">
-                  <button
-                    className="text-blue-600 hover:text-blue-800 mr-2"
-                    onClick={handleAddUser}
+                  <label htmlFor="status" className="text-xs">
+                    Status
+                  </label>
+                  <select
+                    id="status"
+                    value={softwareName}
+                    onChange={(e) => setSoftwareName(e.target.value)}
+                    className="border outline-none rounded-sm bg-gray-50"
+                    required
                   >
-                    Add User
-                  </button>
+                    <option value="Order Management System">
+                      Order Management System
+                    </option>
+                    <option value="Employee Management System">
+                      Employee Management System
+                    </option>
+                  </select>
+                </td>
+                <td className="py-3 px-4  border-gray-200">
+                  {isClickUpdate ? (
+                    <button
+                      className="text-blue-600 hover:text-blue-800 mr-2"
+                      onClick={handleOnEdit}
+                    >
+                      Update
+                    </button>
+                  ) : (
+                    <button
+                      className="text-blue-600 hover:text-blue-800 mr-2"
+                      onClick={handleAddUser}
+                    >
+                      Add
+                    </button>
+                  )}
                 </td>
               </tr>
             )}
-            {users.map((user) => (
+            {allUser.map((user) => (
               <tr key={user.id} className="hover:bg-gray-100 text-center">
-                <td className="py-3 px-4  border-gray-200">{user.name}</td>
-                <td className="py-3 px-4  border-gray-200">{user.email}</td>
-                <td className="py-3 px-4  border-gray-200">{user.role}</td>
-                <td className="py-3 px-4  border-gray-200">{user.status}</td>
+                <td className="py-3 px-4  border-gray-200">{user?.fullName}</td>
+                <td className="py-3 px-4  border-gray-200">{user?.email}</td>
+                <td className="py-3 px-4  border-gray-200">{user?.role}</td>
+                <td className="py-3 px-4  border-gray-200">{user?.status}</td>
                 <td className="py-3 px-4  border-gray-200">
-                  <button className="text-blue-600 hover:text-blue-800 mr-2">
-                    Edit
+                  {user?.softwareName}
+                </td>
+                <td className="py-3 px-4  border-gray-200">
+                  <button
+                    onClick={() => handleSetupdateValue(user._id)}
+                    className="text-blue-600 hover:text-blue-800 mr-2"
+                  >
+                    <Edit />
                   </button>
                   <button
                     className="text-red-600 hover:text-red-800"
-                    onClick={() => handleDeleteUser(user.id)}
+                    onClick={() => handleDeleteUser(user._id)}
                   >
-                    Delete
+                    <Trash2 />
                   </button>
                 </td>
               </tr>

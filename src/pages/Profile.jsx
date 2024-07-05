@@ -108,22 +108,37 @@ const Profile = () => {
 
   //handle on submit
   const handleOnSubmit = async () => {
-    console.log(formData);
+    console.log(currentUser._id);
+  
     try {
+      // Dispatch the action to indicate the update process has started
       dispatch(updateUserStart());
-      const response = await axios.post(
-        `/api/v1/auth/update/${currentUser._id}`,
+  
+      // Make an HTTP PUT request to update the user information
+      const response = await axios.put(
+        `/api/v1/auth/${currentUser._id}`,
         {
-          body: formData,
+          profilePicture: formData.profilePicture,
+          fullName: formData.fullName,
+          password: formData.password,
         }
       );
+  
+      console.log(response);
+  
+      // Extract the updated user information from the response
       const { user } = response.data;
+  
+      // Dispatch the success action with the updated user information
       dispatch(updateUserSuccess(user));
     } catch (error) {
       console.log(error);
+  
+      // Dispatch the failure action with the error information
       dispatch(updateUserFailure(error));
     }
   };
+  
 
   const handleToOpenTab = (value) => {
     // settab name
@@ -222,6 +237,7 @@ const Profile = () => {
                     <input
                       id="email"
                       type="email"
+                      disabled
                       className="text-lg font-bold border px-3"
                       value={currentUser.email}
                       onChange={handleChange}
