@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import bg from "../assets/linegroup3.svg";
 import oms from "../assets/oms.jpg";
-import ems from "../assets/ems.jpg";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import wd from "../assets/development.png";
@@ -10,12 +9,23 @@ import graphicDesign from "../assets/web-design.png";
 import seo from "../assets/search-engine-optimisation.png";
 import dm from "../assets/digital-marketing.png";
 import consulting from "../assets/consultant.png";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  currentSubscriptionCheckFailure,
+  currentSubscriptionCheckStart,
+  currentSubscriptionCheckSuccess,
+} from "../redux/subscription/subscriptionSlice";
+import axios from "axios";
 
 const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [email, setEmail] = useState("");
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
+  const dispatch = useDispatch();
+  const [allSubcribedPlans, setAllSubscribedPlans] = useState([]);
+  const { currentSubscription } = useSelector((state) => state?.subscription);
+  const { currentUser } = useSelector((state) => state.user);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -127,6 +137,27 @@ const Home = () => {
     // Add more services as needed
   ];
 
+  useEffect(() => {
+    // handle for get plans
+    const getAllPlans = async () => {
+      try {
+        //despatch the value
+        dispatch(currentSubscriptionCheckStart());
+        const response = await axios.get(
+          `/api/v1/subscription/${currentUser.companyId}`
+        );
+
+        const { plans } = response.data;
+        setAllSubscribedPlans(plans);
+        dispatch(currentSubscriptionCheckSuccess(plans));
+      } catch (error) {
+        console.log(error);
+        dispatch(currentSubscriptionCheckFailure(error.response.message));
+      }
+    };
+    getAllPlans();
+  }, [currentUser.companyId, dispatch]);
+
   const nextFeedback = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % feedbacks.length);
   };
@@ -144,6 +175,12 @@ const Home = () => {
 
     return () => clearInterval(interval); // Clear interval on component unmount
   }, []);
+
+  //filter the array
+  const omsSubscribed = allSubcribedPlans.filter(
+    (plan) => plan.softwareName === "order management system"
+  );
+
   return (
     <>
       {/* carousel  */}
@@ -254,7 +291,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <motion.div
-                key={service.title}
+                key={index}
                 className="p-10 shadow-lg  text-center  bg-gradient-to-t from-white"
                 initial={{ y: 50, opacity: 0 }}
                 animate={isInView ? { y: 0, opacity: 1 } : {}}
@@ -354,15 +391,28 @@ const Home = () => {
                   Dignissim magna fermentum
                 </li>
               </ul>
-              <Link to={"/oms-plan"}>
-                <button
-                  className="relative px-6 py-2  hover:text-white bg-white isolation-auto z-10 border
-                hover:border-white-600
-        before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-blue-600 before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
-                >
-                  See plan
-                </button>
-              </Link>
+
+              {omsSubscribed.length > 0 ? (
+                <Link to={"/profile"}>
+                  <button
+                    className="relative px-6 py-2  hover:text-white bg-white isolation-auto z-10 border
+                  hover:border-white-600
+          before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-blue-600 before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
+                  >
+                    Open Now
+                  </button>
+                </Link>
+              ) : (
+                <Link to={"/oms-plan"}>
+                  <button
+                    className="relative px-6 py-2  hover:text-white bg-white isolation-auto z-10 border
+                  hover:border-white-600
+          before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-blue-600 before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
+                  >
+                    See plan
+                  </button>
+                </Link>
+              )}
             </div>
           </div>
         </motion.div>
@@ -444,11 +494,8 @@ const Home = () => {
         </motion.p>
         <div className="max-w-7xl mx-auto text-center">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-            {testimonials.map((testimonial) => (
-              <div
-                key={testimonial.id}
-                className="bg-white p-6 rounded-lg shadow-md"
-              >
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
                 <p className="mb-4">{testimonial.quote}</p>
                 <div className="flex items-center">
                   <img

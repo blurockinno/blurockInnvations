@@ -111,7 +111,7 @@ const SignIn = () => {
             </div>
 
             <div className="flex flex-row justify-center xl:mt-2 xl:mb-6 p-2 text-sm">
-              <Link to="/signup">
+              <Link to="/sign-up">
                 New User?{" "}
                 <span className="cursor-pointer text-blue-800">
                   Create Account
