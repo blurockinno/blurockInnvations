@@ -35,7 +35,7 @@ const OmsMembership = () => {
     if (isPaymentDone) {
       updatePaymentDetails();
     }
-  }, [isPaymentDone, currentUser?.companyId]);
+  }, [isPaymentDone, currentUser?.companyId, navigate]);
 
   // handle on payment initiate
   const handleOnSubscribe = async (rupee, softwareName) => {
@@ -124,7 +124,7 @@ const OmsMembership = () => {
   };
   return (
     <div className="mt-20">
-      {/* <OmsMemebershipCard handleOnPaymentSend={handleOnSubscribe} /> */}
+      <OmsMemebershipCard handleOnPaymentSend={handleOnSubscribe} />
       <div className="font-">
         <section className=" bg-slate-200 bg-cover bg-center flex flex-col" style={{}}>
           {/* <Nav/> */}

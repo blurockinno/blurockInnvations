@@ -15,13 +15,12 @@ const Header = () => {
           <div className="space-x-12 flex text-sm font-semibold ">
             <NavLink
               to="/"
-              exact
               className="hover:underline"
-              activeClassName="underline"
+              activeclassname="underline"
             >
               Home
             </NavLink>
-            {currentUser && (
+            {/* {currentUser && (
               <NavLink
                 to="/our-product"
                 className="hover:underline"
@@ -29,18 +28,18 @@ const Header = () => {
               >
                 Our Product
               </NavLink>
-            )}
+            )} */}
             <NavLink
               to="/service"
               className="hover:underline"
-              activeClassName="underline"
+              activeclassname="underline"
             >
               Services
             </NavLink>
             <NavLink
               to="/about"
               className="hover:underline"
-              activeClassName="underline"
+              activeclassname="underline"
             >
               About
             </NavLink>
@@ -48,7 +47,7 @@ const Header = () => {
               <NavLink
                 to="/profile"
                 className="hover:underline"
-                activeClassName="underline"
+                activeclassname="underline"
               >
                 <img
                   src={currentUser.profilePicture}
@@ -60,7 +59,7 @@ const Header = () => {
               <NavLink
                 to="/sign-in"
                 className="hover:underline"
-                activeClassName="underline"
+                activeclassname="underline"
               >
                 Sign In
               </NavLink>
