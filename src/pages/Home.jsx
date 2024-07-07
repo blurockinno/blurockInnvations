@@ -197,7 +197,7 @@ const Home = () => {
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
           }}
-          className="absolute top-0 left-0 w-full h-full bg-cover bg-center opacity-100  -z-10  bg-[#371B55]"
+          className="absolute top-0 left-0 w-full h-full bg-cover bg-center opacity-100  -z-10  bg-black"
         />
         <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-20 ">
           <div className="pl-20 bg-opacity-50 rounded-lg w-3/4 ">
@@ -214,7 +214,7 @@ const Home = () => {
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
-              className="text-7xl mb-4 font-semibold  bg-gradient-to-r from-white "
+              className="text-7xl mb-4 font-semibold text-white   bg-gradient-to-r from-violet-700  "
             >
               Software & Tech Development for the Future
             </motion.p>
@@ -252,7 +252,7 @@ const Home = () => {
 
       {/* service section  */}
       <motion.section
-        className="w-full auto flex flex-col  p-20 bg-[#AB6604]"
+        className="w-full auto flex flex-col  p-20 bg-black"
         ref={sectionRef}
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
@@ -333,7 +333,7 @@ const Home = () => {
       {/* happy client end */}
 
       {/* oms product section  */}
-      <motion.section className="px-20 py-12 bg-[#0271B1]">
+      <motion.section className="px-20 py-12 bg-black">
         <motion.span
           className="text-4xl font-semibold text-start text-white uppercase hover:border-b"
           initial={{ y: -50, opacity: 0 }}
@@ -475,9 +475,9 @@ const Home = () => {
       {/* pms product section end  */}
 
       {/* textimonials sections */}
-      <section className="px-20 py-12 bg-[#F5F5F5]">
+      <section className="px-20 py-12 bg-black ">
         <motion.span
-          className="text-4xl font-semibold text-start text-black uppercase hover:border-b"
+          className="text-4xl font-semibold text-start text-white uppercase hover:border-b"
           initial={{ y: -50, opacity: 0 }}
           animate={isInView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 1, delay: 0.3 }}
@@ -485,7 +485,7 @@ const Home = () => {
           Testominials
         </motion.span>
         <motion.p
-          className="text-xl font-semibold mt-3 mb-20 text-start text-black"
+          className="text-xl font-semibold mt-3 mb-20 text-start text-white"
           initial={{ y: -50, opacity: 0 }}
           animate={isInView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 1, delay: 0.6 }}
@@ -519,9 +519,9 @@ const Home = () => {
 
       {/* endc suctomer feedback  */}
 
-      <section className="flex flex-col px-20 py-20 bg-[#F5F5F5]">
+      <section className="flex flex-col px-20 py-20 bg-black">
         <motion.span
-          className="text-4xl font-semibold text-start text-black uppercase hover:border-b "
+          className="text-4xl font-semibold text-start text-white uppercase hover:border-b "
           initial={{ y: -50, opacity: 0 }}
           animate={isInView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 1, delay: 0.3 }}
@@ -575,12 +575,12 @@ const Home = () => {
       </section>
 
       {/* subscribe section  */}
-      <section className="bg-gray-200 py-12">
+      <section className="bg-gradient-to-l from-pink-800 to-violet-900 py-12">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold mb-4">
+          <h2 className="text-3xl font-semibold mb-4 text-white">
             Subscribe to Our Newsletter
           </h2>
-          <p className="text-gray-600 mb-8">
+          <p className="text-white mb-8">
             Stay updated with the latest news and trends.
           </p>
           <form onSubmit={handleSubmit} className="flex justify-center">
