@@ -6,8 +6,8 @@ const Header = () => {
 
   return (
     <>
-      <div className="w-full p-11 absolute top-0  z-50 bg-white opacity-80 shadow-sm"></div>
-      <header className="w-full text-blue-700 p-7 absolute top-0  z-50">
+      <div className="w-full p-11 absolute top-0  z-50 bg-black opacity-80 shadow-sm  backdrop-blur-sm"></div>
+      <header className="w-full text-white p-7 absolute top-0  z-50">
         <nav className="container mx-auto flex justify-between items-center px-12 opacity-100 ">
           <div className="text-xl font-bold cursor-pointer">
             Blurock Innovations
