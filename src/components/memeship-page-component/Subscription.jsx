@@ -1,87 +1,97 @@
 import tick from '../../assets/check-solid.svg'
+import { Check } from 'lucide-react';
+
 
 const Subscription = () => {
   return (
     <>
-      <div className="h-[1100px] ">
-        <h1 className="text-[30px] font-bold text-center pt-9">
-          Subscription Plans
-        </h1>
-        <section className="pt-[70px] justify-center opacity-2 flex ">
-          <div className="z-10 shadow-deep flex justify-center items-center h-[810px] w-[1250px] border-2 rounded-2xl bg-gradient-to-r from-[#3E1A78] to-[rgb(240,154,178)]">
-            <div className="z-10  shadow-2xl h-[740px] w-[1185px] border-2 rounded-[11px] bg-white px-5 py-10">
-              <p className="text-center mb-10 text-3xl font-bold">Choose Your Plan</p>
-              <section className="opacity-100 space-x-8 flex items-center justify-center">
-                {/* 1st box */}
-                <div className="flex flex-col justify-between items-center rounded-lg h-[500px] w-[350px] border-[2px] border-blue-500 p-4">
-                  <div className="w-full">
-                    <div className="flex rounded-md justify-center h-[50px] bg-gradient-to-r from-[#B0B0B0] to-[#4B4B4B] font-bold text-[25px] pt-[6px] text-white">
-                      SILVER
-                    </div>
-                    <p className="font-extrabold text-[20px] text-center mt-4">Includes</p>
-                    <ol className="text-center space-y-3 pt-4 text-[18px] font-semibold">
-                      <li>Authentication</li>
-                      <li>Add upto 10 users</li>
-                      <li>Email Notification</li>
-                      <li>Calendar Integration</li>
-                      <li>Download PDF</li>
-                    </ol>
-                  </div>
-                  <button className="border-2 border-blue-500 hover:border-white hover:bg-gradient-to-r from-[#3E1A78] to-[hsl(343,74%,77%)] hover:text-white hover:transition ease-linear duration-50 rounded-md h-[40px] w-full font-medium">
-                    ₹1000/user
-                  </button>
-                </div>
+      <div className='h-[670px] p-19 text-center'>
+        <h1 className='pb-5 font-bold text-[30px]'>Subscription Plans</h1>
+        <section className='flex justify-center items-center space-x-28 pt-8'>
 
-                {/* 2nd box */}
-                <div className="flex flex-col justify-between items-center rounded-lg h-[500px] w-[350px] border-[2px] border-blue-500 p-4">
-                  <div className="w-full">
-                    <div className="rounded-md h-[50px] bg-gradient-to-r from-[#947D09] to-[#FAD310] text-center font-outfit font-bold text-[25px] pt-[6px]">
-                      GOLD
-                    </div>
-                    <p className="font-extrabold text-[20px] text-center mt-4">Includes</p>
-                    <ul className="list-disk list-inside text-center space-y-3 pt-4 text-[18px] font-semibold">
-                      <li>Authentication</li>
-                      <li>Add upto 20 users</li>
-                      <li>Email Notification</li>
-                      <li>End to End Encryption</li>
-                      <li>Download and Print PDF</li>
-                    </ul>
-                  </div>
-                  <button className="border-2 border-blue-500 hover:border-white hover:bg-gradient-to-r from-[#3E1A78] to-[rgb(240,154,178)] hover:text-white rounded-md h-[40px] w-full hover:transition ease-linear duration-50 font-medium">
-                    ₹2000/user
-                  </button>
-                </div>
+          {/* basic plan */}
+           <div className='h-[450px] w-[480px] border-2 rounded-lg bg-white shadow-2xl'>
+              <div className='text-left h-20 bg-blue-500 rounded-t-lg'>
+                <h1 className='font-semibold p-2 pl-5 text-[25px] text-white'>Basic Plan
+                <h1 className='text-[13px] text-blue-200'>for Basic Use</h1>
+                </h1>
+              </div>
 
-                {/* 3rd box */}
-                <div className="flex flex-col justify-between items-center rounded-lg h-[500px] w-[350px] border-[2px] border-blue-500 p-4">
-                  <div className="w-full">
-                    <div className="rounded-md h-[50px] bg-[#AAAAAA] text-center font-outfit font-bold text-[25px] pt-[6px]">
-                      PLATINUM
-                    </div>
-                    <p className="font-extrabold text-[20px] text-center mt-4">Includes</p>
-                    <ol className="text-center space-y-3 pt-4 text-[18px] font-semibold">
-                      <li>Authentication</li>
-                      <li>Add 100+ users</li>
-                      <li>Email/Whatsapp Notification</li>
-                      <li>End to End Encryption</li>
-                      <li>Unlimited PDF downloads</li>
-                    </ol>
+              <section>
+                  <div>
+                    <p className='text-left text-[19px] p-6 font-medium text-slate-500'>Get started with essential features to manage your orders efficiently. Perfect for small businesses and startups.</p>
                   </div>
-                  <button className="border-2 border-blue-500 hover:border-white hover:bg-gradient-to-r from-[#3E1A78] to-[rgb(240,154,178)] hover:text-white rounded-md h-[40px] w-full hover:transition ease-linear duration-50 font-medium">
-                    ₹3000/user
-                  </button>
-                </div>
+
+                  <div className='text-left p-6 text-[18px] text-slate-700 font-medium space-y-3'>
+                    <p className='flex'><Check className='pt-1 h-7 w-8 text-green-500'/>unlimited projects</p>
+                    <p className='flex'><Check className='pt-1 h-7 w-8 text-green-500'/>priority support</p>
+                    <p className='flex'><Check className='pt-1 h-7 w-8 text-green-500'/>Dedicated account manager</p>
+                  </div>
+
+                  <div className='flex  pl-6 pt-3 space-x-36'>
+                    <h1 className='text-[29px]'>₹1000/Month</h1>
+                    <button className='w-[110px] rounded-md border-black border-2 text-[22px] hover:bg-blue-500 hover:border-0 hover:text-white transition-all duration-75 shadow-2xl'>Subscribe</button>
+                  </div>  
               </section>
 
-              {/* Buy button */}
-              <div className="flex justify-center mt-10">
-                <button className="bg-blue-500 w-[250px] shadow-2xl text-white px-8 py-3 rounded-md hover:bg-blue-600 transition ease-linear font-semibold cursor-pointer hover:translate-y-1 hover:scale-110 duration-300">
-                  BUY NOW
-                </button>
+           </div>
+
+           {/* pro plan */}
+           <div className='h-[450px] w-[480px] border-2 rounded-lg bg-white shadow-2xl'>
+              <div className='text-left h-20 bg-yellow-500 rounded-t-lg'>
+                <h1 className='font-semibold p-3 pl-5 text-[25px] text-white'>Professional Plan
+                  <h1 className='text-[13px] text-yellow-200'>for Professional Use</h1>
+                </h1>
               </div>
+
+              <section>
+                  <div>
+                    <p className='text-left text-[19px] p-6 font-medium text-slate-500'>Upgrade to our Professional Plan for advanced tools and analytics to streamline your order management and boost productivity.</p>
+                  </div>
+
+                  <div className='text-left p-6 text-[18px] text-slate-700 font-medium space-y-3'>
+                    <p className='flex'><Check className='pt-1 h-7 w-8 text-green-500'/>unlimited projects</p>
+                    <p className='flex'><Check className='pt-1 h-7 w-8 text-green-500'/>priority support</p>
+                    <p className='flex'><Check className='pt-1 h-7 w-8 text-green-500'/>Dedicated account manager</p>
+                  </div>
+
+                  <div className='flex  pl-6 pt-3 space-x-36'>
+                    <h1 className='text-[29px]'>₹2000/Month</h1>
+                    <button className='w-[110px] rounded-md border-black border-2 text-[22px] hover:bg-yellow-500 hover:border-0 hover:text-white transition-all shadow-2xl'>Subscribe</button>
+                  </div>
+              </section>
+
+           </div>
+
+          {/* enterprise plan */}
+           <div className='h-[450px] w-[480px] border-2 rounded-lg bg-white shadow-2xl'>
+            <div className='text-left h-20 bg-red-600 rounded-t-lg'>
+              <h1 className='font-semibold p-3 pl-5 text-[25px] text-white'>Enterprise Plan
+                <h1 className='text-[13px] text-red-200'>for Organisational Use</h1>
+              </h1>
             </div>
-          </div>
+
+            <section>
+                  <div>
+                    <p className='text-left text-[19px] pl-6 pt-6 font-medium text-slate-500'>Experience the ultimate in order management with our Enterprise Plan, offering premium features, personalized support, and scalability for large businesses.</p>
+                  </div>
+
+                  <div className='text-left p-6 text-[18px] text-slate-700 font-medium space-y-3'>
+                    <p className='flex'><Check className='pt-1 h-7 w-8 text-green-500'/>unlimited projects</p>
+                    <p className='flex'><Check className='pt-1 h-7 w-8 text-green-500'/>priority support</p>
+                    <p className='flex'><Check className='pt-1 h-7 w-8 text-green-500'/>Dedicated account manager</p>
+                  </div>
+
+                  <div className='flex  pl-6 pt-3 space-x-36'>
+                    <h1 className='text-[29px]'>₹3000/Month</h1>
+                    <button className='w-[110px] rounded-md border-black border-2 text-[22px] hover:bg-red-500 hover:border-0 hover:text-white transition shadow-2xl'>Subscribe</button>
+                  </div>
+            </section>
+
+           </div>
+
         </section>
+
       </div>
     </>
   );
