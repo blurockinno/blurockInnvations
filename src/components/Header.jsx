@@ -1,13 +1,22 @@
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
 
+  const location = useLocation();
+
+
   return (
     <>
-      <div className="w-full p-11 absolute top-0  z-50 bg-black opacity-80 shadow-sm  backdrop-blur-sm"></div>
-      <header className="w-full text-white p-7 absolute top-0  z-50">
+      <div
+        className={`w-full p-11 absolute top-0  z-50 ${
+          location.pathname === "/profile" ? "bg-white" : "bg-black"
+        }  opacity-80 shadow-sm  backdrop-blur-sm`}
+      ></div>
+      <header className={`w-full  ${
+          location.pathname === "/profile" ? "text-black" : "text-white"
+        } p-7 absolute top-0  z-50`}>
         <nav className="container mx-auto flex justify-between items-center px-12 opacity-100 ">
           <div className="text-xl font-bold cursor-pointer">
             Blurock Innovations
@@ -41,7 +50,14 @@ const Header = () => {
               className="hover:underline"
               activeclassname="underline"
             >
-              About
+              About us
+            </NavLink>
+            <NavLink
+              to="/career"
+              className="hover:underline"
+              activeclassname="underline"
+            >
+              Career
             </NavLink>
             {currentUser ? (
               <NavLink

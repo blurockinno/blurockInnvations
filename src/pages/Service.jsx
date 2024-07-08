@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import card from "../assets/card_bg.jpg";
 import service from "../assets/service.png";
 import { motion, useInView } from "framer-motion";
 import wd from "../assets/development.png";
@@ -53,7 +54,7 @@ const Service = () => {
   ];
   return (
     <>
-      <div className="container mx-auto mt-[88px]">
+      <div className="container mx-auto mt-[88px] bg-black">
         <section
           className="text-center mb-12"
           style={{
@@ -96,7 +97,7 @@ const Service = () => {
               </motion.div>
             </div>
             <h1 className="text-4xl font-bold mb-4 uppercase text-white  ">
-              Managed IT Services You Can Trust
+              Transforming businesses through technology
             </h1>
             <p className="text-lg  text-gray-100 ">
               Discover the range of services we offer to help your business
@@ -131,14 +132,14 @@ const Service = () => {
 
         {/* service section  */}
         <motion.section
-          className="w-full auto flex flex-col  px-20"
+          className="w-full auto flex flex-col  px-20 "
           ref={sectionRef}
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 1 }}
         >
           <motion.span
-            className="text-4xl font-semibold text-start text-black uppercase hover:border-b"
+            className="text-4xl font-semibold text-start text-white uppercase "
             initial={{ y: -50, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 1, delay: 0.3 }}
@@ -146,7 +147,7 @@ const Service = () => {
             Digital Core Capabilities
           </motion.span>
           <motion.p
-            className="text-xl font-semibold mt-3 mb-10 text-start text-black"
+            className="text-xl font-semibold mt-3 mb-10 text-start text-white"
             initial={{ y: -50, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 1, delay: 0.6 }}
@@ -159,24 +160,25 @@ const Service = () => {
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 1, delay: 0.9 }}
           >
-            <motion.h2
-              className="text-xl text-white font-semibold mb-8"
-              initial={{ y: -50, opacity: 0 }}
-              animate={isInView ? { y: 0, opacity: 1 } : {}}
-              transition={{ duration: 1, delay: 1.2 }}
-            >
-              What We Offer
-            </motion.h2>
+           
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((service, index) => (
                 <motion.div
                   key={service.title}
-                  className={`p-10 shadow-lg  text-center  bg-gradient-to-t from-white ${
+                  className={`p-10 shadow-lg  text-center rounded-lg border  bg-gradient-to-t from-white ${
                     index % 2 ? "from-blue-300" : null
                   }`}
                   initial={{ y: 50, opacity: 0 }}
                   animate={isInView ? { y: 0, opacity: 1 } : {}}
                   transition={{ duration: 1, delay: 1.5 + index * 0.3 }}
+                  style={{
+                    backgroundImage: `linear-gradient(45deg,
+                    rgba(0, 0, 255, 0.6),
+                    rgba(255, 255, 255, 0.9)), url(${card})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                  }}
                 >
                   <div className="mb-4">
                     <img
@@ -185,10 +187,10 @@ const Service = () => {
                       className="w-24 h-24 mx-auto"
                     />
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-blue-800">
+                  <h3 className="text-xl font-bold mb-2 text-white">
                     {service.title}
                   </h3>
-                  <p className="text-gray-700">{service.description}</p>
+                  <p className="text-gray-100">{service.description}</p>
                 </motion.div>
               ))}
             </div>
