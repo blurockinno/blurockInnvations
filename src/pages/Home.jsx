@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import bg from "../assets/linegroup3.svg";
+import bg from "../assets/bg_home.jpg";
+import card from "../assets/card_bg.jpg";
 import oms from "../assets/oms.jpg";
-import { AnimatePresence, motion, useInView } from "framer-motion";
+import {  motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import wd from "../assets/development.png";
 import md from "../assets/app-development.png";
@@ -16,6 +17,14 @@ import {
   currentSubscriptionCheckSuccess,
 } from "../redux/subscription/subscriptionSlice";
 import axios from "axios";
+import WelcomeSection from "../components/home-component/WelcomeSection";
+import WhoWeAreSection from "../components/home-component/WhoWeAreSection";
+import AboutusHome from "../components/home-component/AboutusHome";
+import RelationshipsSection from "../components/home-component/RelationshipsSection";
+import WhatWeProvideSection from "../components/home-component/WhatWeProvideSection";
+import GetInTouchSection from "../components/home-component/GetInTouchSection";
+import ServiceTourSection from "../components/home-component/ServiceTourSection";
+import SupportSection from "../components/home-component/SupportSection";
 
 const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -174,7 +183,7 @@ const Home = () => {
     }, 3000); // Change slide every 3 seconds
 
     return () => clearInterval(interval); // Clear interval on component unmount
-  }, []);
+  }, [nextFeedback]);
 
   //filter the array
   const omsSubscribed = allSubcribedPlans.filter(
@@ -192,7 +201,9 @@ const Home = () => {
       >
         <div
           style={{
-            backgroundImage: `url(${bg})`,
+            backgroundImage: `linear-gradient(45deg,
+            rgba(0, 0, 0, 200.605),
+            rgba(0, 0, 200, 0.5)), url(${bg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -205,7 +216,7 @@ const Home = () => {
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
-              className="text-sm mb-4 font-semibold bg-gradient-to-r from-white w-auto"
+              className="text-sm mb-4 font-semibold text-white w-auto"
             >
               CUTTING EDGE CREATION
             </motion.p>
@@ -214,7 +225,7 @@ const Home = () => {
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
-              className="text-7xl mb-4 font-semibold text-white   bg-gradient-to-r from-violet-700  "
+              className="text-7xl mb-4 font-semibold text-white "
             >
               Software & Tech Development for the Future
             </motion.p>
@@ -222,7 +233,7 @@ const Home = () => {
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 2 }}
-              className="mb-6 text-lg font-light bg-gradient-to-r  from-violet-900  text-white"
+              className="mb-6 text-lg font-light text-white"
             >
               Sure, you may be able to get by with whatever software your
               business is currently using, but will you grow?
@@ -250,6 +261,30 @@ const Home = () => {
       </motion.section>
       {/* carousel end */}
 
+      {/* welcome section  */}
+      <WelcomeSection />
+      {/* welcome section end  */}
+
+      {/* who we are section  */}
+      <WhoWeAreSection />
+      {/* who we are section end */}
+
+      {/* about us in home page  */}
+      <AboutusHome />
+      {/* about us in home page end */}
+
+      {/* relationships section  */}
+      <RelationshipsSection />
+      {/* relationships section end */}
+
+      {/* what we provide  */}
+      <WhatWeProvideSection />
+      {/* what we provide end  */}
+
+      {/* get in touch section  */}
+      <GetInTouchSection />
+      {/* get in touch section end */}
+
       {/* service section  */}
       <motion.section
         className="w-full auto flex flex-col  p-20 bg-black"
@@ -259,7 +294,7 @@ const Home = () => {
         transition={{ duration: 1 }}
       >
         <motion.span
-          className="text-4xl font-semibold text-start text-white uppercase hover:border-b"
+          className="text-4xl font-semibold text-start text-white uppercase "
           initial={{ y: -50, opacity: 0 }}
           animate={isInView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 1, delay: 0.3 }}
@@ -280,34 +315,34 @@ const Home = () => {
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 1, delay: 0.9 }}
         >
-          <motion.h2
-            className="text-xl text-white font-semibold mb-8"
-            initial={{ y: -50, opacity: 0 }}
-            animate={isInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 1.2 }}
-          >
-            What We Offer
-          </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                className="p-10 shadow-lg  text-center  bg-gradient-to-t from-white"
+                className=" border p-10 shadow-lg  text-center  bg-gradient-to-t from-white to-blue-500 rounded-md"
                 initial={{ y: 50, opacity: 0 }}
                 animate={isInView ? { y: 0, opacity: 1 } : {}}
                 transition={{ duration: 1, delay: 1.5 + index * 0.3 }}
+                style={{
+                  backgroundImage: `linear-gradient(45deg,
+                  rgba(0, 0, 255, 0.6),
+                  rgba(255, 255, 255, 0.9)), url(${card})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
               >
                 <div className="mb-4">
                   <img
                     src={service.icon}
                     alt={service.title}
-                    className="w-24 h-24 mx-auto"
+                    className="w-24 h-24 mx-auto "
                   />
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-blue-800">
+                <h3 className="text-xl font-bold mb-2 text-white">
                   {service.title}
                 </h3>
-                <p className="text-gray-700">{service.description}</p>
+                <p className="text-gray-200">{service.description}</p>
               </motion.div>
             ))}
           </div>
@@ -482,15 +517,19 @@ const Home = () => {
           animate={isInView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 1, delay: 0.3 }}
         >
-          Testominials
+          What our clients say about us
         </motion.span>
         <motion.p
-          className="text-xl font-semibold mt-3 mb-20 text-start text-white"
+          className="text-md font-semibold mt-3 mb-20 text-start text-white"
           initial={{ y: -50, opacity: 0 }}
           animate={isInView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 1, delay: 0.6 }}
         >
-          Build vital capabilities to deliver digital outcomes.
+          Our mission is to help customers achieve their business objectives by
+          providing innovative, best-in-class consulting, IT solutions.
+          <br /> Clients who are satisfied with our services have had a positive
+          experience with the services we provide. Satisfied clients may leave
+          reviews or testimonials.
         </motion.p>
         <div className="max-w-7xl mx-auto text-center">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
@@ -519,7 +558,7 @@ const Home = () => {
 
       {/* endc suctomer feedback  */}
 
-      <section className="flex flex-col px-20 py-20 bg-black">
+      {/* <section className="flex flex-col px-20 py-20 bg-black">
         <motion.span
           className="text-4xl font-semibold text-start text-white uppercase hover:border-b "
           initial={{ y: -50, opacity: 0 }}
@@ -572,10 +611,14 @@ const Home = () => {
             &rarr;
           </button>
         </div>
-      </section>
+      </section> */}
+
+      {/* tour  */}
+      <ServiceTourSection />
+      {/* tour end */}
 
       {/* subscribe section  */}
-      <section className="bg-gradient-to-l from-pink-800 to-violet-900 py-12">
+      {/* <section className="bg-gradient-to-l from-pink-800 to-violet-900 py-12">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-semibold mb-4 text-white">
             Subscribe to Our Newsletter
@@ -600,8 +643,12 @@ const Home = () => {
             </button>
           </form>
         </div>
-      </section>
+      </section> */}
       {/* subscribe section  */}
+
+      {/* support sectio  */}
+      <SupportSection />
+      {/* support sectio end */}
     </>
   );
 };
