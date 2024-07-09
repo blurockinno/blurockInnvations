@@ -6,27 +6,21 @@ const Header = () => {
 
   const location = useLocation();
 
-
   return (
     <>
-      <div
-        className={`w-full p-11 absolute top-0  z-50 ${
-          location.pathname === "/profile" ? "bg-white" : "bg-black"
-        }  opacity-80 shadow-sm  backdrop-blur-sm`}
-      ></div>
-      <header className={`w-full  ${
-          location.pathname === "/profile" ? "text-black" : "text-white"
-        } p-7 absolute top-0  z-50`}>
+      <header
+        className={`plus-jakarta-sans w-full sticky ${
+          location.pathname === "/profile"
+            ? "text-[#141415] bg-white"
+            : "text-white bg-[#141415]"
+        } p-7 absolute top-0  z-50`}
+      >
         <nav className="container mx-auto flex justify-between items-center px-12 opacity-100 ">
           <div className="text-xl font-bold cursor-pointer">
             Blurock Innovations
           </div>
           <div className="space-x-12 flex text-sm font-semibold ">
-            <NavLink
-              to="/"
-              className="hover:underline"
-              activeclassname="underline"
-            >
+            <NavLink to="/" className="hover:text-[#146EF5]">
               Home
             </NavLink>
             {/* {currentUser && (
@@ -38,25 +32,13 @@ const Header = () => {
                 Our Product
               </NavLink>
             )} */}
-            <NavLink
-              to="/service"
-              className="hover:underline"
-              activeclassname="underline"
-            >
+            <NavLink to="/service" className="hover:text-[#146EF5]">
               Services
             </NavLink>
-            <NavLink
-              to="/about"
-              className="hover:underline"
-              activeclassname="underline"
-            >
+            <NavLink to="/about" className="hover:text-[#146EF5]">
               About us
             </NavLink>
-            <NavLink
-              to="/career"
-              className="hover:underline"
-              activeclassname="underline"
-            >
+            <NavLink to="/career" className="hover:text-[#146EF5]">
               Career
             </NavLink>
             {currentUser ? (
@@ -72,11 +54,7 @@ const Header = () => {
                 />
               </NavLink>
             ) : (
-              <NavLink
-                to="/sign-in"
-                className="hover:underline"
-                activeclassname="underline"
-              >
+              <NavLink to="/sign-in" className="hover:text-[#146EF5]">
                 Sign In
               </NavLink>
             )}

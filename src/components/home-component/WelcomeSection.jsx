@@ -1,7 +1,7 @@
 import welcome from "../../assets/welcome.svg";
 const WelcomeSection = () => {
   return (
-    <section className="bg-black text-white py-20">
+    <section className="bg-[#141415] text-white py-20">
       <div className="container mx-auto flex flex-col md:flex-row items-center px-6 ">
         <div className=" md:text-left md:w-1/2 ml-10  ">
           <h1 className="text-4xl md:text-4xl font-bold mb-4 ">
