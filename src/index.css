@@ -2,4 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @import "@fortawesome/fontawesome-free/css/all.css"; */
+
+.plus-jakarta-sans {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}

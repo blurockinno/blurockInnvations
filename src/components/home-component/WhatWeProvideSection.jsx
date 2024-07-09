@@ -3,41 +3,49 @@ import grow from "../../assets/grow.svg";
 import saving from "../../assets/saving.svg";
 const services = [
   {
-    title: " Grow your business faster with the help of tech",
+    title: " Products",
     description:
-      "Now a days technology has a power to shine your business world wide & connect people throughout the globe.",
+      "Dive into the future of next-generation technology with our business custom tailored software.",
     imageUrl: grow,
   },
   {
-    title: "We serve services at very competitive Cost",
+    title: "Solutions",
     description:
-      "All of our services is being offered at very Competitive cost, we serve clients without hurting their pockets.",
+      "Explore a spectrum of solutions meticulously designed to empower your business growth.",
     imageUrl: saving,
   },
   {
-    title: "Get 24*7 Service Support from Blurock Team",
+    title: "Resources",
     description:
-      "Our team is at active mode for any of your queries. You will get 24*7 Service Support from BLurock innovations Team.",
-    imageUrl:  support ,
+      "Harness actionable insights and unmatched efficiency to fuel your business growth.",
+    imageUrl: support,
   },
 ];
 
 const WhatWeProvideSection = () => {
   return (
-    <section className="bg-black text-gray-800 py-20">
-      <div className="container mx-auto px-6">
+    <section className="  py-20 plus-jakarta-sans">
+      <h6 className="text-[#146EF5] text-center uppercase">What we do</h6>
+      <h1 className="text-white text-center text-5xl font-bold p-4">
+        Supercharge your business
+      </h1>
+      <p className="text-gray-400 text-center text-lg ">
+        Explore tailored products, innovative solutions, and valuable <br></br>resources
+        designed to accelerate your business growth.
+      </p>
+      <div className="container mx-auto px-6 ">
         <div className="flex flex-wrap justify-center">
           {services.map((service, index) => (
-            <div key={index} className="w-full md:w-1/3 p-4 flex">
-              <div className="bg-gradient-to-b from-blue-700 to-white p-6 rounded-lg shadow-lg flex flex-col h-full">
+            <div key={index} className="w-full md:w-1/4 p-4 flex mt-10">
+              <div className="bg-[#1D1F20] p-6 rounded-lg shadow-lg flex flex-col h-full cursor-pointer hover:shadow-lg ">
                 <img
                   src={service.imageUrl}
                   alt={service.title}
-                  className="w-full h-48  rounded-t-lg"
+                  className="w-full h-36  rounded-t-lg"
                 />
                 <div className="p-4 flex-grow">
-                  <h3 className="text-2xl font-bold mb-2">{service.title}</h3>
-                  <p>{service.description}</p>
+                  <h3 className="text-2xl font-bold mb-2 text-white">{service.title}</h3>
+                  <p className="text-gray-400">{service.description}</p>
                 </div>
               </div>
             </div>

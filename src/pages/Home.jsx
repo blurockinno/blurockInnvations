@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import bg from "../assets/bg_home.jpg";
+import dashboard from "../assets/dashborad.png";
+import path from "../assets/path.svg";
 import card from "../assets/card_bg.jpg";
 import oms from "../assets/oms.jpg";
-import {  motion, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import wd from "../assets/development.png";
 import md from "../assets/app-development.png";
@@ -25,30 +26,26 @@ import WhatWeProvideSection from "../components/home-component/WhatWeProvideSect
 import GetInTouchSection from "../components/home-component/GetInTouchSection";
 import ServiceTourSection from "../components/home-component/ServiceTourSection";
 import SupportSection from "../components/home-component/SupportSection";
+import CompanyListSection from "../components/home-component/CompanyListSection";
+import MakecallAndGetquate from "../components/home-component/MakecallAndGetquate";
+import ProductSection from "../components/home-component/ProductSection";
 
 const Home = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
   const dispatch = useDispatch();
   const [allSubcribedPlans, setAllSubscribedPlans] = useState([]);
-  const { currentSubscription } = useSelector((state) => state?.subscription);
   const { currentUser } = useSelector((state) => state.user);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Replace with your own logic to handle the subscription (e.g., API call, validation)
-    console.log(`Subscribing ${email} to updates...`);
-    // Clear the email input after submission
-    setEmail("");
-  };
-  const clientStats = [
-    { title: "Clients", count: 1200 },
-    { title: "Projects Completed", count: 350 },
-    { title: "Countries Served", count: 25 },
-    { title: "Years in Business", count: 10 },
-  ];
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // Replace with your own logic to handle the subscription (e.g., API call, validation)
+  //   console.log(`Subscribing ${email} to updates...`);
+  //   // Clear the email input after submission
+  //   setEmail("");
+  // };
+
   const testimonials = [
     {
       id: 1,
@@ -83,29 +80,7 @@ const Home = () => {
       image: "https://randomuser.me/api/portraits/men/3.jpg", // Example image URL
     },
   ];
-  const feedbacks = [
-    {
-      id: 1,
-      quote:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero nec sapien rutrum.",
-      name: "John Doe",
-      position: "CEO, ABC Inc.",
-    },
-    {
-      id: 2,
-      quote:
-        "The team at Company X delivered results beyond our expectations. Highly recommended!",
-      name: "Jane Smith",
-      position: "Marketing Director, XYZ Corp.",
-    },
-    {
-      id: 3,
-      quote:
-        "Exceptional service! Company X truly understands our needs and delivers with precision every time.",
-      name: "Michael Johnson",
-      position: "COO, PQR Ltd.",
-    },
-  ];
+
   const services = [
     {
       title: "Web Development",
@@ -165,105 +140,93 @@ const Home = () => {
       }
     };
     getAllPlans();
-  }, [currentUser.companyId, dispatch]);
+  }, [currentUser?.companyId, dispatch]);
 
-  const nextFeedback = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % feedbacks.length);
-  };
-
-  const prevFeedback = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + feedbacks.length) % feedbacks.length
-    );
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextFeedback();
-    }, 3000); // Change slide every 3 seconds
-
-    return () => clearInterval(interval); // Clear interval on component unmount
-  }, [nextFeedback]);
-
-  //filter the array
   const omsSubscribed = allSubcribedPlans.filter(
     (plan) => plan.softwareName === "order management system"
   );
 
   return (
     <>
-      {/* carousel  */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="relative w-full h-screen "
+      <div
+        className="w-full h-auto bg-[#141415] plus-jakarta-sans"
+        style={{
+          backgroundImage: `url(${path})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center end",
+          backgroundSize: "cover",
+        }}
       >
-        <div
-          style={{
-            backgroundImage: `linear-gradient(45deg,
-            rgba(0, 0, 0, 200.605),
-            rgba(0, 0, 200, 0.5)), url(${bg})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-          className="absolute top-0 left-0 w-full h-full bg-cover bg-center opacity-100  -z-10  bg-black"
-        />
-        <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-20 ">
-          <div className="pl-20 bg-opacity-50 rounded-lg w-3/4 ">
-            <motion.p
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-              className="text-sm mb-4 font-semibold text-white w-auto"
-            >
-              CUTTING EDGE CREATION
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-              className="text-7xl mb-4 font-semibold text-white "
-            >
-              Software & Tech Development for the Future
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 2 }}
-              className="mb-6 text-lg font-light text-white"
-            >
-              Sure, you may be able to get by with whatever software your
-              business is currently using, but will you grow?
-            </motion.p>
-            <motion.button
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 3 }}
-              className="relative px-6 py-2  hover:text-white bg-white isolation-auto z-10 border
+        {/* carousel  */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <div className=" w-full h-full flex items-center justify-center mb-20">
+            <div className="pl-20 bg-opacity-50 rounded-lg w-1/2 mt-24">
+              <motion.p
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
+                className="text-7xl mb-4 font-semibold text-white "
+              >
+                Full-suite software development for{" "}
+                <span className="text-[#146EF5]">businesses</span>
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 2 }}
+                className="mb-6 text-lg font-light text-white"
+              >
+                Sure, you may be able to get by with whatever software your
+                business is currently using, but will you grow?
+              </motion.p>
+            </div>
+            <div className="w-1/2 px-44">
+              <p className="text-gray-400 mb-10 text-justify">
+                Dive into the next-generation future of business technology. We
+                craft tailored software solutions and strategic frameworks,
+                driving businesses to unprecedented heights of success.
+              </p>
+              <motion.button
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 3 }}
+                className="relative px-8 py-4 rounded-md  hover:text-white bg-white isolation-auto z-10 border
                 hover:border-white-600
         before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-blue-600 before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
-            >
-              Get Started
-            </motion.button>
+              >
+                Get Started
+              </motion.button>
+            </div>
           </div>
-          {/* <div
-            className=" h-[400px] w-3/4  mr-20 "
-            style={{
-              backgroundImage: `url(${kite})`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "900px auto",
-            }}
-          ></div> */}
-        </div>
-      </motion.section>
-      {/* carousel end */}
+          <div className=" h-auto w-full flex items-center justify-center ">
+            <div className="w-[20%]"></div>
+            <img
+              src={dashboard}
+              alt="dashboard"
+              className="rounded-lg w-[80%]"
+            />
+            <div className="w-[20%]"></div>
+          </div>
+        </motion.section>
+        {/* carousel end */}
 
-      {/* welcome section  */}
-      <WelcomeSection />
-      {/* welcome section end  */}
+        {/* what we provide  */}
+        <WhatWeProvideSection />
+        {/* what we provide end  */}
+        {/* companies list  */}
+        <CompanyListSection />
+        {/* companies list end  */}
+
+        
+      </div>
+
+      <ProductSection />
+
+      <MakecallAndGetquate />
 
       {/* who we are section  */}
       <WhoWeAreSection />
@@ -276,10 +239,6 @@ const Home = () => {
       {/* relationships section  */}
       <RelationshipsSection />
       {/* relationships section end */}
-
-      {/* what we provide  */}
-      <WhatWeProvideSection />
-      {/* what we provide end  */}
 
       {/* get in touch section  */}
       <GetInTouchSection />
