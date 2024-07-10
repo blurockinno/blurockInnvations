@@ -25,7 +25,7 @@ const services = [
 const WhatWeProvideSection = () => {
   return (
     <section className="  py-20 plus-jakarta-sans">
-      <h6 className="text-[#146EF5] text-center uppercase">What we do</h6>
+      <h6 className="text-[#146EF5] text-center uppercase font-semibold">What we do</h6>
       <h1 className="text-white text-center text-5xl font-bold p-4">
         Supercharge your business
       </h1>
@@ -37,7 +37,7 @@ const WhatWeProvideSection = () => {
         <div className="flex flex-wrap justify-center">
           {services.map((service, index) => (
             <div key={index} className="w-full md:w-1/4 p-4 flex mt-10">
-              <div className="bg-[#1D1F20] p-6 rounded-lg shadow-lg flex flex-col h-full cursor-pointer hover:shadow-lg ">
+              <div className="bg-[#1D1F20] p-6 rounded-lg shadow-lg flex flex-col h-full cursor-pointer hover:shadow-lg transform transition-transform duration-300 hover:-translate-y-2">
                 <img
                   src={service.imageUrl}
                   alt={service.title}

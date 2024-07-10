@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import path from "../assets/path.svg";
 const SignUp = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -49,30 +49,39 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row justify-between h-screen -z-10">
-        <div className="md:w-1/2 w-full h-screen flex flex-col justify-center items-center p-4 md:p-10 gap-4 mt-40 md:mt-0 mb-10 md:mb-0">
-          <span className="text-lg md:text-xl font-semibold text-violet-800">
+      <div
+        className="w-full h-auto bg-[#141415] plus-jakarta-sans flex flex-col md:flex-row justify-between  "
+        style={{
+          backgroundImage: `url(${path})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center start",
+          backgroundSize: "cover",
+        }}
+      >
+        <div className="plus-jakarta-sans md:w-1/2 w-full  flex flex-col justify-center items-center p-4 md:p-10 gap-4  md:mt-0 mb-10 md:mb-0">
+          <span className="text-lg md:text-xl font-semibold text-white">
             Blurock Innovations
           </span>
-          <span className="w-full text-center font-semibold text-4xl md:text-7xl uppercase bg-gradient-to-l from-blue-500 to-pink-500 bg-clip-text text-transparent">
+          <span className="w-full text-center font-semibold text-4xl md:text-6xl  text-white">
             Get started with your free trial
           </span>
-          <span className="md:text-3xl text-xl font-normal text-blue-500 uppercase">
-            | Sales teams from good to great
-          </span>
+         
         </div>
 
-        <div className="flex w-full md:w-1/2 justify-center items-center p-10 md:p-0">
-          <div className="flex flex-col p-4 md:p-6 rounded-md w-full md:w-1/2 shadow-lg border gap-2">
-            <form onSubmit={handleSubmit}>
+        <div className="flex w-full md:w-1/2 justify-center items-center p-10 md:py-5 md:p-0 ">
+          <div className="flex flex-col p-4 md:p-6 rounded-md w-full md:w-1/2 shadow-lg  bg-[#1D1F20]">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <div className="flex flex-col">
-                <label className="font-semibold text-sm" htmlFor="companyName">
+                <label
+                  className="font-semibold text-sm text-gray-400"
+                  htmlFor="companyName"
+                >
                   Company Name
                 </label>
                 <input
                   id="companyName"
                   name="companyName"
-                  className="border mt-1 p-2 rounded-md"
+                  className=" mt-1 p-2 rounded-md bg-gray-500"
                   placeholder="Enter Company Name"
                   type="text"
                   value={formData.companyName}
@@ -81,13 +90,16 @@ const SignUp = () => {
               </div>
 
               <div className="flex flex-col">
-                <label className="font-semibold text-sm" htmlFor="fullName">
+                <label
+                  className="font-semibold text-sm text-gray-400"
+                  htmlFor="fullName"
+                >
                   Name
                 </label>
                 <input
                   id="fullName"
                   name="fullName"
-                  className="border mt-1 p-2 rounded-md"
+                  className=" mt-1 p-2 rounded-md bg-gray-500"
                   placeholder="Full Name"
                   type="text"
                   value={formData.fullName}
@@ -96,13 +108,16 @@ const SignUp = () => {
               </div>
 
               <div className="flex flex-col">
-                <label className="font-semibold text-sm" htmlFor="phoneNumber">
+                <label
+                  className="font-semibold text-sm text-gray-400"
+                  htmlFor="phoneNumber"
+                >
                   Phone Number
                 </label>
                 <input
                   id="phoneNumber"
                   name="phoneNumber"
-                  className="border mt-1 p-2 rounded-md"
+                  className=" mt-1 p-2 rounded-md bg-gray-500"
                   placeholder="Phone Number"
                   type="tel"
                   value={formData.phoneNumber}
@@ -111,7 +126,10 @@ const SignUp = () => {
               </div>
 
               <div className="flex flex-col relative">
-                <label className="font-semibold text-sm" htmlFor="email">
+                <label
+                  className="font-semibold text-sm text-gray-400"
+                  htmlFor="email"
+                >
                   Email
                 </label>
                 <div className="relative">
@@ -119,7 +137,7 @@ const SignUp = () => {
                     id="email"
                     name="email"
                     required
-                    className="border mt-1 p-2 rounded-md w-full"
+                    className=" mt-1 p-2 rounded-md w-full bg-gray-500"
                     placeholder="Email"
                     type="email"
                     value={formData.email}
@@ -130,7 +148,7 @@ const SignUp = () => {
 
               <div className="flex flex-col relative">
                 <label
-                  className="font-semibold text-sm"
+                  className="font-semibold text-sm text-gray-400"
                   htmlFor="employeeRange"
                 >
                   Employee Range
@@ -140,7 +158,7 @@ const SignUp = () => {
                     id="employeeRange"
                     name="employeeRange"
                     required
-                    className="border mt-1 p-2 rounded-md w-full"
+                    className=" mt-1 p-2 rounded-md w-full bg-gray-500"
                     placeholder="Employee Range"
                     type="text"
                     value={formData.employeeRange}
@@ -150,12 +168,12 @@ const SignUp = () => {
               </div>
 
               <div className="flex flex-col relative mt-3">
-                <label className="text-sm" htmlFor="terms">
+                <label className="text-sm text-gray-400" htmlFor="terms">
                   <input
                     id="terms"
                     name="termsAccepted"
                     type="checkbox"
-                    className="mr-2"
+                    className="mr-2 "
                     checked={formData.termsAccepted}
                     onChange={handleChange}
                   />
@@ -175,8 +193,8 @@ const SignUp = () => {
                 >
                   {error ? "Please wait..." : "Create Account"}
                 </button>
-                <div className="text-center">
-                  <span className="text-xs mt-5">
+                <div className="text-center mt-5">
+                  <span className="text-sm  text-gray-400">
                     Already have an account.{" "}
                     <Link to={"/sign-in"}>
                       <span>Sign In</span>
