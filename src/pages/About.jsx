@@ -54,7 +54,10 @@ const About = () => {
             <h1 className="text-6xl font-bold mb-4  text-white">
               Get to know us
             </h1>
-            <p className="text-md text-gray-100 flex justify-center items-center">
+            <p className="text-md text-gray-100 flex justify-center items-center text-lg">
+            With a passion for technology and a commitment to excellence, <br/>we empower businesses to thrive in the digital landscape.
+          </p>
+            <p className="text-md text-gray-100 flex justify-center items-center mt-2">
               Home <ChevronRight className="text-sm" /> About
             </p>
             {/* <div className="flex justify-between items-center gap-4">

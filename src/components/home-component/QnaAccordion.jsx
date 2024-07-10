@@ -1,4 +1,4 @@
-import { ArrowBigDown, ArrowDown } from "lucide-react";
+import {  ArrowDown } from "lucide-react";
 import { useState } from "react";
 
 const QnaAccordion = ({ items }) => {

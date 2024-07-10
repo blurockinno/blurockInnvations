@@ -42,7 +42,7 @@ const Header = () => {
             <NavLink to="/career" className="hover:text-[#146EF5] focus:text-[#146ef5]">
               Career
             </NavLink>
-            <NavLink to="/solution" className="hover:text-[#146EF5] focus:text-[#146ef5]">
+            <NavLink to="/help" className="hover:text-[#146EF5] focus:text-[#146ef5]">
               Help
             </NavLink>
             {currentUser ? (
