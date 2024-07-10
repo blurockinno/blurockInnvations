@@ -9,85 +9,26 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white">
+    <footer className="bg-[#141415] text-white plus-jakarta-sans">
       <div className="container mx-auto px-6 py-12">
-        <div className="flex flex-wrap ">
+        <div className="flex px-40 gap-10">
           {/* Services Section */}
-          <div className="w-full md:w-1/4 mb-4">
-            <h3 className="text-lg font-bold mb-2">Services</h3>
-            <ul>
+          <div className="w-full md:w-1/4 mb-4  flex items-start flex-col">
+            <h3 className="text-lg font-bold mb-2">Blurock Innovation</h3>
+            <ul className="text-gray-400">
               <li className="mb-2">
                 <a href="#" className="hover:text-gray-300">
-                  Website Designing & Development
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="#" className="hover:text-gray-300">
-                  Digital Marketing
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="#" className="hover:text-gray-300">
-                  Android Development
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="#" className="hover:text-gray-300">
-                  IOS Development
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="#" className="hover:text-gray-300">
-                  Software Development
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="#" className="hover:text-gray-300">
-                  Graphic Designing
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="#" className="hover:text-gray-300">
-                  SPN Services
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="#" className="hover:text-gray-300">
-                  Website Maintenance
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="#" className="hover:text-gray-300">
-                  Consulting
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="#" className="hover:text-gray-300">
-                  Cybersecurity
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="#" className="hover:text-gray-300">
-                  Domain
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="#" className="hover:text-gray-300">
-                  Web Security
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="#" className="hover:text-gray-300">
-                  Networking
+                  Blurock innovation always open door to a realm of limitless
+                  posibilities, where imagination knows no bounds.
                 </a>
               </li>
             </ul>
           </div>
 
           {/* Industries Section */}
-          <div className="w-full md:w-1/4 mb-4">
+          <div className="w-full md:w-1/4 mb-4  flex items-start flex-col">
             <h3 className="text-lg font-bold mb-2">Industries</h3>
-            <ul>
+            <ul className="text-gray-400">
               <li className="mb-2">
                 <a href="#" className="hover:text-gray-300">
                   Consumer Goods and Distribution
@@ -107,9 +48,9 @@ const Footer = () => {
           </div>
 
           {/* More Information Section */}
-          <div className="w-full md:w-1/4 mb-4">
+          <div className="w-full md:w-1/4 mb-4  flex items-start flex-col">
             <h3 className="text-lg font-bold mb-2">More Information</h3>
-            <ul>
+            <ul className="text-gray-400">
               <li className="mb-2">
                 <a href="#" className="hover:text-gray-300">
                   FAQs
@@ -129,22 +70,27 @@ const Footer = () => {
           </div>
 
           {/* Knowledge Base Section */}
-          <div className="w-full md:w-1/4 mb-4">
-            <h3 className="text-lg font-bold mb-2">Knowledge Base</h3>
-            <ul>
+          <div className="w-full md:w-1/4 mb-4 flex items-start flex-col">
+            <h3 className="text-lg font-bold mb-2">Company</h3>
+            <ul className="text-gray-400">
               <li className="mb-2">
                 <a href="#" className="hover:text-gray-300">
-                  Articles
+                  About us
                 </a>
               </li>
               <li className="mb-2">
                 <a href="#" className="hover:text-gray-300">
-                  Tutorials
+                  Careers
                 </a>
               </li>
               <li className="mb-2">
                 <a href="#" className="hover:text-gray-300">
-                  Guides
+                  Press
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-gray-300">
+                  Partners
                 </a>
               </li>
             </ul>
@@ -174,7 +120,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <p className="text-sm text-gray-400">
-            © 2024 Your Company. All rights reserved.
+            © 2024 Blurock Innovations. All rights reserved.
           </p>
         </div>
       </div>

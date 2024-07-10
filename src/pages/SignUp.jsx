@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import path from "../assets/path.svg";
 const SignUp = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -49,7 +49,15 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row justify-between h-screen -z-10">
+      <div
+        className="w-full h-auto bg-[#141415] plus-jakarta-sans flex flex-col md:flex-row justify-between  "
+        style={{
+          backgroundImage: `url(${path})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center start",
+          backgroundSize: "cover",
+        }}
+      >
         <div className="md:w-1/2 w-full h-screen flex flex-col justify-center items-center p-4 md:p-10 gap-4 mt-40 md:mt-0 mb-10 md:mb-0">
           <span className="text-lg md:text-xl font-semibold text-violet-800">
             Blurock Innovations

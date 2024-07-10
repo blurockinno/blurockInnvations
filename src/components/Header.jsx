@@ -20,7 +20,7 @@ const Header = () => {
             Blurock Innovations
           </div>
           <div className="space-x-12 flex text-sm font-semibold ">
-            <NavLink to="/" className="hover:text-[#146EF5]">
+            <NavLink to="/" className="hover:text-[#146EF5] focus:text-[#146ef5]">
               Home
             </NavLink>
             {/* {currentUser && (
@@ -32,13 +32,13 @@ const Header = () => {
                 Our Product
               </NavLink>
             )} */}
-            <NavLink to="/service" className="hover:text-[#146EF5]">
+            <NavLink to="/service" className="hover:text-[#146EF5] focus:text-[#146ef5]">
               Services
             </NavLink>
-            <NavLink to="/about" className="hover:text-[#146EF5]">
+            <NavLink to="/about" className="hover:text-[#146EF5] focus:text-[#146ef5]">
               About us
             </NavLink>
-            <NavLink to="/career" className="hover:text-[#146EF5]">
+            <NavLink to="/career" className="hover:text-[#146EF5] focus:text-[#146ef5]">
               Career
             </NavLink>
             {currentUser ? (
@@ -54,7 +54,7 @@ const Header = () => {
                 />
               </NavLink>
             ) : (
-              <NavLink to="/sign-in" className="hover:text-[#146EF5]">
+              <NavLink to="/sign-in" className="hover:text-[#146EF5] focus:text-[#146ef5]">
                 Sign In
               </NavLink>
             )}
