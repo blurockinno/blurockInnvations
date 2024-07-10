@@ -15,7 +15,7 @@ const CustomerSupport = () => {
         backgroundAttachment: "fixed",
       }}
     >
-      <span className="text-white text-5xl font-bold px-44 text-center">
+      <span className="text-white text-5xl font-bold px-44 text-center leading-tight">
         Empower your creativity and craft stunning <br /> sites while enjoying
         real-time customer <br /> support at every step.
       </span>

@@ -32,14 +32,18 @@ const Header = () => {
                 Our Product
               </NavLink>
             )} */}
-            <NavLink to="/service" className="hover:text-[#146EF5] focus:text-[#146ef5]">
-              Services
+            <NavLink to="/solution" className="hover:text-[#146EF5] focus:text-[#146ef5]">
+              Solution
             </NavLink>
+            
             <NavLink to="/about" className="hover:text-[#146EF5] focus:text-[#146ef5]">
               About us
             </NavLink>
             <NavLink to="/career" className="hover:text-[#146EF5] focus:text-[#146ef5]">
               Career
+            </NavLink>
+            <NavLink to="/solution" className="hover:text-[#146EF5] focus:text-[#146ef5]">
+              Help
             </NavLink>
             {currentUser ? (
               <NavLink
