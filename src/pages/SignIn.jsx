@@ -1,11 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  signInStart,
-  signInSuccess,
-  signInFailure,
-} from "../redux/user/userSlice";
+import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 
 import path from "../assets/path.svg";
@@ -63,12 +59,12 @@ const SignIn = () => {
           backgroundSize: "cover",
         }}
       >
-        <div className="flex flex-row justify-center items-center w-full h-[100vh]">
+        <div className="flex flex-col items-center justify-center w-full h-screen px-5">
           <form
-            className="bg-[#1D1F20] w-[350px] rounded-md px-8 shadow-md"
+            className="bg-[#1D1F20] w-full max-w-md rounded-md px-8 py-10 md:py-5 shadow-md"
             onSubmit={handleSubmit}
           >
-            <p className="text-2xl font-bold flex justify-center xl:text-2xl xl:pt-6 xl:mb-6 xl:mt-0 text-white">
+            <p className="text-2xl font-bold text-center xl:text-2xl xl:pt-4 xl:mb-6 xl:mt-0 text-white">
               Continue with Blurock
             </p>
             <div className="flex flex-col gap-2 my-4">
@@ -81,7 +77,7 @@ const SignIn = () => {
               <input
                 id="email"
                 name="email"
-                className=" mt-1 p-2 rounded-md bg-gray-500 text-black"
+                className="mt-1 p-2 rounded-md bg-gray-500 text-black"
                 placeholder="Email"
                 type="email"
                 value={formData.email}
@@ -99,7 +95,7 @@ const SignIn = () => {
               <input
                 id="password"
                 name="password"
-                className=" mt-1 p-2 rounded-md bg-gray-500 text-black"
+                className="mt-1 p-2 rounded-md bg-gray-500 text-black"
                 placeholder="Password"
                 type="password"
                 value={formData.password}
@@ -112,25 +108,21 @@ const SignIn = () => {
                 Forgot your password?
               </span>
             </div>
-            <div className="flex flex-row justify-center xl:mt-6">
+            <div className="flex flex-col items-center">
               <button
                 type="submit"
                 disabled={loading}
-                className={`flex items-center bg-[#146ef5] hover:bg-blue-700 px-8 py-2 text-lg rounded-md text-white mt-20 xl:w-auto xl:mt-4 xl:mb-6 ${
+                className={`  flex items-center justify-center bg-[#146ef5] hover:bg-blue-700 px-8 py-2 text-lg rounded-md text-white mt-8 w-full ${
                   loading ? "cursor-not-allowed" : ""
                 }`}
               >
                 {loading ? "Please wait" : "Submit"}
               </button>
-            </div>
-
-            <div className="flex flex-row justify-center xl:mt-2 xl:mb-6 p-1 text-sm text-gray-400">
-              <Link to="/sign-up">
-                New User?{" "}
-                <span className="cursor-pointer text-[#146ef5]">
-                   Create account
-                </span>
-              </Link>
+              <div className="flex justify-center mt-5  text-sm text-gray-400">
+                <Link to="/sign-up" className="cursor-pointer text-[#146ef5]">
+                  New User? Create account
+                </Link>
+              </div>
             </div>
           </form>
         </div>

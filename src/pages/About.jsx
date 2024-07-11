@@ -51,34 +51,17 @@ const About = () => {
             <h1 className="text-md font-bold mb-4 uppercase text-[#146ef5]">
               WHO WE ARE
             </h1>
-            <h1 className="text-6xl font-bold mb-4  text-white">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white mt-6">
               Get to know us
             </h1>
-            <p className="text-md text-gray-100 flex justify-center items-center text-lg">
-            With a passion for technology and a commitment to excellence, <br/>we empower businesses to thrive in the digital landscape.
-          </p>
+            <p className="text-lg md:text-xl text-gray-100 mx-4 md:mx-0 mb-4 flex justify-center items-center">
+              With a passion for technology and a commitment to excellence,
+              <br className="hidden md:block" />
+              we empower businesses to thrive in the digital landscape.
+            </p>
             <p className="text-md text-gray-100 flex justify-center items-center mt-2">
               Home <ChevronRight className="text-sm" /> About
             </p>
-            {/* <div className="flex justify-between items-center gap-4">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: "25%" }}
-                transition={{ duration: 3 }}
-                className="h-20 w-[25%] flex flex-col mt-10"
-              >
-                <div className="h-7 bg-gradient-to-l from-yellow-400 rounded-tr-full rounded-br-full"></div>
-              </motion.div>
-
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: "25%" }}
-                transition={{ duration: 3, delay: 0.5 }}
-                className="h-20 w-[25%] flex flex-col mt-10"
-              >
-                <div className="h-7 bg-gradient-to-r from-yellow-400 rounded-tl-full rounded-bl-full"></div>
-              </motion.div>
-            </div> */}
           </div>
         </section>
 

@@ -1,4 +1,11 @@
-import { Bell, Coffee, Lightbulb, Mouse, PlusCircleIcon, Watch } from "lucide-react";
+import {
+  Bell,
+  Coffee,
+  Lightbulb,
+  Mouse,
+  PlusCircleIcon,
+  Watch,
+} from "lucide-react";
 import SolutionCard from "./SolutionCard";
 
 const SolutionSection = () => {
@@ -6,7 +13,8 @@ const SolutionSection = () => {
     {
       icon: <Watch />,
       title: "Scalability optimization",
-      description: "Our scalability solutions analyze your current infrastructure, identifying bottlenecks and optimizing processes.",
+      description:
+        "Our scalability solutions analyze your current infrastructure, identifying bottlenecks and optimizing processes.",
     },
     {
       icon: <Bell />,
@@ -17,17 +25,20 @@ const SolutionSection = () => {
     {
       icon: <Lightbulb />,
       title: "Solid planning",
-      description: "Get free access to our global partner network and marketplace to receive premium assistance.",
+      description:
+        "Get free access to our global partner network and marketplace to receive premium assistance.",
     },
     {
       icon: <Coffee />,
       title: "Training and development",
-      description: "Enhance employee skills, foster a culture of learning, and boost overall organizational performance.",
+      description:
+        "Enhance employee skills, foster a culture of learning, and boost overall organizational performance.",
     },
     {
-      icon: <Mouse/>,
+      icon: <Mouse />,
       title: "Supply chain optimization",
-      description: "Leverage data analytics and predictive algorithms to optimize inventory and supplier relationships.",
+      description:
+        "Leverage data analytics and predictive algorithms to optimize inventory and supplier relationships.",
     },
     {
       icon: <PlusCircleIcon />,
@@ -36,24 +47,26 @@ const SolutionSection = () => {
         "Our data integration solutions unify data sets, enabling real-time insights and strategic decision-making.",
     },
   ];
+
   return (
-    <div className="bg-[#FAFAFC]  h-auto py-20 plus-jakarta-sans">
+    <div className="bg-[#FAFAFC] h-auto py-20 plus-jakarta-sans">
       <h6 className="text-[#146EF5] text-center uppercase font-semibold">
-        SOLUTIONS
+        Solutions
       </h6>
-      <h1 className="text-[#141415] text-center text-5xl font-bold p-4 leading-tight">
+      <h1 className="text-[#141415] text-center text-3xl md:text-4xl lg:text-5xl font-bold p-4 leading-tight">
         Every feature you need,
         <br />
         all in a single system
       </h1>
 
-      <p className="text-gray-400 text-center text-lg ">
-        Explore a spectrum of solutions meticulously designed to <br />
+      <p className="text-gray-400 text-center text-sm md:text-lg px-4 md:px-0">
+        Explore a spectrum of solutions meticulously designed to
+        <br className="hidden md:block" />
         empower your business growth.
       </p>
 
-      <div className="container mx-auto px-36 mt-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="container mx-auto px-4 md:px-12 lg:px-36 mt-10 md:mt-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {cards.map((card, index) => (
             <SolutionCard
               key={index}

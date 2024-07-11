@@ -12,6 +12,7 @@ import OmsMembership from "./pages/OmsMembership";
 import Service from "./pages/Service";
 import Solution from "./pages/Solution";
 import Help from "./pages/Help";
+import Contact from "./pages/Contact";
 function App() {
   return (
     <BrowserRouter>
@@ -25,6 +26,7 @@ function App() {
         <Route path="/service" element={<Service />} />
         <Route path="/solution" element={<Solution />} />
         <Route path="/help" element={<Help />} />
+        <Route path="/contact" element={<Contact />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/our-product" element={<OurProduct />} />

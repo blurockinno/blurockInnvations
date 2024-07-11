@@ -15,12 +15,12 @@ const CustomerSupport = () => {
         backgroundAttachment: "fixed",
       }}
     >
-      <span className="text-white text-5xl font-bold px-44 text-center leading-tight">
-        Empower your creativity and craft stunning <br /> sites while enjoying
-        real-time customer <br /> support at every step.
+      <span className="text-white text-2xl md:text-4xl lg:text-5xl font-bold px-6 md:px-24 lg:px-44 text-center leading-tight">
+        Empower your creativity and craft stunning <br className="hidden md:block" /> sites while enjoying
+        real-time customer <br className="hidden md:block" /> support at every step.
       </span>
 
-      <span className="w-20 h-20  rounded-full border-4 flex items-center justify-center mt-10 hover:border-[#146ef5] group cursor-pointer">
+      <span className="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 flex items-center justify-center mt-6 md:mt-10 hover:border-[#146ef5] group cursor-pointer">
         <PhoneCallIcon className="text-white group-hover:text-[#146ef5]" />
       </span>
     </div>
