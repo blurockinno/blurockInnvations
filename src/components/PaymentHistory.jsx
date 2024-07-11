@@ -3,10 +3,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const PaymentHistory = ({ currentUser }) => {
-  const [allSubcribedPlans, setAllSubscribedPlans] = useState([]);
+  const [allSubscribedPlans, setAllSubscribedPlans] = useState([]);
 
   useEffect(() => {
-    // handle for get plans
     const getAllPlans = async () => {
       try {
         const response = await axios.get(
@@ -20,42 +19,46 @@ const PaymentHistory = ({ currentUser }) => {
         console.log(error);
       }
     };
+
     getAllPlans();
   }, [currentUser.companyId]);
-  console.log(allSubcribedPlans);
 
-  const handleOnFormateDate = (date) => {
-    const formateDate = new Date(date);
-    return formateDate.toLocalString();
+  const handleOnFormatDate = (dateString) => {
+    const formattedDate = new Date(dateString).toLocaleString();
+    return formattedDate;
   };
 
   return (
     <div className="container mx-auto p-4">
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
-        <table className="min-w-full bg-white">
-          <thead className="border text-black">
-            <tr>
-              <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">
-                Invoice Id
-              </th>
-              <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">
-                Date
-              </th>
-              <th className="w-1/4 py-3 px-4 uppercase font-semibold text-sm">
-                Amount
-              </th>
-            </tr>
-          </thead>
-          <tbody className="text-gray-700">
-            {allSubcribedPlans.map((payment, index) => (
-              <tr key={index} className="text-center">
-                <td className="w-1/4 py-3 px-4">{payment.invoiceId}</td>
-                <td className="w-1/4 py-3 px-4">{payment.date}</td>
-                <td className="w-1/4 py-3 px-4">{payment.amount / 100}</td>
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white">
+            <thead className="border text-black">
+              <tr>
+                <th className="w-1/2 sm:w-1/4 py-3 px-4 uppercase font-semibold text-sm">
+                  Invoice Id
+                </th>
+                <th className="w-1/2 sm:w-1/4 py-3 px-4 uppercase font-semibold text-sm">
+                  Date
+                </th>
+                <th className="w-1/2 sm:w-1/4 py-3 px-4 uppercase font-semibold text-sm">
+                  Amount
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="text-gray-700">
+              {allSubscribedPlans.map((payment, index) => (
+                <tr key={index} className="text-center">
+                  <td className="w-1/2 sm:w-1/4 py-3 px-4">{payment.invoiceId}</td>
+                  <td className="w-1/2 sm:w-1/4 py-3 px-4">
+                    {handleOnFormatDate(payment.date)}
+                  </td>
+                  <td className="w-1/2 sm:w-1/4 py-3 px-4">{payment.amount / 100}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
