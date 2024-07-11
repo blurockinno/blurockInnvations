@@ -6,7 +6,7 @@ const Hero = () => {
       <div className="flex justify-center items-center py-10 ">
         <section className="max-w-4xl px-5 sm:px-10">
           <h1 className="text-[25px] sm:text-[35px] font-bold text-center sm:text-left pt-7 text-slate-300">
-            ORDER MANAGEMENT SYSTEM
+            Order Management System
           </h1>
           <br />
           <p className="text-white w-full sm:w-[80%] h-auto text-[16px] sm:text-[18px] text-center sm:text-left">

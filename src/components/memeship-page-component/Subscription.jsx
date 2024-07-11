@@ -31,7 +31,8 @@ const Subscription = () => {
 
                   <div className='flex pl-6 pt-5 pr-6 space-x-24'>
                     <h1 className='text-[25px]'>₹1000/Month</h1>
-                    <button className='w-[80px] rounded-md border-blue-500 border-2 text-[15px] hover:bg-blue-500 hover:border-0 hover:text-white transition shadow-2xl'>Subscribe</button>
+                    <button className='w-[80px] rounded-md border-blue-500 border-2 text-[15px] hover:bg-blue-500 hover:border-0 hover:text-white transition shadow-2xl'>
+                      Subscribe</button>
                   </div>
               </section>
 
