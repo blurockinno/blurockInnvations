@@ -23,29 +23,29 @@ const WhatWeDo = () => {
   ];
 
   return (
-    <div className="  py-24  plus-jakarta-sans bg-white relative mx-40 px-20 rounded-md z-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="py-10 md:py-24 bg-white relative mx-4 md:mx-40 px-4 md:px-20 rounded-md z-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
         <div>
-          <h2 className="text-md font-bold mb-4 uppercase text-[#146ef5]">
+          <h2 className="text-lg md:text-md font-bold mb-2 md:mb-4 uppercase text-[#146ef5]">
             What We Do
           </h2>
-          <h2 className="text-5xl font-bold mb-4  text-[#141415] leading-tight">
+          <h2 className="text-3xl md:text-5xl font-bold mb-2 md:mb-4 text-[#141415] leading-tight">
             We focus on people and sustainability
           </h2>
-          <p className="text-lg text-gray-400">
+          <p className="text-base md:text-lg text-gray-400">
             We are dedicated to crafting tech solutions that revolutionize the
             way businesses operate.
           </p>
         </div>
         <div>
-          <div className="flex  mb-4 bg-red-400">
+          <div className="flex flex-col md:flex-row flex-wrap mb-4">
             {tabs.map((tab, index) => (
               <button
                 key={index}
                 onClick={() => setActiveTab(index)}
-                className={`w-full px-4 py-4 text-white  ${
-                  activeTab === index ? "bg-[#146ef5] " : "bg-[#141415]"
-                }`}
+                className={`w-full md:w-40  px-4 py-2 md:px-6 md:py-4 text-white ${
+                  activeTab === index ? "bg-[#146ef5]" : "bg-[#141415]"
+                } mb-2 md:mb-0  md:last:mr-0`}
               >
                 {tab.title}
               </button>
@@ -56,7 +56,7 @@ const WhatWeDo = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="text-gray-400 mt-10"
+            className="text-gray-400 mt-4 md:mt-10"
           >
             {tabs[activeTab].content}
           </motion.div>

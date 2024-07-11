@@ -14,9 +14,6 @@ import HelpCenterSection from "../components/home-component/HelpCenterSection";
 import SubscribeSection from "../components/home-component/SubscribeSection";
 
 const Home = () => {
-
-
-
   return (
     <>
       <div
@@ -34,13 +31,13 @@ const Home = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <div className=" w-full h-full flex items-center justify-center mb-20">
-            <div className="pl-20 bg-opacity-50 rounded-lg w-1/2 mt-24">
+          <div className="w-full h-full flex flex-col lg:flex-row items-center justify-center mb-20 px-6 lg:px-0">
+            <div className="lg:pl-20 bg-opacity-50 rounded-lg w-full lg:w-1/2 mt-24 lg:mt-0">
               <motion.p
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
-                className="text-7xl mb-4 font-semibold text-white "
+                className="text-3xl lg:text-7xl mb-4 font-semibold text-white"
               >
                 Full-suite software development for{" "}
                 <span className="text-[#146EF5]">businesses</span>
@@ -49,13 +46,13 @@ const Home = () => {
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 2 }}
-                className="mb-6 text-lg font-light text-white"
+                className="mb-6 text-base lg:text-lg font-light text-white"
               >
                 Sure, you may be able to get by with whatever software your
                 business is currently using, but will you grow?
               </motion.p>
             </div>
-            <div className="w-1/2 px-44">
+            <div className="w-full lg:w-1/2 lg:px-44 mt-6 lg:mt-0">
               <p className="text-gray-400 mb-10 text-justify">
                 Dive into the next-generation future of business technology. We
                 craft tailored software solutions and strategic frameworks,
@@ -65,22 +62,20 @@ const Home = () => {
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 3 }}
-                className="relative px-8 py-4 rounded-md  hover:text-white bg-white isolation-auto z-10 border
-                hover:border-white-600
-        before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-blue-600 before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
+                className="relative px-8 py-4 rounded-md hover:text-white bg-white isolation-auto z-10 border hover:border-white-600 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full before:bg-blue-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
               >
                 Get Started
               </motion.button>
             </div>
           </div>
-          <div className=" h-auto w-full flex items-center justify-center ">
-            <div className="w-[20%]"></div>
+          <div className="h-auto w-full flex items-center justify-center px-6 lg:px-0">
+            <div className="hidden lg:block w-[20%]"></div>
             <img
               src={dashboard}
               alt="dashboard"
-              className="rounded-lg w-[80%]"
+              className="rounded-lg w-full lg:w-[80%]"
             />
-            <div className="w-[20%]"></div>
+            <div className="hidden lg:block w-[20%]"></div>
           </div>
         </motion.section>
         {/* carousel end */}
@@ -110,8 +105,6 @@ const Home = () => {
       {/* get in touch section  */}
       {/* <GetInTouchSection /> */}
       {/* get in touch section end */}
-
-  
 
       {/* tour  */}
       {/* <ServiceTourSection /> */}
