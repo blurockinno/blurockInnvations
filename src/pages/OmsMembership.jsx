@@ -37,7 +37,7 @@ const OmsMembership = () => {
     if (isPaymentDone) {
       updatePaymentDetails();
     }
-  }, [isPaymentDone, currentUser?.companyId]);
+  }, [isPaymentDone, currentUser?.companyId, navigate]);
 
   // handle on payment initiate
   const handleOnSubscribe = async (rupee, softwareName) => {

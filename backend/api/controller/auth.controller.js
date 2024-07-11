@@ -5,85 +5,83 @@ import jwt from "jsonwebtoken";
 import { sendCookie } from "../utils/cookie.js";
 //registration
 export const registration = async (req, res) => {
-    // Fetch data from request body
-    const { companyName, fullName, email, isAgreed, mobileNumber, industrySize } = req.body;
+  // Fetch data from request body
+  const { companyName, fullName, email, isAgreed, mobileNumber, industrySize } =
+    req.body;
 
-    console.log(req.body)
-  
-    try {
-      // Validation
-      if (!companyName) {
-        return res.status(400).json({
-          success: false,
-          message: "Please enter company name",
-        });
-      }
-      if (!fullName) {
-        return res.status(400).json({
-          success: false,
-          message: "Please enter full name",
-        });
-      }
-      if (!email) {
-        return res.status(400).json({
-          success: false,
-          message: "Please enter email",
-        });
-      }
-      if (!mobileNumber) {
-        return res.status(400).json({
-          success: false,
-          message: "Please enter mobile number",
-        });
-      }
-      if (!isAgreed) {
-        return res.status(400).json({
-          success: false,
-          message: "Please accept terms and conditions of company",
-        });
-      }
-  
-      // Check if email already exists
-      const isEmailExist = await AuthUser.findOne({ email });
-      if (isEmailExist) {
-        return res.status(400).json({
-          success: false,
-          message: "Email already exists",
-        });
-      }
-  
-      // Generate unique company ID and temporary password
-      let companyId = companyName.slice(0, 5) + uuidv4();
-      let password = companyName.slice(0, 5) + "7823";
-  
-      // Encrypt password
-      const hashPassword = await bcrypt.hash(password, 10);
-  
-      // Generate verification token
-      const verificationToken = uuidv4();
-
-  
-      // Create user in the database
-      const user = await AuthUser.create({
-        companyId,
-        companyName,
-        fullName,
-        email,
-        password: hashPassword,
-        industrySize,
-        verificationToken,
-        temPassword: password,
-      });
-  
-      // Send cookie and response
-      sendCookie(user, res, "Account created successfully.", 201);
-    } catch (error) {
-      return res.status(500).json({
+  try {
+    // Validation
+    if (!companyName) {
+      return res.status(400).json({
         success: false,
-        message: "Internal server error",
+        message: "Please enter company name",
       });
     }
-  };
+    if (!fullName) {
+      return res.status(400).json({
+        success: false,
+        message: "Please enter full name",
+      });
+    }
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        message: "Please enter email",
+      });
+    }
+    if (!mobileNumber) {
+      return res.status(400).json({
+        success: false,
+        message: "Please enter mobile number",
+      });
+    }
+    if (!isAgreed) {
+      return res.status(400).json({
+        success: false,
+        message: "Please accept terms and conditions of company",
+      });
+    }
+
+    // Check if email already exists
+    const isEmailExist = await AuthUser.findOne({ email });
+    if (isEmailExist) {
+      return res.status(400).json({
+        success: false,
+        message: "Email already exists",
+      });
+    }
+
+    // Generate unique company ID and temporary password
+    let companyId = companyName.slice(0, 5) + uuidv4();
+    let password = companyName.slice(0, 5) + "7823";
+
+    // Encrypt password
+    const hashPassword = await bcrypt.hash(password, 10);
+
+    // Generate verification token
+    const verificationToken = uuidv4();
+
+    // Create user in the database
+    const user = await AuthUser.create({
+      companyId,
+      companyName,
+      fullName,
+      email,
+      password: hashPassword,
+      industrySize,
+      verificationToken,
+      temPassword: password,
+    });
+
+    // Send cookie and response
+    sendCookie(user, res, "Account created successfully.", 201);
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
 //login
 export const login = async (req, res) => {
   // Fetch all the data from request body
@@ -147,8 +145,8 @@ export const login = async (req, res) => {
   }
 };
 
-//verify owner 
-export const verifyEmail = async (req, res) =>{
+//verify owner
+export const verifyEmail = async (req, res) => {
   try {
     const { token } = req.query;
 
@@ -168,4 +166,44 @@ export const verifyEmail = async (req, res) =>{
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
-}
+};
+
+// update the  profile iamge
+export const updateDetails = async (req, res, next) => {
+  // if (req.user.id !== req.params.id) {
+  //   return next(errorHandler(401, "You can update only your account."));
+  // }
+
+  try {
+    if (req.body.password) {
+      req.body.password = await bcrypt.hash(req.body.password, 12);
+    }
+
+    const updateUser = await AuthUser.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          // fullName: req.body.username,
+          // email: req.body.email,
+          // password: req.body.password,
+          profilePicture: req.body.profilePicture,
+        },
+      },
+      {
+        new: true,
+        runValidators: true, // Ensures validation is run
+      }
+    ).lean(); // Converts mongoose document to plain JavaScript object
+
+    // Separate the password
+    const { password, ...rest } = updateUser;
+
+    res.status(200).json({
+      success: true,
+      message: "Updated successfully",
+      user: rest,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

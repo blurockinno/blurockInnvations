@@ -8,6 +8,8 @@ import {
 } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 
+import path from "../assets/path.svg";
+
 const SignIn = () => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -52,23 +54,34 @@ const SignIn = () => {
 
   return (
     <>
-      <div className="flex flex-col">
+      <div
+        className="w-full h-auto bg-[#141415] plus-jakarta-sans"
+        style={{
+          backgroundImage: `url(${path})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center start",
+          backgroundSize: "cover",
+        }}
+      >
         <div className="flex flex-row justify-center items-center w-full h-[100vh]">
           <form
-            className="bg-white border w-[350px] rounded-md px-8 shadow-md"
+            className="bg-[#1D1F20] w-[350px] rounded-md px-8 shadow-md"
             onSubmit={handleSubmit}
           >
-            <p className="text-3xl font-bold flex justify-center xl:text-2xl xl:pt-6 xl:mb-6 xl:mt-0">
+            <p className="text-2xl font-bold flex justify-center xl:text-2xl xl:pt-6 xl:mb-6 xl:mt-0 text-white">
               Continue with Blurock
             </p>
             <div className="flex flex-col gap-2 my-4">
-              <label className="font-semibold text-sm" htmlFor="email">
+              <label
+                className="font-semibold text-sm text-gray-400"
+                htmlFor="email"
+              >
                 Email
               </label>
               <input
                 id="email"
                 name="email"
-                className="border mt-1 p-2 rounded-md"
+                className=" mt-1 p-2 rounded-md bg-gray-500 text-black"
                 placeholder="Email"
                 type="email"
                 value={formData.email}
@@ -77,13 +90,16 @@ const SignIn = () => {
               />
             </div>
             <div className="flex flex-col">
-              <label className="font-semibold text-sm" htmlFor="password">
+              <label
+                className="font-semibold text-sm text-gray-400"
+                htmlFor="password"
+              >
                 Password
               </label>
               <input
                 id="password"
                 name="password"
-                className="border mt-1 p-2 rounded-md"
+                className=" mt-1 p-2 rounded-md bg-gray-500 text-black"
                 placeholder="Password"
                 type="password"
                 value={formData.password}
@@ -91,12 +107,16 @@ const SignIn = () => {
                 required
               />
             </div>
-
+            <div className="flex justify-end mt-5">
+              <span className="cursor-pointer text-[12px] text-gray-400">
+                Forgot your password?
+              </span>
+            </div>
             <div className="flex flex-row justify-center xl:mt-6">
               <button
                 type="submit"
                 disabled={loading}
-                className={`flex items-center bg-blue-500 hover:bg-blue-700 px-8 py-2 text-lg rounded-md text-white mt-20 xl:w-auto xl:mt-4 xl:mb-6 ${
+                className={`flex items-center bg-[#146ef5] hover:bg-blue-700 px-8 py-2 text-lg rounded-md text-white mt-20 xl:w-auto xl:mt-4 xl:mb-6 ${
                   loading ? "cursor-not-allowed" : ""
                 }`}
               >
@@ -104,17 +124,11 @@ const SignIn = () => {
               </button>
             </div>
 
-            <div className="flex justify-end">
-              <span className="cursor-pointer text-[12px]">
-                Forgot your password?
-              </span>
-            </div>
-
-            <div className="flex flex-row justify-center xl:mt-2 xl:mb-6 p-2 text-sm">
-              <Link to="/signup">
+            <div className="flex flex-row justify-center xl:mt-2 xl:mb-6 p-1 text-sm text-gray-400">
+              <Link to="/sign-up">
                 New User?{" "}
-                <span className="cursor-pointer text-blue-800">
-                  Create Account
+                <span className="cursor-pointer text-[#146ef5]">
+                   Create account
                 </span>
               </Link>
             </div>

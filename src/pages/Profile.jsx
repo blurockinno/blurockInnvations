@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { app } from "../firebase";
 import axios from "axios";
 import {
+  logout,
   updateUserFailure,
   updateUserStart,
   updateUserSuccess,
@@ -30,6 +31,11 @@ import PaymentHistory from "../components/PaymentHistory";
 import SubscriptionPlanPurchaseHistory from "../components/SubscriptionPlanPurchaseHistory";
 import Setting from "../components/Setting";
 import ManageUser from "../components/ManageUser";
+import {
+  currentSubscriptionCheckFailure,
+  currentSubscriptionCheckStart,
+  currentSubscriptionCheckSuccess,
+} from "../redux/subscription/subscriptionSlice";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -57,18 +63,22 @@ const Profile = () => {
     // handle for get plans
     const getAllPlans = async () => {
       try {
+        //despatch the value
+        dispatch(currentSubscriptionCheckStart());
         const response = await axios.get(
           `/api/v1/subscription/${currentUser.companyId}`
         );
 
         const { plans } = response.data;
         setAllSubscribedPlans(plans);
+        dispatch(currentSubscriptionCheckSuccess(plans));
       } catch (error) {
         console.log(error);
+        dispatch(currentSubscriptionCheckFailure(error.response.message));
       }
     };
     getAllPlans();
-  }, [image, currentUser.companyId]);
+  }, [image, currentUser.companyId, dispatch]);
 
   //handle for file upload
   const handleFileUpload = async (image) => {
@@ -108,19 +118,30 @@ const Profile = () => {
 
   //handle on submit
   const handleOnSubmit = async () => {
-    console.log(formData);
+    console.log(currentUser._id);
+
     try {
+      // Dispatch the action to indicate the update process has started
       dispatch(updateUserStart());
-      const response = await axios.post(
-        `/api/v1/auth/update/${currentUser._id}`,
-        {
-          body: formData,
-        }
-      );
+
+      // Make an HTTP PUT request to update the user information
+      const response = await axios.put(`/api/v1/auth/${currentUser._id}`, {
+        profilePicture: formData.profilePicture,
+        fullName: formData.fullName,
+        password: formData.password,
+      });
+
+      console.log(response);
+
+      // Extract the updated user information from the response
       const { user } = response.data;
+
+      // Dispatch the success action with the updated user information
       dispatch(updateUserSuccess(user));
     } catch (error) {
       console.log(error);
+
+      // Dispatch the failure action with the error information
       dispatch(updateUserFailure(error));
     }
   };
@@ -140,10 +161,7 @@ const Profile = () => {
 
         const { token, success } = response.data;
         if (success) {
-          window.open(
-            `http://localhost:3000/orderManagement-dashboard/order?token=${token}`,
-            "_blank"
-          );
+          window.open(`http://localhost:3000/order?token=${token}`, "_blank");
         } else {
           console.error("Failed to fetch token");
         }
@@ -153,6 +171,11 @@ const Profile = () => {
     } else {
       console.log("Please provide a valid link for the product:", productName);
     }
+  };
+
+  //handle for logout
+  const handleOnlogout = () => {
+    dispatch(logout());
   };
 
   if (!currentUser) {
@@ -222,6 +245,7 @@ const Profile = () => {
                     <input
                       id="email"
                       type="email"
+                      disabled
                       className="text-lg font-bold border px-3"
                       value={currentUser.email}
                       onChange={handleChange}
@@ -390,7 +414,10 @@ const Profile = () => {
             />
           </nav>
           <div className="flex items-center justify-center">
-            <button className="flex items-center justify-center gap-4 h-16 bg-gray-100 w-full hover:text-red-700">
+            <button
+              onClick={handleOnlogout}
+              className="flex items-center justify-center gap-4 h-16 bg-gray-100 w-full hover:text-red-700"
+            >
               <LogOut />
               <span>Logout</span>
             </button>

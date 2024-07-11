@@ -1,27 +1,29 @@
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
 
+  const location = useLocation();
+
   return (
     <>
-      <div className="w-full p-11 absolute top-0  z-50 bg-white opacity-80 shadow-sm"></div>
-      <header className="w-full text-blue-700 p-7 absolute top-0  z-50">
+      <header
+        className={`plus-jakarta-sans w-full sticky ${
+          location.pathname === "/profile"
+            ? "text-[#141415] bg-white"
+            : "text-white bg-[#141415]"
+        } p-7 absolute top-0  z-50`}
+      >
         <nav className="container mx-auto flex justify-between items-center px-12 opacity-100 ">
           <div className="text-xl font-bold cursor-pointer">
             Blurock Innovations
           </div>
           <div className="space-x-12 flex text-sm font-semibold ">
-            <NavLink
-              to="/"
-              exact
-              className="hover:underline"
-              activeClassName="underline"
-            >
+            <NavLink to="/" className="hover:text-[#146EF5] focus:text-[#146ef5]">
               Home
             </NavLink>
-            {currentUser && (
+            {/* {currentUser && (
               <NavLink
                 to="/our-product"
                 className="hover:underline"
@@ -29,26 +31,25 @@ const Header = () => {
               >
                 Our Product
               </NavLink>
-            )}
-            <NavLink
-              to="/service"
-              className="hover:underline"
-              activeClassName="underline"
-            >
-              Services
+            )} */}
+            <NavLink to="/solution" className="hover:text-[#146EF5] focus:text-[#146ef5]">
+              Solution
             </NavLink>
-            <NavLink
-              to="/about"
-              className="hover:underline"
-              activeClassName="underline"
-            >
-              About
+            
+            <NavLink to="/about" className="hover:text-[#146EF5] focus:text-[#146ef5]">
+              About us
+            </NavLink>
+            <NavLink to="/career" className="hover:text-[#146EF5] focus:text-[#146ef5]">
+              Career
+            </NavLink>
+            <NavLink to="/help" className="hover:text-[#146EF5] focus:text-[#146ef5]">
+              Help
             </NavLink>
             {currentUser ? (
               <NavLink
                 to="/profile"
                 className="hover:underline"
-                activeClassName="underline"
+                activeclassname="underline"
               >
                 <img
                   src={currentUser.profilePicture}
@@ -57,11 +58,7 @@ const Header = () => {
                 />
               </NavLink>
             ) : (
-              <NavLink
-                to="/sign-in"
-                className="hover:underline"
-                activeClassName="underline"
-              >
+              <NavLink to="/sign-in" className="hover:text-[#146EF5] focus:text-[#146ef5]">
                 Sign In
               </NavLink>
             )}
