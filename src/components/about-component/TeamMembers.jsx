@@ -1,12 +1,15 @@
 import ProfileCard from "./ProfileCard";
 import avatar from "../../assets/avatar.jpg";
+import aryan from "../../assets/team-members/sai.jpeg"
+import biruly from "../../assets/team-members/biruly.png"
+import rishabh from "../../assets/team-members/rishabh.jpeg"
 
 const TeamMembers = () => {
   const members = [
     {
       image: avatar,
-      name: "John Doe",
-      designation: "Software Engineer",
+      name: "Jatinder Goswami",
+      designation: "Founder",
       social: {
         facebook: "https://facebook.com",
         twitter: "https://twitter.com",
@@ -16,8 +19,8 @@ const TeamMembers = () => {
     },
     {
       image: avatar,
-      name: "Jane Smith",
-      designation: "Product Manager",
+      name: "Devinder Goswami",
+      designation: "Co-founder",
       social: {
         facebook: "https://facebook.com",
         twitter: "https://twitter.com",
@@ -27,8 +30,8 @@ const TeamMembers = () => {
     },
     {
       image: avatar,
-      name: "Emily Johnson",
-      designation: "UX Designer",
+      name: "Akash Shrotiya",
+      designation: "Testing Engineer",
       social: {
         facebook: "https://facebook.com",
         twitter: "https://twitter.com",
@@ -38,8 +41,52 @@ const TeamMembers = () => {
     },
     {
       image: avatar,
-      name: "Michael Brown",
-      designation: "Marketing Specialist",
+      name: "Arun Uphadhayay",
+      designation: "Software Developer",
+      social: {
+        facebook: "https://facebook.com",
+        twitter: "https://twitter.com",
+        linkedin: "https://linkedin.com",
+        instagram: "https://instagram.com",
+      },
+    },
+    {
+      image: biruly,
+      name: "Bhagwan Biruly",
+      designation: "Software Developer",
+      social: {
+        facebook: "https://facebook.com",
+        twitter: "https://twitter.com",
+        linkedin: "https://linkedin.com",
+        instagram: "https://instagram.com",
+      },
+    },
+    {
+      image: aryan,
+      name: "Sai Aryan Goswami",
+      designation: "Software Developer",
+      social: {
+        facebook: "https://facebook.com",
+        twitter: "https://twitter.com",
+        linkedin: "https://linkedin.com",
+        instagram: "https://instagram.com",
+      },
+    },
+    {
+      image: rishabh,
+      name: "Rishabh Parashar",
+      designation: "Software Developer",
+      social: {
+        facebook: "https://facebook.com",
+        twitter: "https://twitter.com",
+        linkedin: "https://linkedin.com",
+        instagram: "https://instagram.com",
+      },
+    },
+    {
+      image: avatar,
+      name: "Navnit Kumar Singh",
+      designation: "Software Developer",
       social: {
         facebook: "https://facebook.com",
         twitter: "https://twitter.com",

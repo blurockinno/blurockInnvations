@@ -141,15 +141,20 @@ const Header = () => {
             {currentUser ? (
               <NavLink
                 to="/profile"
-                className="hover:underline hidden md:block"
+                className="hover:underline "
                 activeClassName="underline"
                 onClick={handleToggleMenu}
               >
-                <img
-                  src={currentUser.profilePicture}
-                  alt="profile picture"
-                  className="rounded-full h-7 w-7 object-cover border-black shadow-sm"
-                />
+                <div>
+                  <img
+                    src={currentUser?.profilePicture}
+                    alt="profile picture"
+                    className="rounded-full h-7 w-7 object-cover border-black shadow-sm"
+                  />
+                  <div>
+                     <span>{currentUser?.fullName}</span>
+                  </div>
+                </div>
               </NavLink>
             ) : (
               <NavLink
