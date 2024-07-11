@@ -17,8 +17,10 @@ import {
 import SidebarLink from "../components/SidebarLink";
 import {
   AppWindowIcon,
+  Computer,
   CreditCard,
   History,
+  Home,
   LogOut,
   Settings,
   Target,
@@ -54,6 +56,8 @@ const Profile = () => {
   const [allSubcribedPlans, setAllSubscribedPlans] = useState([]);
 
   const { currentUser } = useSelector((state) => state.user);
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   useEffect(() => {
     if (image) {
@@ -178,26 +182,30 @@ const Profile = () => {
     dispatch(logout());
   };
 
+  const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
+
   if (!currentUser) {
     return <div>Please log in to view your profile.</div>;
   }
 
   return (
-    <div className=" mx-auto p-2 h-screen mt-20 mb-10">
+    <div className=" mx-auto p-2 h-screen">
       <div className="bg-white   flex gap-10">
-        <div className="w-[80%]  h-auto mt-2 bg-gray-50">
+        <div className="w-full md:w-[80%]   md:h-auto mb-20 bg-gray-50">
           {/* profile page  */}
 
           {tab === "profile" && isTabOpen && (
             <>
               <div className="p-4">
-                <h1 className="bg-blue-100 px-10 py-2 text-black text-xl ">
+                <h1 className="bg-blue-100 px-10 py-2 text-black text-xl">
                   Profile
                 </h1>
               </div>
 
-              <div className="flex items-center space-x-4 bg-white m-4 p-2">
-                <div className="flex flex-col">
+              <div className="flex flex-col sm:flex-row items-center sm:space-x-4 bg-white m-4 p-2">
+                <div className="flex flex-col items-center">
                   <input
                     type="file"
                     ref={fileRef}
@@ -208,10 +216,10 @@ const Profile = () => {
                   <img
                     src={formData.profilePicture || currentUser.profilePicture}
                     alt="Profile"
-                    className="w-28 h-28 rounded-md cursor-pointer"
+                    className="w-28 h-28 rounded-md cursor-pointer mb-2 sm:mb-0"
                     onClick={() => fileRef.current.click()}
                   />
-                  <p>
+                  <p className="text-center">
                     {imageUploadError ? (
                       <span className="text-red-600">
                         Error uploading image (file size must be less than 2 MB)
@@ -229,52 +237,49 @@ const Profile = () => {
                   </p>
                 </div>
 
-                <div className="flex gap-4">
-                  <div className="flex flex-col">
-                    <label htmlFor="username">Name</label>
-                    <input
-                      id="username"
-                      type="text"
-                      className="text-lg font-bold border px-3"
-                      value={currentUser.fullName}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <label htmlFor="email">Email</label>
-                    <input
-                      id="email"
-                      type="email"
-                      disabled
-                      className="text-lg font-bold border px-3"
-                      value={currentUser.email}
-                      onChange={handleChange}
-                    />
-                  </div>
+                <div className="flex flex-col flex-grow">
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="flex flex-col">
+                      <label htmlFor="username">Name</label>
+                      <input
+                        id="username"
+                        type="text"
+                        className="text-lg font-bold border px-3 py-1"
+                        value={currentUser.fullName}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <label htmlFor="email">Email</label>
+                      <input
+                        id="email"
+                        type="email"
+                        disabled
+                        className="text-lg font-bold border px-3 py-1"
+                        value={currentUser.email}
+                        onChange={handleChange}
+                      />
+                    </div>
 
-                  <div className="flex flex-col">
-                    <label htmlFor="password">Password</label>
-                    <input
-                      id="password"
-                      type="password"
-                      className="text-lg font-bold border px-3"
-                      value={formData.password}
-                      onChange={handleChange}
-                    />
+                    <div className="flex flex-col">
+                      <label htmlFor="password">Password</label>
+                      <input
+                        id="password"
+                        type="password"
+                        className="text-lg font-bold border px-3 py-1"
+                        value={formData.password}
+                        onChange={handleChange}
+                      />
+                    </div>
                   </div>
+                  <button
+                    className="bg-green-50 px-4 py-1 text-black rounded-md self-start sm:self-end mt-2"
+                    onClick={handleOnSubmit}
+                  >
+                    Update
+                  </button>
                 </div>
-                <button
-                  className="bg-green-50 px-4 py-1 text-black rounded-md"
-                  onClick={handleOnSubmit}
-                >
-                  Update
-                </button>
               </div>
-              {/* <ProfileCard
-                profilePicture={currentUser.profilePicture}
-                name={currentUser.fullName}
-                email={currentUser.email}
-              /> */}
             </>
           )}
 
@@ -369,13 +374,35 @@ const Profile = () => {
           )}
           {/* settting page end */}
         </div>
-        <div className="w-[20%] h-screen ">
-          <div className="flex items-center justify-center h-20 bg-gray-100">
+        {/* Drawer Button for Mobile Screens */}
+        <button
+          className="md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 flex justify-center items-center bg-[#146ef5] text-white p-3 rounded-full z-20"
+          onClick={toggleDrawer}
+        >
+          {isDrawerOpen ? null : <Home size={36} className="texl-3xl" />}
+        </button>
+        <div className="h-14 border-t  w-full md:hidden fixed bottom-0 left-1/2 transform -translate-x-1/2 flex justify-between items-center bg-white text-[#146ef5] px-10  z-10">
+          <span onClick={() => handleToOpenTab("software")}>
+            <Computer />
+          </span>
+          <span>
+            <User onClick={() => handleToOpenTab("profile")} />
+          </span>
+        </div>
+
+        {/* Sidebar / Drawer */}
+        <div
+          className={`z-50 md:z-0 w-[60%] h-screen md:h-[600px] rounded-lg md:w-[20%] fixed md:relative bg-white transition-transform transform ${
+            isDrawerOpen ? "translate-y-0" : "translate-y-full"
+          } md:translate-y-0`}
+        >
+          <div className="hidden items-center justify-center h-16 bg-gray-100 md:flex">
             <span className="text-xl font-semibold capitalize">
               {currentUser.companyName}
             </span>
           </div>
-          <nav className="flex flex-col flex-1 p-4 text-black border-l ">
+
+          <nav className="flex flex-col flex-1 p-2 md:p-4 text-black border-l">
             <SidebarLink
               handleOnOpenTab={() => handleToOpenTab("software")}
               icon={<AppWindowIcon />}
@@ -386,7 +413,6 @@ const Profile = () => {
               icon={<User />}
               text="Profile"
             />
-            {/* <SidebarLink to="/profile" icon={<ReceiptIcon />} text="Billing" /> */}
             <SidebarLink
               icon={<Target />}
               text="Subscription plan"
@@ -416,13 +442,20 @@ const Profile = () => {
           <div className="flex items-center justify-center">
             <button
               onClick={handleOnlogout}
-              className="flex items-center justify-center gap-4 h-16 bg-gray-100 w-full hover:text-red-700"
+              className="flex items-center justify-center md:gap-4 h-16 bg-gray-100 w-full hover:text-red-700"
             >
               <LogOut />
               <span>Logout</span>
             </button>
           </div>
         </div>
+        {/* Overlay for Mobile Drawer */}
+        {isDrawerOpen && (
+          <div
+            className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-10"
+            onClick={toggleDrawer}
+          ></div>
+        )}
       </div>
     </div>
   );

@@ -75,7 +75,7 @@ const Header = () => {
                 to="/sign-in"
                 className="hover:text-[#146EF5] focus:text-[#146ef5]"
               >
-                Sign In
+                Sign in
               </NavLink>
             )}
           </div>
@@ -94,9 +94,13 @@ const Header = () => {
         )}
         {/* Drawer */}
         <div
-          className={`fixed top-0 right-0 w-60 h-full bg-[#141415]   z-50 transform ${
+          className={`fixed top-0 right-0 w-60 h-full    z-50 transform ${
             isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-          } transition-transform duration-300 ease-in-out`}
+          } transition-transform duration-300 ease-in-out ${
+            location.pathname === "/profile"
+              ? "text-[#141415] bg-white"
+              : "text-white bg-[#141415]"
+          }`}
         >
           <div className="flex flex-col space-y-4 mt-4 p-10">
             <NavLink
@@ -137,7 +141,7 @@ const Header = () => {
             {currentUser ? (
               <NavLink
                 to="/profile"
-                className="hover:underline"
+                className="hover:underline hidden md:block"
                 activeClassName="underline"
                 onClick={handleToggleMenu}
               >
@@ -153,7 +157,7 @@ const Header = () => {
                 className="hover:text-[#146EF5] focus:text-[#146ef5]"
                 onClick={handleToggleMenu}
               >
-                Sign In
+                Sign in
               </NavLink>
             )}
           </div>
