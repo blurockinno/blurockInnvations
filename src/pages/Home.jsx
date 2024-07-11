@@ -32,7 +32,7 @@ const Home = () => {
           transition={{ duration: 1 }}
         >
           <div className="w-full h-full flex flex-col lg:flex-row items-center justify-center mb-20 px-6 lg:px-0">
-            <div className="lg:pl-20 bg-opacity-50 rounded-lg w-full lg:w-1/2 mt-24 lg:mt-0">
+            <div className="lg:pl-20 bg-opacity-50 rounded-lg w-full lg:w-1/2 mt-14 lg:mt-24">
               <motion.p
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
