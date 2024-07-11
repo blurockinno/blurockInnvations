@@ -68,8 +68,8 @@ const SignUp = () => {
          
         </div>
 
-        <div className="flex w-full md:w-1/2 justify-center items-center p-10 md:py-5 md:p-0 ">
-          <div className="flex flex-col p-4 md:p-6 rounded-md w-full md:w-1/2 shadow-lg  bg-[#1D1F20]">
+        <div className="flex w-full md:w-1/2 justify-center items-center p-5 md:py-5 md:p-0 ">
+          <div className="flex flex-col p-4 md:p-8 rounded-md w-full md:w-1/2 shadow-lg  bg-[#1D1F20]">
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <div className="flex flex-col">
                 <label
