@@ -1,4 +1,3 @@
-import tick from '../../assets/check-solid.svg'
 import { Check } from 'lucide-react';
 
 

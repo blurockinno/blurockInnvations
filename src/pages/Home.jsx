@@ -1,10 +1,7 @@
-import dashboard from "../assets/dashborad.png";
-import path from "../assets/path.svg";
-
+import dashboard from "/assets/dashborad.png";
+import path from "/assets/path.svg";
 import { motion } from "framer-motion";
-
 import WhatWeProvideSection from "../components/home-component/WhatWeProvideSection";
-
 import CompanyListSection from "../components/home-component/CompanyListSection";
 import ProductSection from "../components/home-component/ProductSection";
 import CustomerSupport from "../components/home-component/CustomerSupport";
@@ -17,7 +14,7 @@ const Home = () => {
   return (
     <>
       <div
-        className="w-full h-auto bg-[#141415] plus-jakarta-sans"
+        className={`w-full h-auto bg-[#141415] plus-jakarta-sans`}
         style={{
           backgroundImage: `url(${path})`,
           backgroundRepeat: "no-repeat",

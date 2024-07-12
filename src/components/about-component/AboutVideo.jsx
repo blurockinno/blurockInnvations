@@ -1,5 +1,5 @@
 import { useState } from "react";
-import team from "../../assets/team-work.jpg";
+import team from "/assets/team-work.jpg";
 import { Play } from "lucide-react";
 import Stats from "./Stats";
 

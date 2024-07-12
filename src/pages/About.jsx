@@ -1,4 +1,4 @@
-import path from "../assets/path.svg";
+import path from "/assets/path.svg";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import WhatWeDo from "../components/about-component/WhatWeDo";

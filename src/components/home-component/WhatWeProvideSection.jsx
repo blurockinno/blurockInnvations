@@ -1,6 +1,6 @@
-import support from "../../assets/support.svg";
-import grow from "../../assets/grow.svg";
-import saving from "../../assets/saving.svg";
+import support from "/assets/support.svg";
+import grow from "/assets/grow.svg";
+import saving from "/assets/saving.svg";
 const services = [
   {
     title: " Products",
