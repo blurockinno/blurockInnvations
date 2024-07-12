@@ -23,7 +23,7 @@ const WhatWeDo = () => {
   ];
 
   return (
-    <div className="py-10 md:py-24 bg-white relative mx-4 md:mx-40 px-4 md:px-20 rounded-md z-10">
+    <div className="py-10 md:py-24 bg-white relative mx-4 md:mx-40 px-4 md:px-20 rounded-md z-10 -top-60">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
         <div>
           <h2 className="text-lg md:text-md font-bold mb-2 md:mb-4 uppercase text-[#146ef5]">

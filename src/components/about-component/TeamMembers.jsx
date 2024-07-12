@@ -1,8 +1,8 @@
 import ProfileCard from "./ProfileCard";
 import avatar from "/assets/avatar.jpg";
-import aryan from "/assets/team-members/sai.jpeg"
-import biruly from "/assets/team-members/biruly.png"
-import rishabh from "/assets/team-members/rishabh.jpeg"
+import aryan from "/assets/team-members/sai.jpeg";
+import biruly from "/assets/team-members/biruly.png";
+import rishabh from "/assets/team-members/rishabh.jpeg";
 
 const TeamMembers = () => {
   const members = [
@@ -20,29 +20,7 @@ const TeamMembers = () => {
     {
       image: avatar,
       name: "Devinder Goswami",
-      designation: "Co-founder",
-      social: {
-        facebook: "https://facebook.com",
-        twitter: "https://twitter.com",
-        linkedin: "https://linkedin.com",
-        instagram: "https://instagram.com",
-      },
-    },
-    {
-      image: avatar,
-      name: "Akash Shrotiya",
-      designation: "Testing Engineer",
-      social: {
-        facebook: "https://facebook.com",
-        twitter: "https://twitter.com",
-        linkedin: "https://linkedin.com",
-        instagram: "https://instagram.com",
-      },
-    },
-    {
-      image: avatar,
-      name: "Arun Uphadhayay",
-      designation: "Software Developer",
+      designation: "CEO",
       social: {
         facebook: "https://facebook.com",
         twitter: "https://twitter.com",
@@ -53,7 +31,30 @@ const TeamMembers = () => {
     {
       image: biruly,
       name: "Bhagwan Biruly",
-      designation: "Software Developer",
+      designation: "Technical Product Manager",
+      social: {
+        facebook: "https://facebook.com",
+        twitter: "https://twitter.com",
+        linkedin: "https://linkedin.com",
+        instagram: "https://instagram.com",
+      },
+    },
+
+    {
+      image: avatar,
+      name: "Arun Uphadhayay",
+      designation: "Sr. Software Developer",
+      social: {
+        facebook: "https://facebook.com",
+        twitter: "https://twitter.com",
+        linkedin: "https://linkedin.com",
+        instagram: "https://instagram.com",
+      },
+    },
+    {
+      image: avatar,
+      name: "Akash Shrotiya",
+      designation: "Quality Manager",
       social: {
         facebook: "https://facebook.com",
         twitter: "https://twitter.com",
