@@ -1,4 +1,4 @@
-import Waves from '../../assets/hero.svg';
+import Waves from '/assets/hero.svg';
 
 const Hero = () => {
   return (

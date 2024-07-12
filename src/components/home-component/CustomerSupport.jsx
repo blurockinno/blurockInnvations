@@ -1,5 +1,5 @@
 import { PhoneCallIcon } from "lucide-react";
-import bg from "../../assets/bg-code.jpg";
+import bg from "/assets/bg-code.jpg";
 
 const CustomerSupport = () => {
   return (

@@ -1,8 +1,8 @@
-import path from "../assets/path.svg";
+import path from "/assets/path.svg";
 import { motion } from "framer-motion";
 import { Book, ChevronRight, MessageSquareText, PhoneCall } from "lucide-react";
 import { useState } from "react";
-import team from "../assets/team-work.jpg";
+import team from "/assets/team-work.jpg";
 import ContactType from "../components/contact-component/ContactType";
 import AddressAndLocation from "../components/contact-component/AddressAndLocation";
 

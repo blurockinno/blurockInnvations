@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 
-import path from "../assets/path.svg";
+import path from "/assets/path.svg";
 
 const SignIn = () => {
   const dispatch = useDispatch();

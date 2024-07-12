@@ -1,8 +1,8 @@
 import ProfileCard from "./ProfileCard";
-import avatar from "../../assets/avatar.jpg";
-import aryan from "../../assets/team-members/sai.jpeg"
-import biruly from "../../assets/team-members/biruly.png"
-import rishabh from "../../assets/team-members/rishabh.jpeg"
+import avatar from "/assets/avatar.jpg";
+import aryan from "/assets/team-members/sai.jpeg"
+import biruly from "/assets/team-members/biruly.png"
+import rishabh from "/assets/team-members/rishabh.jpeg"
 
 const TeamMembers = () => {
   const members = [

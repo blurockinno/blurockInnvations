@@ -1,6 +1,6 @@
-import src1 from "../../assets/src-1.jpeg";
-import src2 from "../../assets/src-2.jpeg";
-import src3 from "../../assets/src-3.jpeg";
+import src1 from "/assets/src-1.jpeg";
+import src2 from "/assets/src-2.jpeg";
+import src3 from "/assets/src-3.jpeg";
 
 const ResourcesSection = () => {
   return (

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import oms from "../assets/oms.jpg";
-import ems from "../assets/ems.jpg";
+import oms from "/assets/oms.jpg";
+import ems from "/assets/ems.jpg";
 const OurProduct = () => {
   return (
     <>

@@ -1,5 +1,5 @@
 import { CupSodaIcon, Database, Mouse, Watch } from "lucide-react";
-import team from "../../assets/team-work.jpg";
+import team from "/assets/team-work.jpg";
 
 const ServiceAndSolutions = () => {
   return (

@@ -9,8 +9,8 @@ import {
   PlusCircle,
   Watch,
 } from "lucide-react";
-import path from "../assets/path.svg";
-import dashboard from "../assets/dashborad.png";
+import path from "/assets/path.svg";
+import dashboard from "/assets/dashborad.png";
 import { motion } from "framer-motion";
 import SolutionCard from "../components/home-component/SolutionCard";
 
