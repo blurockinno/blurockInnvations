@@ -13,8 +13,47 @@ import path from "/assets/path.svg";
 import dashboard from "/assets/dashborad.png";
 import { motion } from "framer-motion";
 import SolutionCard from "../components/home-component/SolutionCard";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import {
+  currentSubscriptionCheckFailure,
+  currentSubscriptionCheckStart,
+  currentSubscriptionCheckSuccess,
+} from "../redux/subscription/subscriptionSlice";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Solution = () => {
+  const dispatch = useDispatch();
+  const [allSubcribedPlans, setAllSubscribedPlans] = useState([]);
+  const { currentUser } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    const getAllPlans = async () => {
+      try {
+        dispatch(currentSubscriptionCheckStart());
+        const response = await axios.get(
+          `/api/v1/subscription/${currentUser.companyId}`
+        );
+
+        const { plans } = response.data;
+        setAllSubscribedPlans(plans);
+        dispatch(currentSubscriptionCheckSuccess(plans));
+      } catch (error) {
+        console.log(error);
+        dispatch(currentSubscriptionCheckFailure(error.response.message));
+      }
+    };
+    getAllPlans();
+  }, [currentUser?.companyId, dispatch]);
+
+  const omsSubscribed = allSubcribedPlans.filter(
+    (plan) => plan.softwareName === "order management system"
+  );
+  const omsSubscribedems = allSubcribedPlans.filter(
+    (plan) => plan.softwareName === "employee management system"
+  );
+
   const cards = [
     {
       icon: <Watch />,
@@ -211,9 +250,97 @@ const Solution = () => {
                   </div>
                 </div>
 
-                <button className="text-lg text-white hover:text-[#146ef5] bg-[#146ef5] hover:bg-[#141415] px-6 py-3 rounded-md mt-5">
-                  Subscribe now
-                </button>
+                {omsSubscribed.length > 0 ? (
+                  <Link to={"/profile"}>
+                    <button className="text-lg text-white hover:text-[#146ef5] bg-[#146ef5] hover:bg-[#141415] px-6 py-3 rounded-md mt-5 md:mx-6">
+                      Open now
+                    </button>
+                  </Link>
+                ) : (
+                  <Link to={"/oms-plan"}>
+                    <button className="text-lg text-white hover:text-[#146ef5] bg-[#146ef5] hover:bg-[#141415] px-6 py-3 rounded-md mt-5 md:mx-6">
+                      Subscribe now
+                    </button>
+                  </Link>
+                )}
+              </div>
+
+              <div className="w-full md:w-1/2 p-6 md:p-10 rounded-lg mt-6 md:mt-0">
+                <img
+                  src={dashboard}
+                  alt="solution"
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Employee Management System */}
+          <div className="px-6 md:px-10 lg:px-20 py-10 plus-jakarta-sans bg-[#FAFAFC] mx-auto md:mx-40 rounded-lg md:relative lg:relative md:-top-20 lg:-top-20">
+            <div className="flex flex-col md:flex-row rounded-lg">
+              <div className="w-full md:w-1/2 flex flex-col items-start justify-center">
+                <h6 className="text-[#146EF5] text-center uppercase font-semibold">
+                  Product
+                </h6>
+                <h1 className="text-[#141415] text-3xl md:text-5xl font-bold leading-tight mt-2">
+                  Employee Management System
+                </h1>
+
+                <div className="flex w-full justify-between bg-[#FAFAFC] mt-8 rounded-sm">
+                  <div className="flex flex-col w-3/4 items-start justify-between px-4 py-2">
+                    <p className="text-[#141415] text-lg font-semibold">
+                      Efficiently manage your employee
+                    </p>
+                    <p className="text-gray-400 text-md mt-1">
+                      Stay organized, collaborate seamlessly.
+                    </p>
+                  </div>
+                  <div className="w-1/4 flex items-center justify-end px-7 py-2">
+                    <ArrowRight />
+                  </div>
+                </div>
+
+                <div className="flex w-full justify-between bg-[#FAFAFC] mt-2 rounded-sm">
+                  <div className="flex flex-col w-3/4 items-start justify-between px-4 py-2">
+                    <p className="text-[#141415] text-lg font-semibold">
+                      Intuitive project overview
+                    </p>
+                    <p className="text-gray-400 text-md mt-1">
+                      Streamline communication, track progress.
+                    </p>
+                  </div>
+                  <div className="w-1/4 flex items-center justify-end px-7 py-2">
+                    <ArrowRight />
+                  </div>
+                </div>
+
+                <div className="flex w-full justify-between bg-[#FAFAFC] mt-2 rounded-sm">
+                  <div className="flex flex-col w-3/4 items-start justify-between px-4 py-2">
+                    <p className="text-[#141415] text-lg font-semibold">
+                      Analyze and track traffic
+                    </p>
+                    <p className="text-gray-400 text-md mt-1">
+                      Unlock insights and optimize strategies.
+                    </p>
+                  </div>
+                  <div className="w-1/4 flex items-center justify-end px-7 py-2">
+                    <ArrowRight />
+                  </div>
+                </div>
+
+                {omsSubscribedems.length > 0 ? (
+                  <Link to={"/profile"}>
+                    <button className="text-lg text-white hover:text-[#146ef5] bg-[#146ef5] hover:bg-[#141415] px-6 py-3 rounded-md mt-5 md:mx-6">
+                      Open now
+                    </button>
+                  </Link>
+                ) : (
+                  <Link to={"/ems-plan"}>
+                    <button className="text-lg text-white hover:text-[#146ef5] bg-[#146ef5] hover:bg-[#141415] px-6 py-3 rounded-md mt-5 md:mx-6">
+                      Subscribe now
+                    </button>
+                  </Link>
+                )}
               </div>
 
               <div className="w-full md:w-1/2 p-6 md:p-10 rounded-lg mt-6 md:mt-0">
