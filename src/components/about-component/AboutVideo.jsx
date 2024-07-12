@@ -15,7 +15,7 @@ const AboutVideo = () => {
   };
 
   return (
-    <div className="mt-20 relative bg-white px-10 md:px-40 py-20 md:py-40 plus-jakarta-sans -top-56">
+    <div className="mt-20 relative bg-white px-10 md:px-44 py-20 md:py-40 plus-jakarta-sans -top-96">
       {!isVideoPlaying ? (
         <div className="cursor-pointer relative" onClick={handleThumbnailClick}>
           <img

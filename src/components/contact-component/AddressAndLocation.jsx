@@ -1,8 +1,8 @@
 
 const AddressAndLocation = () => {
   return (
-    <div className="bg-[#FAFAFC]">
-        <div className="px-6 md:px-10 lg:px-20 py-10 plus-jakarta-sans  mx-auto md:mx-40 rounded-lg ">
+    <div className="bg-[#FAFAFC] plus-jakarta-sans">
+        <div className="px-6 md:px-10 lg:px-20 py-10  mx-auto md:mx-40 rounded-lg ">
           <div className="flex flex-col md:flex-row rounded-lg">
             <div className="w-full md:w-2/5 flex flex-col items-start justify-center">
               <h6 className="text-[#146EF5] text-center uppercase font-semibold">

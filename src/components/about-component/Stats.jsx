@@ -44,7 +44,7 @@ const Stats = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-20 text-center plus-jakarta-sans z-50 ">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-60 text-center plus-jakarta-sans  ">
       {stats.map((stat, index) => (
         <motion.div
           key={index}
