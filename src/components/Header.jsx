@@ -2,6 +2,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
+import logo from "/assets/logo/logo.png";
 
 const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -23,8 +24,16 @@ const Header = () => {
         } p-7 absolute top-0 z-50`}
       >
         <nav className="container mx-auto flex justify-between items-center px-3 md:px-12 opacity-100 w-full ">
-          <div className="text-xl font-bold cursor-pointer">
-            Blurock Innovations
+          <div className="text-xl font-bold cursor-pointer flex gap-5">
+            <img
+              src={logo}
+              alt="Blurock infinity technology"
+              className="h-8 w-14"
+            />
+            <p className="hidden md:block">
+              <span className="space-x-2">Infinity Technology</span>
+              <span className="text-[8px] relative top-4 -left-16">Blurock Wealth</span><br/>
+            </p>
           </div>
           <div className="space-x-12 hidden md:flex text-sm font-semibold">
             <NavLink
@@ -152,7 +161,7 @@ const Header = () => {
                     className="rounded-full h-7 w-7 object-cover border-black shadow-sm"
                   />
                   <div>
-                     <span>{currentUser?.fullName}</span>
+                    <span>{currentUser?.fullName}</span>
                   </div>
                 </div>
               </NavLink>
