@@ -8,10 +8,8 @@ import Features from "../components/memeship-page-component/Features";
 import Demo from "../components/memeship-page-component/Demo";
 import Subscription from "../components/memeship-page-component/Subscription";
 
-import BGI from "../assets/Group.svg";
-import BGI2 from "../assets/Group2.svg";
-import BG4 from "../assets/path.svg"
-import BG5 from "../assets/path2.svg"
+
+import BG5 from "/assets/path2.svg"
 
 
 
