@@ -14,14 +14,12 @@ const Help = () => {
   };
   const items = [
     {
-      question: "1. Is there a free trial available?",
-      answer:
-        "Yes, you can try us for free for 30 days. If you want, we'll provide you with a free 30-minute onboarding call to get you up and running.",
+      question: "1. What is the Order Management System (OMS)?",
+      answer:" The OMS is a comprehensive solution designed to streamline and automate the order processing workflow, ensuring efficient management of orders from placement to fulfillment."
     },
     {
-      question: "2. Can I change my plan later?",
-      answer:
-        "Of course you can! Our pricing scales with your company. Chat to our friendly team to find a solution that works for you as you grow.",
+      question: "2. What are the subscription plans available?",
+      answer:"We offer three subscription plans: Basic, Professional, and Enterprise. Each plan provides different levels of features and support to suit various business needs."
     },
     {
       question: "3. What is your cancellation policy?",
@@ -38,6 +36,16 @@ const Help = () => {
       answer:
         "Plans are per workspace, not per account. You can upgrade one workspace, and still have any number of free workspaces.",
     },
+    {
+      question: "6. Is there a free trial available?",
+      answer:
+        "Yes, you can try us for free for 30 days. If you want, we'll provide you with a free 30-minute onboarding call to get you up and running.", 
+    },
+    {
+      question: "7. Can I change my plan later?",
+      answer:
+        "Of course you can! Our pricing scales with your company. Chat to our friendly team to find a solution that works for you as you grow.",
+    }
   ];
   const updates = [
     {
@@ -69,11 +77,12 @@ const Help = () => {
   ];
   return (
     <div className="bg-[#141415] h-auto plus-jakarta-sans">
-      <div className="p-36">
-        <h1 className="text-6xl font-bold text-white">
+      <div className="px-6 py-14 md:p-36">
+        <h1 className="text-4xl md:text-6xl font-bold text-white">
           Got questions? This way.
         </h1>
-        <p className="text-xl text-gray-200 py-4">
+        <br />
+        <p className="text-xl md:text-xl text-gray-200 py-4">
           FAQs, quick fixes, and official info on every feature.
           <br />
           Can&apos;t find your question here, try our support forums.
@@ -81,9 +90,9 @@ const Help = () => {
       </div>
 
       {/* general question  */}
-      <div className="py-20 bg-white px-40">
-        <h1 className="text-4xl">General questions:</h1>
-        <p className="text-lg text-gray-400 mt-5">
+      <div className="py-12 md:py-20 bg-white px-6 md:px-40">
+        <h1 className="text-2xl md:text-4xl font-bold">General questions:</h1>
+        <p className="text-md md:text-lg   text-gray-400 mt-5">
           Discover the basics of WordPress themes, including their importance
           for creating a unique web presence, compatibility with the latest
           WordPress version, usage of demo content, and assistance for theme
@@ -117,9 +126,9 @@ const Help = () => {
       </div>
      
       {/* support and updates  */}
-      <div className="py-5 bg-white px-40">
-        <h1 className="text-4xl">Support & updates:</h1>
-        <p className="text-lg text-gray-400 mt-5">
+      <div className="py-3 md:py-20 bg-white px-6 md:px-40">
+        <h1 className="text-2xl md:text-4xl font-bold">Support & updates:</h1>
+        <p className="text-md md:text-lg text-gray-400 mt-5">
           Explore the support and updates that come with your theme purchase,
           including the duration of access, the type of support offered, how to
           seek assistance for theme-related issues.

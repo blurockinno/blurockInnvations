@@ -1,12 +1,12 @@
 const Demo = () => {
   return (
-    <div className="h-[800px]">
-      <h1 className="text-[30px] font-bold text-center pt-9">
-        Experience the Demo
+    <div className="space-x-36 h-[600px] w-full flex flex-col lg:flex-row items-center justify-center mb-10 px-6 lg:px-0">
+      <h1 className="text-3xl lg:text-7xl text-white font-semibold text-center mb-4">
+        Experience <h1 className="text-[#146EF5]">the Demo</h1>
       </h1>
-      <section className="pt-[70px] justify-center  flex">
-        <div className="shadow-deep flex justify-center items-center h-[550px] w-[1000px] border-2 rounded-2xl bg-gradient-to-r from-[#3E1A78] to-[#F09AB2]">
-          <div className=" h-[535px] w-[986px] border-2 rounded-[11px] bg-white">
+      <section className=" justify-center">
+        <div className=" shadow-deep flex justify-center items-center h-[350px] w-[600px] border-2 rounded-2xl bg-white">
+          <div className=" h-[335px] w-[586px] border-2 rounded-[11px] bg-white">
             <iframe
               className=" h-full w-full rounded-lg"
               src="https://www.youtube.com/embed/4WiH9pf2ULQ?si=2TzjHgKzRDOgi528"

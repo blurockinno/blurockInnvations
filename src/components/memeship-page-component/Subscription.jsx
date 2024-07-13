@@ -5,7 +5,7 @@ const Subscription = () => {
   return (
     <>
       <div className='overflow-auto h-[670px] p-19 text-center'>
-        <h1 className='pb-5 font-bold text-[30px]'>Subscription Plans</h1>
+        <h1 className='pb-5 font-bold text-[30px] text-white'>Subscription Plans</h1>
         <section className='flex justify-center items-center space-x-20 pt-8'>
 
           {/* basic plan */}
@@ -30,7 +30,8 @@ const Subscription = () => {
 
                   <div className='flex pl-6 pt-5 pr-6 space-x-24'>
                     <h1 className='text-[25px]'>₹1000/Month</h1>
-                    <button className='w-[80px] rounded-md border-blue-500 border-2 text-[15px] hover:bg-blue-500 hover:border-0 hover:text-white transition shadow-2xl'>Subscribe</button>
+                    <button className='w-[80px] rounded-md border-blue-500 border-2 text-[15px] hover:bg-blue-500 hover:border-0 hover:text-white transition shadow-2xl'>
+                      Subscribe</button>
                   </div>
               </section>
 
@@ -38,9 +39,9 @@ const Subscription = () => {
 
            {/* pro plan */}
            <div className='h-[410px] w-[380px] border-2 rounded-lg bg-white shadow-2xl'>
-              <div className='text-left h-20 bg-yellow-500 rounded-t-lg'>
+              <div className='text-left h-20 bg-blue-800 rounded-t-lg'>
                 <h1 className='font-semibold p-3 pl-5 text-[25px] text-white'>Professional Plan
-                  <h1 className='text-[13px] text-yellow-200'>for Professional Use</h1>
+                  <h1 className='text-[13px] text-blue-400'>for Professional Use</h1>
                 </h1>
               </div>
 
@@ -58,7 +59,7 @@ const Subscription = () => {
 
                   <div className='flex pl-6 pt-5 pr-6 space-x-24'>
                     <h1 className='text-[25px]'>₹2000/Month</h1>
-                    <button className='w-[80px] rounded-md border-yellow-500 border-2 text-[15px] hover:bg-yellow-500 hover:border-0 hover:text-white transition shadow-2xl'>Subscribe</button>
+                    <button className='w-[80px] rounded-md border-blue-800 border-2 text-[15px] hover:bg-blue-800 hover:border-0 hover:text-white transition shadow-2xl'>Subscribe</button>
                   </div>
               </section>
 
@@ -66,9 +67,9 @@ const Subscription = () => {
 
           {/* enterprise plan */}
            <div className='h-[410px] w-[380px] border-2 rounded-lg bg-white shadow-2xl'>
-            <div className='text-left h-20 bg-red-600 rounded-t-lg'>
+            <div className='text-left h-20 bg-blue-950 rounded-t-lg'>
               <h1 className='font-semibold p-3 pl-5 text-[25px] text-white'>Enterprise Plan
-                <h1 className='text-[13px] text-red-200'>for Organisational Use</h1>
+                <h1 className='text-[13px] text-blue-600'>for Organisational Use</h1>
               </h1>
             </div>
 
@@ -85,7 +86,7 @@ const Subscription = () => {
 
                   <div className='flex pl-6 pt-5 pr-6 space-x-24'>
                     <h1 className='text-[25px]'>₹3000/Month</h1>
-                    <button className='w-[80px] rounded-md border-red-500 border-2 text-[15px] hover:bg-red-500 hover:border-0 hover:text-white transition shadow-2xl'>Subscribe</button>
+                    <button className='w-[80px] rounded-md border-blue-500 border-2 text-[15px] hover:bg-blue-950 hover:border-0 hover:text-white transition shadow-2xl'>Subscribe</button>
                   </div>
             </section>
 

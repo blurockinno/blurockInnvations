@@ -7,8 +7,12 @@ import Hero from "../components/memeship-page-component/Hero";
 import Features from "../components/memeship-page-component/Features";
 import Demo from "../components/memeship-page-component/Demo";
 import Subscription from "../components/memeship-page-component/Subscription";
-import BGI from "/assets/Group.svg";
-import BGI2 from "/assets/Group2.svg";
+
+import BGI from "../assets/Group.svg";
+import BGI2 from "../assets/Group2.svg";
+import BG4 from "../assets/path.svg"
+import BG5 from "../assets/path2.svg"
+
 
 
 const OmsMembership = () => {
@@ -123,24 +127,22 @@ const OmsMembership = () => {
     }
   };
   return (
-    <div className="mt-20">
-      <OmsMemebershipCard handleOnPaymentSend={handleOnSubscribe} />
+    <div className=" bg-[#141415] plus-jakarta-sans" style={{ backgroundImage: `url(${BG5})` }}>
+      {/* <OmsMemebershipCard handleOnPaymentSend={handleOnSubscribe} /> */}
       <div className="font-">
-        <section className=" bg-slate-200 bg-cover bg-center flex flex-col" style={{}}>
+        <section className=" bg-cover bg-center flex flex-col" style={{}}>
           {/* <Nav/> */}
-          <hr className="bg-slate-600 " />
+          <hr className="" />
           <Hero />
         </section>
         <section
           className="bg-cover flex flex-col bg-no-repeat bg-center"
-          style={{ backgroundImage: `url(${BGI})` }}
         >
           <Features />
           <Demo />
         </section>
         <section
           className="bg-cover flex flex-col bg-no-repeat bg-end"
-          style={{ backgroundImage: `url(${BGI2})` }}
         >
           <Subscription />
         </section>
