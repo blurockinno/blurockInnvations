@@ -1,17 +1,23 @@
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import logo from "/vite.png";
 
 const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState("");
 
   const location = useLocation();
 
   const handleToggleMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  useEffect(() => {
+    setCurrentPage(location?.pathname);
+  }, [location]);
 
   return (
     <>
@@ -23,39 +29,65 @@ const Header = () => {
         } p-7 absolute top-0 z-50`}
       >
         <nav className="container mx-auto flex justify-between items-center px-3 md:px-12 opacity-100 w-full ">
-          <div className="text-xl font-bold cursor-pointer">
-            Blurock Innovations
-          </div>
-          <div className="space-x-12 hidden md:flex text-sm font-semibold">
+          <Link
+            to={"/home"}
+            className="text-xl font-bold cursor-pointer flex gap-5"
+          >
+            <img
+              src={logo}
+              alt="Blurock infinity technology"
+              className="h-8 w-14"
+            />
+            <p className="hidden md:block">
+              <span className="space-x-2">Infinity Technology</span>
+              <span className="text-[8px] relative top-4 -left-16">
+                Blurock Wealth
+              </span>
+              <br />
+            </p>
+          </Link>
+          <div className="space-x-12 hidden md:flex text-md font-semibold md:items-center">
             <NavLink
               to="/"
-              className="hover:text-[#146EF5] focus:text-[#146ef5]"
+              className={`hover:text-[#146EF5] ${
+                currentPage === "/" || currentPage === "/home"
+                  ? "text-[#146ef5]"
+                  : null
+              }`}
             >
               Home
             </NavLink>
             <NavLink
               to="/solution"
-              className="hover:text-[#146EF5] focus:text-[#146ef5]"
+              className={`hover:text-[#146EF5] ${
+                currentPage === "/solution" ? "text-[#146ef5]" : null
+              }`}
             >
               Solution
             </NavLink>
             <NavLink
               to="/help"
-              className="hover:text-[#146EF5] focus:text-[#146ef5]"
+              className={`hover:text-[#146EF5] ${
+                currentPage === "/help" ? "text-[#146ef5]" : null
+              }`}
             >
               Help
             </NavLink>
             <NavLink
               to="/about"
-              className="hover:text-[#146EF5] focus:text-[#146ef5]"
+              className={`hover:text-[#146EF5] ${
+                currentPage === "/about" ? "text-[#146ef5]" : null
+              }`}
             >
               About us
             </NavLink>
             <NavLink
               to="/contact"
-              className="hover:text-[#146EF5] focus:text-[#146ef5]"
+              className={`hover:text-[#146EF5] ${
+                currentPage === "/contact" ? "text-[#146ef5]" : null
+              }`}
             >
-              Contact
+              Contact us
             </NavLink>
 
             {currentUser ? (
@@ -73,9 +105,9 @@ const Header = () => {
             ) : (
               <NavLink
                 to="/sign-in"
-                className="hover:text-[#146EF5] focus:text-[#146ef5]"
+                className="bg-[#146EF5] md:px-3 md:py-1 md:rounded-md hover:bg-blue-700"
               >
-                Sign In
+                Sign in
               </NavLink>
             )}
           </div>
@@ -94,9 +126,13 @@ const Header = () => {
         )}
         {/* Drawer */}
         <div
-          className={`fixed top-0 right-0 w-60 h-full bg-[#141415]   z-50 transform ${
+          className={`fixed top-0 right-0 w-60 h-full    z-50 transform ${
             isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-          } transition-transform duration-300 ease-in-out`}
+          } transition-transform duration-300 ease-in-out ${
+            location.pathname === "/profile"
+              ? "text-[#141415] bg-white"
+              : "text-white bg-[#141415]"
+          }`}
         >
           <div className="flex flex-col space-y-4 mt-4 p-10">
             <NavLink
@@ -135,17 +171,18 @@ const Header = () => {
               Contact
             </NavLink>
             {currentUser ? (
-              <NavLink
-                to="/profile"
-                className="hover:underline"
-                activeClassName="underline"
-                onClick={handleToggleMenu}
-              >
-                <img
-                  src={currentUser.profilePicture}
-                  alt="profile picture"
-                  className="rounded-full h-7 w-7 object-cover border-black shadow-sm"
-                />
+              <NavLink to="/profile" onClick={handleToggleMenu}>
+                <div className="flex gap-4">
+                  <img
+                    src={currentUser?.profilePicture}
+                    alt="profile picture"
+                    className="rounded-full h-7 w-7 object-cover border-black shadow-sm"
+                  />
+                  <div className="flex flex-col">
+                    <span className="text-md">{currentUser?.fullName}</span>
+                    <span className="text-xs ">{currentUser?.companyName}</span>
+                  </div>
+                </div>
               </NavLink>
             ) : (
               <NavLink
@@ -153,7 +190,7 @@ const Header = () => {
                 className="hover:text-[#146EF5] focus:text-[#146ef5]"
                 onClick={handleToggleMenu}
               >
-                Sign In
+                Sign in
               </NavLink>
             )}
           </div>

@@ -136,153 +136,157 @@ const ManageUser = () => {
         </button>
       </div>
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
-        <table className="min-w-full bg-white">
-          <thead className="border text-black">
-            <tr>
-              <th className="py-3 px-4 uppercase font-semibold text-sm">
-                Name
-              </th>
-              <th className="py-3 px-4 uppercase font-semibold text-sm">
-                Email
-              </th>
-              <th className="py-3 px-4 uppercase font-semibold text-sm">
-                Role
-              </th>
-              <th className="py-3 px-4 uppercase font-semibold text-sm">
-                Status
-              </th>
-              <th className="py-3 px-4 uppercase font-semibold text-sm">
-                Access to
-              </th>
-              <th className="py-3 px-4 uppercase font-semibold text-sm">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody className="text-gray-700">
-            {isModelOpen && (
-              <tr className="hover:bg-gray-100 bg-gray-200">
-                <td className="py-3 px-4  border-gray-200">
-                  <label htmlFor="fullname" className="text-xs">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="fullname"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    className="border outline-none rounded-sm bg-gray-50"
-                    required
-                  />
-                </td>
-                <td className="py-3 px-4  border-gray-200">
-                  <label htmlFor="email" className="text-xs">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="border outline-none rounded-sm bg-gray-50"
-                    required
-                  />
-                </td>
-                <td className="py-3 px-4  border-gray-200">
-                  <label htmlFor="role" className="text-xs">
-                    Role
-                  </label>
-                  <select
-                    id="role"
-                    value={role}
-                    onChange={(e) => setRole(e.target.value)}
-                    className="border outline-none rounded-sm bg-gray-50"
-                    required
-                  >
-                    <option value="Admin">Admin</option>
-                    <option value="User">User</option>
-                  </select>
-                </td>
-                <td className="py-3 px-4  border-gray-200">
-                  <label htmlFor="status" className="text-xs">
-                    Status
-                  </label>
-                  <select
-                    id="status"
-                    value={status}
-                    onChange={(e) => setStatus(e.target.value)}
-                    className="border outline-none rounded-sm bg-gray-50"
-                    required
-                  >
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                  </select>
-                </td>
-                <td className="py-3 px-4  border-gray-200">
-                  <label htmlFor="status" className="text-xs">
-                    Status
-                  </label>
-                  <select
-                    id="status"
-                    value={softwareName}
-                    onChange={(e) => setSoftwareName(e.target.value)}
-                    className="border outline-none rounded-sm bg-gray-50"
-                    required
-                  >
-                    <option value="Order Management System">
-                      Order Management System
-                    </option>
-                    <option value="Employee Management System">
-                      Employee Management System
-                    </option>
-                  </select>
-                </td>
-                <td className="py-3 px-4  border-gray-200">
-                  {isClickUpdate ? (
-                    <button
-                      className="text-blue-600 hover:text-blue-800 mr-2"
-                      onClick={handleOnEdit}
-                    >
-                      Update
-                    </button>
-                  ) : (
-                    <button
-                      className="text-blue-600 hover:text-blue-800 mr-2"
-                      onClick={handleAddUser}
-                    >
-                      Add
-                    </button>
-                  )}
-                </td>
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white">
+            <thead className="border text-black">
+              <tr>
+                <th className="py-3 px-4 uppercase font-semibold text-sm">
+                  Name
+                </th>
+                <th className="py-3 px-4 uppercase font-semibold text-sm">
+                  Email
+                </th>
+                <th className="py-3 px-4 uppercase font-semibold text-sm">
+                  Role
+                </th>
+                <th className="py-3 px-4 uppercase font-semibold text-sm">
+                  Status
+                </th>
+                <th className="py-3 px-4 uppercase font-semibold text-sm">
+                  Access to
+                </th>
+                <th className="py-3 px-4 uppercase font-semibold text-sm">
+                  Actions
+                </th>
               </tr>
-            )}
-            {allUser.map((user) => (
-              <tr key={user.id} className="hover:bg-gray-100 text-center">
-                <td className="py-3 px-4  border-gray-200">{user?.fullName}</td>
-                <td className="py-3 px-4  border-gray-200">{user?.email}</td>
-                <td className="py-3 px-4  border-gray-200">{user?.role}</td>
-                <td className="py-3 px-4  border-gray-200">{user?.status}</td>
-                <td className="py-3 px-4  border-gray-200">
-                  {user?.softwareName}
-                </td>
-                <td className="py-3 px-4  border-gray-200">
-                  <button
-                    onClick={() => handleSetupdateValue(user._id)}
-                    className="text-blue-600 hover:text-blue-800 mr-2"
-                  >
-                    <Edit />
-                  </button>
-                  <button
-                    className="text-red-600 hover:text-red-800"
-                    onClick={() => handleDeleteUser(user._id)}
-                  >
-                    <Trash2 />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="text-gray-700">
+              {isModelOpen && (
+                <tr className="hover:bg-gray-100 bg-gray-200">
+                  <td className="py-3 px-4  border-gray-200">
+                    <label htmlFor="fullname" className="text-xs">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="fullname"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      className="border outline-none rounded-sm bg-gray-50 w-full"
+                      required
+                    />
+                  </td>
+                  <td className="py-3 px-4  border-gray-200">
+                    <label htmlFor="email" className="text-xs">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="border outline-none rounded-sm bg-gray-50 w-full"
+                      required
+                    />
+                  </td>
+                  <td className="py-3 px-4  border-gray-200">
+                    <label htmlFor="role" className="text-xs">
+                      Role
+                    </label>
+                    <select
+                      id="role"
+                      value={role}
+                      onChange={(e) => setRole(e.target.value)}
+                      className="border outline-none rounded-sm bg-gray-50 w-full"
+                      required
+                    >
+                      <option value="Admin">Admin</option>
+                      <option value="User">User</option>
+                    </select>
+                  </td>
+                  <td className="py-3 px-4  border-gray-200">
+                    <label htmlFor="status" className="text-xs">
+                      Status
+                    </label>
+                    <select
+                      id="status"
+                      value={status}
+                      onChange={(e) => setStatus(e.target.value)}
+                      className="border outline-none rounded-sm bg-gray-50 w-full"
+                      required
+                    >
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>
+                    </select>
+                  </td>
+                  <td className="py-3 px-4  border-gray-200">
+                    <label htmlFor="software" className="text-xs">
+                      Software
+                    </label>
+                    <select
+                      id="software"
+                      value={softwareName}
+                      onChange={(e) => setSoftwareName(e.target.value)}
+                      className="border outline-none rounded-sm bg-gray-50 w-full"
+                      required
+                    >
+                      <option value="Order Management System">
+                        Order Management System
+                      </option>
+                      <option value="Employee Management System">
+                        Employee Management System
+                      </option>
+                    </select>
+                  </td>
+                  <td className="py-3 px-4  border-gray-200">
+                    {isClickUpdate ? (
+                      <button
+                        className="text-blue-600 hover:text-blue-800 mr-2"
+                        onClick={handleOnEdit}
+                      >
+                        Update
+                      </button>
+                    ) : (
+                      <button
+                        className="text-blue-600 hover:text-blue-800 mr-2"
+                        onClick={handleAddUser}
+                      >
+                        Add
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              )}
+              {allUser.map((user) => (
+                <tr key={user.id} className="hover:bg-gray-100 text-center">
+                  <td className="py-3 px-4  border-gray-200">
+                    {user?.fullName}
+                  </td>
+                  <td className="py-3 px-4  border-gray-200">{user?.email}</td>
+                  <td className="py-3 px-4  border-gray-200">{user?.role}</td>
+                  <td className="py-3 px-4  border-gray-200">{user?.status}</td>
+                  <td className="py-3 px-4  border-gray-200">
+                    {user?.softwareName}
+                  </td>
+                  <td className="py-3 px-4  border-gray-200">
+                    <button
+                      onClick={() => handleSetupdateValue(user._id)}
+                      className="text-blue-600 hover:text-blue-800 mr-2"
+                    >
+                      <Edit />
+                    </button>
+                    <button
+                      className="text-red-600 hover:text-red-800"
+                      onClick={() => handleDeleteUser(user._id)}
+                    >
+                      <Trash2 />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

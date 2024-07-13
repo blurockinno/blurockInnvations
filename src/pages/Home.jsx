@@ -1,10 +1,7 @@
-import dashboard from "../assets/dashborad.png";
-import path from "../assets/path.svg";
-
+import dashboard from "/assets/dashborad.png";
+import path from "/assets/path.svg";
 import { motion } from "framer-motion";
-
 import WhatWeProvideSection from "../components/home-component/WhatWeProvideSection";
-
 import CompanyListSection from "../components/home-component/CompanyListSection";
 import ProductSection from "../components/home-component/ProductSection";
 import CustomerSupport from "../components/home-component/CustomerSupport";
@@ -17,7 +14,7 @@ const Home = () => {
   return (
     <>
       <div
-        className="w-full h-auto bg-[#141415] plus-jakarta-sans"
+        className={`w-full h-auto bg-[#141415] plus-jakarta-sans`}
         style={{
           backgroundImage: `url(${path})`,
           backgroundRepeat: "no-repeat",
@@ -32,7 +29,7 @@ const Home = () => {
           transition={{ duration: 1 }}
         >
           <div className="w-full h-full flex flex-col lg:flex-row items-center justify-center mb-20 px-6 lg:px-0">
-            <div className="lg:pl-20 bg-opacity-50 rounded-lg w-full lg:w-1/2 mt-24 lg:mt-0">
+            <div className="lg:pl-20 bg-opacity-50 rounded-lg w-full lg:w-1/2 mt-14 lg:mt-24">
               <motion.p
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}

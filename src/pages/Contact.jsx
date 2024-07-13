@@ -1,8 +1,10 @@
-import path from "../assets/path.svg";
+import path from "/assets/path.svg";
 import { motion } from "framer-motion";
-import { ChevronRight } from "lucide-react";
+import { Book, ChevronRight, MessageSquareText, PhoneCall } from "lucide-react";
 import { useState } from "react";
-import team from "../assets/team-work.jpg";
+import team from "/assets/team-work.jpg";
+import ContactType from "../components/contact-component/ContactType";
+import AddressAndLocation from "../components/contact-component/AddressAndLocation";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -45,11 +47,11 @@ const Contact = () => {
   return (
     <>
       <div
-        className=" mx-auto bg-[#141415] plus-jakarta-sans"
+        className="h-screen mx-auto bg-[#141415] plus-jakarta-sans"
         style={{
           backgroundImage: `url(${path})`,
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
+          backgroundPosition: "end",
           backgroundSize: "cover",
         }}
       >
@@ -66,7 +68,7 @@ const Contact = () => {
                 }}
                 className="h-20 w-[10%] flex flex-col mt-10"
               >
-                <div className="h-7 bg-gradient-to-l from-blue-100 rounded-tr-full rounded-br-full"></div>
+                <div className="h-7 bg-transparent rounded-tr-full rounded-br-full"></div>
               </motion.div>
 
               <motion.div
@@ -80,7 +82,7 @@ const Contact = () => {
                 }}
                 className="h-20 w-[10%] flex flex-col mt-10"
               >
-                <div className="h-7 bg-gradient-to-r from-blue-100 rounded-tl-full rounded-bl-full"></div>
+                <div className="h-7 bg-transparent rounded-tl-full rounded-bl-full"></div>
               </motion.div>
             </div>
             <h1 className="text-md font-bold mb-4 uppercase text-[#146ef5]">
@@ -99,8 +101,9 @@ const Contact = () => {
             </p>
           </div>
         </section>
-
-        <div className="py-10 md:py-24 bg-white relative mx-4 md:mx-40 px-4 md:px-20 rounded-md z-10">
+      </div>
+      <div className="bg-white plus-jakarta-sans">
+        <div className="py-10 md:py-24 bg-white relative mx-4 md:mx-40 px-4 md:px-20 rounded-tl-md z-10 md:-top-60">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
             <div>
               <h2 className="text-lg md:text-md font-bold mb-2 md:mb-4 uppercase text-[#146ef5]">
@@ -193,7 +196,25 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      
+      <div className="flex flex-col md:flex-row container mx-auto px-4 md:px-40 py-8 gap-5 relative md:-top-40">
+        <ContactType
+          icon={<Book />}
+          title="Knowledge hub"
+          description="A comprehensive repository of knowledge designed to address your queries."
+        />
+        <ContactType
+          icon={<MessageSquareText />}
+          title="Chat  to sales"
+          description="Get detailed information about our products, pricing, and any current promotions."
+        />
+        <ContactType
+          icon={<PhoneCall />}
+          title="Call for assistance"
+          description="Our support team is available to answer your questions, and provide technical help."
+        />
+      </div>
+
+      <AddressAndLocation />
     </>
   );
 };

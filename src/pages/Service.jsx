@@ -1,13 +1,13 @@
 import { useRef } from "react";
-import card from "../assets/card_bg.jpg";
-import service from "../assets/service.png";
+import card from "/assets/card_bg.jpg";
+import service from "/assets/service.png";
 import { motion, useInView } from "framer-motion";
-import wd from "../assets/development.png";
-import md from "../assets/app-development.png";
-import graphicDesign from "../assets/web-design.png";
-import seo from "../assets/search-engine-optimisation.png";
-import dm from "../assets/digital-marketing.png";
-import consulting from "../assets/consultant.png";
+import wd from "/assets/development.png";
+import md from "/assets/app-development.png";
+import graphicDesign from "/assets/web-design.png";
+import seo from "/assets/search-engine-optimisation.png";
+import dm from "/assets/digital-marketing.png";
+import consulting from "/assets/consultant.png";
 import ContactUsSection from "../components/ContactUsSection";
 
 const Service = () => {

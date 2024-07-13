@@ -11,37 +11,37 @@ import SolutionCard from "./SolutionCard";
 const SolutionSection = () => {
   const cards = [
     {
-      icon: <Watch />,
+      icon: <Watch size={45} />,
       title: "Scalability optimization",
       description:
         "Our scalability solutions analyze your current infrastructure, identifying bottlenecks and optimizing processes.",
     },
     {
-      icon: <Bell />,
+      icon: <Bell size={45} />,
       title: "Process automation",
       description:
         "Streamline your workflows and reduce manual tasks. Enhance efficiency, and focus on strategic initiatives.",
     },
     {
-      icon: <Lightbulb />,
+      icon: <Lightbulb size={45} />,
       title: "Solid planning",
       description:
         "Get free access to our global partner network and marketplace to receive premium assistance.",
     },
     {
-      icon: <Coffee />,
+      icon: <Coffee size={45} />,
       title: "Training and development",
       description:
         "Enhance employee skills, foster a culture of learning, and boost overall organizational performance.",
     },
     {
-      icon: <Mouse />,
+      icon: <Mouse size={45} />,
       title: "Supply chain optimization",
       description:
         "Leverage data analytics and predictive algorithms to optimize inventory and supplier relationships.",
     },
     {
-      icon: <PlusCircleIcon />,
+      icon: <PlusCircleIcon size={45} />,
       title: "Data integration",
       description:
         "Our data integration solutions unify data sets, enabling real-time insights and strategic decision-making.",

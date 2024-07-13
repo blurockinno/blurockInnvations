@@ -1,40 +1,7 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import {
-  currentSubscriptionCheckFailure,
-  currentSubscriptionCheckStart,
-  currentSubscriptionCheckSuccess,
-} from "../../redux/subscription/subscriptionSlice";
-import axios from "axios";
+
 
 const ProductSection = () => {
-  const dispatch = useDispatch();
-  const [allSubcribedPlans, setAllSubscribedPlans] = useState([]);
-  const { currentUser } = useSelector((state) => state.user);
-
-  useEffect(() => {
-    const getAllPlans = async () => {
-      try {
-        dispatch(currentSubscriptionCheckStart());
-        const response = await axios.get(
-          `/api/v1/subscription/${currentUser.companyId}`
-        );
-
-        const { plans } = response.data;
-        setAllSubscribedPlans(plans);
-        dispatch(currentSubscriptionCheckSuccess(plans));
-      } catch (error) {
-        console.log(error);
-        dispatch(currentSubscriptionCheckFailure(error.response.message));
-      }
-    };
-    getAllPlans();
-  }, [currentUser?.companyId, dispatch]);
-
-  const omsSubscribed = allSubcribedPlans.filter(
-    (plan) => plan.softwareName === "order management system"
-  );
+ 
 
   return (
     <div className="bg-white plus-jakarta-sans py-20">
@@ -56,7 +23,7 @@ const ProductSection = () => {
 
       <div className="flex items-center justify-center mt-10 md:mt-20">
         <div className="w-full md:w-11/12 lg:w-9/12 flex flex-col md:flex-row gap-8 md:gap-20 px-4 sm:px-6 lg:px-0">
-          <div className="bg-[#FAFAFC] h-auto md:h-[400px] w-full md:w-1/2 rounded-md p-6 md:p-12">
+          <div className="bg-[#FAFAFC] h-auto md:h-auto w-full md:w-1/2 rounded-md p-6 md:p-12">
             <h3 className="text-xl md:text-2xl font-bold pb-4">
               <span className="text-[#146ef5]">Custom software</span> solutions
             </h3>
@@ -65,7 +32,7 @@ const ProductSection = () => {
               needs. From efficient workflow management to customer engagement
               tools to drive productivity.
             </p>
-            {omsSubscribed.length > 0 ? (
+            {/* {omsSubscribed.length > 0 ? (
               <Link to={"/profile"}>
                 <button className="relative px-6 py-2 hover:text-white bg-white isolation-auto z-10 border hover:border-white-600 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full before:bg-blue-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700">
                   Open Now
@@ -77,9 +44,9 @@ const ProductSection = () => {
                   See plan
                 </button>
               </Link>
-            )}
+            )} */}
           </div>
-          <div className="bg-[#FAFAFC] h-auto md:h-[400px] w-full md:w-1/2 rounded-md p-6 md:p-12">
+          <div className="bg-[#FAFAFC] h-auto md:h-auto w-full md:w-1/2 rounded-md p-6 md:p-12">
             <h3 className="text-xl md:text-2xl font-bold pb-4">
               AI-driven <span className="text-[#146ef5]">marketing tools</span>
             </h3>

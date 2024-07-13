@@ -1,4 +1,4 @@
-import path from "../assets/path.svg";
+import path from "/assets/path.svg";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import WhatWeDo from "../components/about-component/WhatWeDo";
@@ -10,11 +10,11 @@ const About = () => {
   return (
     <>
       <div
-        className=" mx-auto bg-[#141415] plus-jakarta-sans"
+        className=" mx-auto bg-[#141415] plus-jakarta-sans h-screen"
         style={{
           backgroundImage: `url(${path})`,
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
+          backgroundPosition: "end",
           backgroundSize: "cover",
         }}
       >
@@ -31,7 +31,7 @@ const About = () => {
                 }}
                 className="h-20 w-[10%] flex flex-col mt-10"
               >
-                <div className="h-7 bg-gradient-to-l from-blue-100 rounded-tr-full rounded-br-full"></div>
+                <div className="h-7 bg-transparent rounded-tr-full rounded-br-full "></div>
               </motion.div>
 
               <motion.div
@@ -45,7 +45,7 @@ const About = () => {
                 }}
                 className="h-20 w-[10%] flex flex-col mt-10"
               >
-                <div className="h-7 bg-gradient-to-r from-blue-100 rounded-tl-full rounded-bl-full"></div>
+                <div className="h-7 bg-transparent rounded-tl-full rounded-bl-full"></div>
               </motion.div>
             </div>
             <h1 className="text-md font-bold mb-4 uppercase text-[#146ef5]">
@@ -64,7 +64,8 @@ const About = () => {
             </p>
           </div>
         </section>
-
+      </div>
+      <div className="bg-white plus-jakarta-sans">
         {/* what we do  */}
         <WhatWeDo />
         <AboutVideo />

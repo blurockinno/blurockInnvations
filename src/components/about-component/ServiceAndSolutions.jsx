@@ -1,5 +1,5 @@
 import { CupSodaIcon, Database, Mouse, Watch } from "lucide-react";
-import team from "../../assets/team-work.jpg";
+import team from "/assets/team-work.jpg";
 
 const ServiceAndSolutions = () => {
   return (
@@ -24,7 +24,7 @@ const ServiceAndSolutions = () => {
                 Solid Planning
               </h1>
               <p className="text-sm text-[#141415] mt-2 text-center md:text-left">
-                Receive premium assistance from our global network.
+                Receive premium assistance from our team.
               </p>
             </div>
             <div className="w-full md:w-1/2">

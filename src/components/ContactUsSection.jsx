@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import contactusImage from "../assets/contact.svg";
+import contactusImage from "/assets/contact.svg";
 
 const ContactUsSection = () => {
   const ref = useRef(null);

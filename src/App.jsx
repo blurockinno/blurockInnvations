@@ -13,12 +13,29 @@ import Service from "./pages/Service";
 import Solution from "./pages/Solution";
 import Help from "./pages/Help";
 import Contact from "./pages/Contact";
+import { useEffect, useState } from "react";
+import SplashScreen from "./components/splashscreen/SplashScreen";
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); 
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if(isLoading){
+    return <SplashScreen/>
+  }
+
   return (
     <BrowserRouter>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
