@@ -4,7 +4,7 @@ const Hero = () => {
   return (
     <>
       <div className="flex justify-center items-center py-10 ">
-        <section className="lg:pl-20 bg-opacity-50 rounded-lg w-full ">
+        <section className="lg:pl-20 pt-16 bg-opacity-50 rounded-lg w-full ">
           <h1 className="text-3xl lg:text-7xl font-semibold text-white">
             Order Management <h1 className='text-[#146EF5]'>System</h1>
           </h1>

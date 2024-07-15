@@ -8,17 +8,12 @@ const CustomerSupport = () => {
       style={{
         backgroundImage: `linear-gradient(45deg,
           rgba(0, 0, 0, 0.6),
-          rgba(0, 0, 0, 0.3)), url(${bg})`,
+          rgba(0, 0, 0, 0.9)), url(${bg})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center end",
         backgroundSize: "cover",
-        backgroundAttachment: "fixed",
-        // Conditional style for mobile devices
-        "@media (max-width: 768px)": {
-          backgroundImage:
-            "linear-gradient(45deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3))",
-            backgroundAttachment: "scroll",
-        },
+        backgroundAttachment: "scroll",
+       
       }}
     >
       <span className="text-white text-2xl md:text-4xl lg:text-5xl font-bold px-6 md:px-24 lg:px-44 text-center leading-tight">

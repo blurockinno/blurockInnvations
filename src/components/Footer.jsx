@@ -9,7 +9,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-[#141415] text-white plus-jakarta-sans">
+    <footer className="h-[400px] bg-[#141415] text-white plus-jakarta-sans">
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:px-20 ">
           {/* Services Section */}

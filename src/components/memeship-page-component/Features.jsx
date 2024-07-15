@@ -6,7 +6,7 @@ const Features = () => {
         <section className='flex py-10 px-9 justify-center items-center space-x-36'>
           <section className='flex space-x-10'>
 
-            <div className='h-[250px] w-[340px] bg-white rounded-2xl shadow-2xl flex'>
+            <div className='h-[250px] w-[340px] bg-white  rounded-2xl shadow-2xl flex '>
               <section className='pl-4 pt-2 flex flex-col'>
                 <Cpu className='h-auto w-9 pt-2' />
                 <h1 className='pt-3 font-bold text-[22px]'>Automated Order Entry</h1>
@@ -29,11 +29,11 @@ const Features = () => {
             </div>
 
             </section>
-              <h1 className='text-[60px] font-semibold text-white'><h1 className='text-[#146EF5]'>Order</h1>Processing</h1>
+              <h1 className='text-[60px] font-semibold text-gray-400'><h1 className='text-[#146EF5]'>Order</h1>Processing</h1>
             </section>
 
             <section className='flex py-10 px-9 justify-center items-center space-x-36 '>
-              <h1 className='text-[60px] font-semibold text-white'><h1 className='text-[#146EF5]'>Inventory</ h1>Management</h1>
+              <h1 className='text-[60px] font-semibold text-gray-400'><h1 className='text-[#146EF5]'>Inventory</ h1>Management</h1>
 
               <section className='flex space-x-10'>
                 <div className='h-[250px] w-[340px] bg-white rounded-2xl shadow-2xl flex'>
@@ -90,7 +90,7 @@ const Features = () => {
 
               </section>
 
-              <h1 className='text-[60px] font-semibold text-white'><h1 className='text-[#146EF5]'>Reporting and</h1>Analytics</h1>
+              <h1 className='text-[60px] font-semibold text-gray-400'><h1 className='text-[#146EF5]'>Reporting and</h1>Analytics</h1>
 
             </section>
         <section/>   
