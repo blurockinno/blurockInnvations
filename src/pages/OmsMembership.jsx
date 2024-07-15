@@ -125,12 +125,12 @@ const OmsMembership = () => {
     }
   };
   return (
-    <div className=" bg-[#141415] plus-jakarta-sans" style={{ backgroundImage: `url(${BG5})` }}>
+    <div className="bg-no-repeat bg-[#141415] plus-jakarta-sans" style={{ backgroundImage: `url(${BG5})` }}>
       {/* <OmsMemebershipCard handleOnPaymentSend={handleOnSubscribe} /> */}
       <div className="font-">
         <section className=" bg-cover bg-center flex flex-col" style={{}}>
           {/* <Nav/> */}
-          <hr className="" />
+        
           <Hero />
         </section>
         <section
@@ -140,7 +140,7 @@ const OmsMembership = () => {
           <Demo />
         </section>
         <section
-          className="bg-cover flex flex-col bg-no-repeat bg-end"
+          className="   "
         >
           <Subscription />
         </section>
