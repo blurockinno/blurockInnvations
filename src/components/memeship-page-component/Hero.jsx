@@ -1,15 +1,14 @@
-import Waves from '/assets/hero.svg';
 
 const Hero = () => {
   return (
     <>
-      <div className="flex justify-center items-center py-10 ">
-        <section className="lg:pl-20 pt-16 bg-opacity-50 rounded-lg w-full ">
-          <h1 className="text-3xl lg:text-7xl font-semibold text-white">
+      <div className="flex justify-center items-center  ">
+        <section className="pt-5 md:pt-24  rounded-lg w-full ">
+          <h1 className="text-xl md:text-5xl font-semibold text-white leading-snug">
             Order Management <h1 className='text-[#146EF5]'>System</h1>
           </h1>
           <br />
-          <p className="text-white w-full sm:w-[80%] h-auto text-[16px] sm:text-[18px] text-center sm:text-left lg:w-1/2">
+          <p className="text-gray-400 w-full sm:w-[80%] text-justify h-auto text-[16px] sm:text-[18px] sm:text-left lg:w-1/2">
             Welcome to the cutting-edge Order Management System (OMS) by Infinity Technologies,
             designed to revolutionize the way you handle orders,
             inventory, and customer relationships. Our OMS is a comprehensive,
