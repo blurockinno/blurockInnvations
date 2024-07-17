@@ -3,9 +3,9 @@ import { AuthUser } from "../models/auth.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { sendCookie } from "../utils/cookie.js";
+
 //registration
 export const registration = async (req, res) => {
-  // Fetch data from request body
   const { companyName, fullName, email, isAgreed, mobileNumber, industrySize } =
     req.body;
 
@@ -52,11 +52,11 @@ export const registration = async (req, res) => {
     }
 
     // Generate unique company ID and temporary password
-    let companyId = companyName.slice(0, 5) + uuidv4();
-    let password = companyName.slice(0, 5) + "7823";
+    let companyId = companyName.slice(0, 5).split(" ").join("") + uuidv4();
+    let tempPassword = companyName.slice(0, 5).split(" ").join("") + "7823";
 
     // Encrypt password
-    const hashPassword = await bcrypt.hash(password, 10);
+    const hashPassword = await bcrypt.hash(tempPassword, 10);
 
     // Generate verification token
     const verificationToken = uuidv4();
@@ -70,12 +70,15 @@ export const registration = async (req, res) => {
       password: hashPassword,
       industrySize,
       verificationToken,
-      temPassword: password,
+      tempPassword,
+      isAgreed,
+      mobileNumber,
     });
 
     // Send cookie and response
     sendCookie(user, res, "Account created successfully.", 201);
   } catch (error) {
+    console.error("Registration error:", error);
     return res.status(500).json({
       success: false,
       message: "Internal server error",
