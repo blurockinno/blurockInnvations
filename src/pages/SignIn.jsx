@@ -61,7 +61,7 @@ const SignIn = () => {
       >
         <div className="flex flex-col items-center justify-center w-full h-screen px-5">
           <form
-            className="bg-[#1D1F20] w-full max-w-md rounded-md px-8 py-10 md:py-5 shadow-md"
+            className="bg-[#1D1F20] w-full max-w-sm  rounded-md px-8 py-10 md:py-5 shadow-md"
             onSubmit={handleSubmit}
           >
             <p className="text-2xl font-bold text-center xl:text-2xl xl:pt-4 xl:mb-6 xl:mt-0 text-white">
@@ -118,11 +118,11 @@ const SignIn = () => {
               >
                 {loading ? "Please wait" : "Submit"}
               </button>
-              <div className="flex justify-center mt-5  text-sm text-gray-400">
+              {/* <div className="flex justify-center mt-5  text-sm text-gray-400">
                 <Link to="/sign-up" className="cursor-pointer text-[#146ef5]">
                   New User? Create account
                 </Link>
-              </div>
+              </div> */}
             </div>
           </form>
         </div>
