@@ -23,7 +23,9 @@ const ManageUser = () => {
         const response = await axios.get("/api/v1/user/all");
 
         const { users } = response.data;
-        setAllUser(users);
+        console.log(users)
+        const filterUserByCompany = users.filter((user)=> user.companyId === currentUser.companyId)
+        setAllUser(filterUserByCompany);
       } catch (error) {
         console.error("Error fetching users:", error);
       } finally {

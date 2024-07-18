@@ -36,7 +36,7 @@ const SignIn = () => {
       const { user } = response.data;
       console.log(user);
       dispatch(signInSuccess(user));
-      navigate("/profile");
+      navigate("/");
     } catch (error) {
       dispatch(signInFailure(error));
       console.error(

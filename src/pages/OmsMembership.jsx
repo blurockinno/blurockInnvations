@@ -66,7 +66,6 @@ const OmsMembership = () => {
       );
 
       const { order } = response.data;
-      console.log(response.data);
       
 
       const options = {
