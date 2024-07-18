@@ -11,7 +11,9 @@ import {
 const Features = () => {
   return (
     <div className="h-auto ">
+
       <section className="md:py-20 md:px-20 flex flex-col lg:flex-row  justify-center items-center space-y-10 lg:space-y-0 lg:space-x-36">
+
         <div className="flex flex-col lg:flex-row space-y-10 lg:space-y-0 lg:space-x-10">
           <div className="w-[340px] bg-white rounded-2xl shadow-2xl flex p-4">
             <section className="flex flex-col">
@@ -47,7 +49,7 @@ const Features = () => {
             </section>
           </div>
         </div>
-        <h1 className="text-5xl font-semibold text-gray-400 text-center lg:text-left">
+        <h1 className="text-5xl font-semibold text-gray-400 text-center sm: lg:text-left">
           <span className="text-[#146EF5]">Order </span>Processing
         </h1>
       </section>
@@ -57,7 +59,7 @@ const Features = () => {
           <span className="text-[#146EF5]">Inventory</span> Management
         </h1>
         <div className="flex flex-col lg:flex-row space-y-10 lg:space-y-0 lg:space-x-10">
-          <div className="h-[250px] w-[340px] bg-white rounded-2xl shadow-2xl flex p-4">
+          <div className=" w-[340px] bg-white rounded-2xl shadow-2xl flex p-4">
             <section className="flex flex-col">
               <ListRestart className="h-auto w-9 mb-2" />
               <h1 className="font-bold text-xl mb-2">
@@ -76,7 +78,7 @@ const Features = () => {
             </section>
           </div>
 
-          <div className="h-[250px] w-[340px] bg-white rounded-2xl shadow-2xl flex p-4">
+          <div className="w-[340px] bg-white rounded-2xl shadow-2xl flex p-4">
             <section className="flex flex-col">
               <Airplay className="h-auto w-9 mb-2" />
               <h1 className="font-bold text-xl mb-2">Stock Level Monitoring</h1>
@@ -96,8 +98,9 @@ const Features = () => {
       </section>
 
       <section className="md:py-20 md:px-20 flex flex-col lg:flex-row  justify-center items-center space-y-10 lg:space-y-0 lg:space-x-36">
+
         <div className="flex flex-col lg:flex-row space-y-10 lg:space-y-0 lg:space-x-10">
-          <div className="h-[250px] w-[340px] bg-white rounded-2xl shadow-2xl flex p-4">
+          <div className="w-[340px] bg-white rounded-2xl shadow-2xl flex p-4">
             <section className="flex flex-col">
               <ClipboardMinus className="h-auto w-9 mb-2" />
               <h1 className="font-bold text-xl mb-2">Customizable Reports</h1>
@@ -114,7 +117,7 @@ const Features = () => {
             </section>
           </div>
 
-          <div className="h-[250px] w-[340px] bg-white rounded-2xl shadow-2xl flex p-4">
+          <div className="w-[340px] bg-white rounded-2xl shadow-2xl p-4">
             <section className="flex flex-col">
               <FileBarChart className="h-auto w-9 mb-2" />
               <h1 className="font-bold text-xl mb-2">

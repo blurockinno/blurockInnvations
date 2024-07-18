@@ -4,11 +4,11 @@ const Hero = () => {
     <>
       <div className="flex justify-center items-center  ">
         <section className="pt-5 md:pt-24  rounded-lg w-full ">
-          <h1 className="text-xl md:text-5xl font-semibold text-white leading-snug">
+          <h1 className="text-3xl lg:text-[72px] font-semibold text-white leading-snug">
             Order Management <h1 className='text-[#146EF5]'>System</h1>
           </h1>
           <br />
-          <p className="text-gray-400 w-full sm:w-[80%] text-justify h-auto text-[16px] sm:text-[18px] sm:text-left lg:w-1/2">
+          <p className="text-gray-400 w-full text-justify h-auto text-[12px] md:pb-9 pb-0 lg:pr-72 lg:text-[18px]">
             Welcome to the cutting-edge Order Management System (OMS) by Infinity Technologies,
             designed to revolutionize the way you handle orders,
             inventory, and customer relationships. Our OMS is a comprehensive,

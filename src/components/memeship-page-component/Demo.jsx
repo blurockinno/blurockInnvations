@@ -1,7 +1,7 @@
 const Demo = () => {
   return (
     <div className="md:py-20 space-y-10 lg:space-y-0 lg:space-x-36 w-full flex flex-col lg:flex-row items-center justify-center mb-10 px-6 lg:px-0">
-      <h1 className="text-3xl lg:text-5xl text-white font-semibold text-center">
+      <h1 className="text-3xl lg:text-7xl text-white font-semibold text-center">
         Experience <br />
         <span className="text-[#146EF5]">the Demo</span>
       </h1>

@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 import userRoute from "./routes/user.route.js";
 import authRoute  from "./routes/auth.route.js"
 import subscriptionRoute  from "./routes/subscription.route.js"
+import contactUsRoute from "./routes/contactus.route.js"
 
 // Initialize express app
 const app = express();
@@ -41,6 +42,9 @@ app.use(`/api/v1/subscription`, subscriptionRoute);
 
 //user route
 app.use(`/api/v1/user`, userRoute);
+
+//contactUs route
+app.use(`/api/v1/contact-us`, contactUsRoute);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
