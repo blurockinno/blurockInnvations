@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import OmsMemebershipCard from "../components/OmsMemebershipCard";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,11 +6,9 @@ import Hero from "../components/memeship-page-component/Hero";
 import Features from "../components/memeship-page-component/Features";
 import Demo from "../components/memeship-page-component/Demo";
 import Subscription from "../components/memeship-page-component/Subscription";
+import OmsMemebershipCard from "../components/OmsMemebershipCard"
 
-
-import BG5 from "/assets/path2.svg"
-
-
+import BG5 from "/assets/path2.svg";
 
 const OmsMembership = () => {
   const navigate = useNavigate();
@@ -41,6 +38,12 @@ const OmsMembership = () => {
 
   // handle on payment initiate
   const handleOnSubscribe = async (rupee, softwareName) => {
+    //if user not exist 
+    // navigate to signup module 
+    if(!currentUser){
+      navigate("/sign-up")
+    }
+
     try {
       const response = await axios.post(
         "/api/v1/subscription/createOrder",
@@ -64,6 +67,7 @@ const OmsMembership = () => {
 
       const { order } = response.data;
       console.log(response.data);
+      
 
       const options = {
         key: "rzp_test_ZmLv5TQfQoKPD0", // Enter the Key ID generated from the Dashboard
@@ -125,26 +129,15 @@ const OmsMembership = () => {
     }
   };
   return (
-    <div className="bg-no-repeat bg-[#141415] plus-jakarta-sans" style={{ backgroundImage: `url(${BG5})` }}>
-      {/* <OmsMemebershipCard handleOnPaymentSend={handleOnSubscribe} /> */}
-      <div className="font-">
-        <section className=" bg-cover bg-center flex flex-col" style={{}}>
-          {/* <Nav/> */}
-        
-          <Hero />
-        </section>
-        <section
-          className="bg-cover flex flex-col bg-no-repeat bg-center"
-        >
-          <Features />
-          <Demo />
-        </section>
-        <section
-          className="   "
-        >
-          <Subscription />
-        </section>
-      </div>
+    <div
+      className="bg-no-repeat bg-[#141415] plus-jakarta-sans h-auto px-10 md:px-24"
+      style={{ backgroundImage: `url(${BG5})` }}
+    >
+      <OmsMemebershipCard handleOnPaymentSend={handleOnSubscribe} />
+      <Hero />
+      <Features />
+      <Demo />
+      <Subscription />
     </div>
   );
 };

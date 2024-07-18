@@ -2,6 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import path from "/assets/path.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const SignUp = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -28,27 +31,39 @@ const SignUp = () => {
     setError(false);
 
     try {
-      const response = await axios.post("/api/v1/auth/sign-up", {
-        companyName: formData.companyName,
-        fullName: formData.fullName,
-        mobileNumber: formData.phoneNumber,
-        email: formData.email,
-        industrySize: formData.employeeRange,
-        isAgreed: formData.termsAccepted,
-      });
-      console.log("Sign Up Successful:", response);
-      navigate("/sign-in");
+      const response = await axios.post(
+        "http://localhost:4000/api/v1/auth/sign-up",
+        {
+          companyName: formData.companyName,
+          fullName: formData.fullName,
+          mobileNumber: formData.phoneNumber,
+          email: formData.email,
+          industrySize: formData.employeeRange,
+          isAgreed: formData.termsAccepted,
+        }
+      );
+
+      const { success, message } = response.data;
+
+      console.log("Sign Up Successful:", message, success);
+      if (success) {
+        alert(message);
+        navigate("/sign-in");
+      }
     } catch (error) {
       console.error(
         "Error during sign up:",
         error.response?.data?.message || error.message
       );
+      console.log();
+      toast.error(error.response?.data?.message);
       setError(true);
     }
   };
 
   return (
     <>
+      <ToastContainer />
       <div
         className="w-full h-auto bg-[#141415] plus-jakarta-sans flex flex-col md:flex-row justify-between  "
         style={{
@@ -65,7 +80,6 @@ const SignUp = () => {
           <span className="w-full text-center font-semibold text-4xl md:text-6xl  text-white">
             Get started with your free trial
           </span>
-         
         </div>
 
         <div className="flex w-full md:w-1/2 justify-center items-center p-5 md:py-5 md:p-0 ">

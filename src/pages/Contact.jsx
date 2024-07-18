@@ -5,6 +5,7 @@ import { useState } from "react";
 import team from "/assets/team-work.jpg";
 import ContactType from "../components/contact-component/ContactType";
 import AddressAndLocation from "../components/contact-component/AddressAndLocation";
+import axios from "axios";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const Contact = () => {
     email: "",
     message: "",
   });
+  
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -30,8 +32,8 @@ const Contact = () => {
       console.log("Form Data:", formData);
 
       // Example: Send form data using axios
-      // const response = await axios.post("/api/contact", formData);
-      // console.log("Server Response:", response.data);
+      const response = await axios.post("/api/v1/contact-us/contactus", formData);
+      console.log("Server Response:", response.data);
 
       // Simulate loading delay
       setTimeout(() => {
@@ -135,7 +137,7 @@ const Contact = () => {
                     placeholder="Your Name"
                     value={formData.name}
                     onChange={handleChange}
-                    required
+                    
                   />
                 </div>
                 <div className="mb-4">
@@ -153,7 +155,7 @@ const Contact = () => {
                     placeholder="Your Email"
                     value={formData.email}
                     onChange={handleChange}
-                    required
+                    
                   />
                 </div>
                 <div className="mb-6">
@@ -170,7 +172,7 @@ const Contact = () => {
                     placeholder="Your Message"
                     value={formData.message}
                     onChange={handleChange}
-                    required
+                    
                   />
                 </div>
                 <div className="flex items-center justify-center">

@@ -13,7 +13,6 @@ const authSchema = new mongoose.Schema(
     },
     isAgreed: {
       type: Boolean,
-      required: true,
       default: "false",
     },
     fullName: {
@@ -155,4 +154,4 @@ authSchema.post("save", async (doc) => {
   }
 });
 
-export const AuthUser = mongoose.model("user", authSchema);
+export const AuthUser = mongoose.model("users", authSchema);
