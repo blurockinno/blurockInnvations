@@ -1,5 +1,3 @@
-
-
 const Subscription = () => {
   return (
     <>
@@ -10,52 +8,34 @@ const Subscription = () => {
         <section className="flex justify-center">
           <div className="w-full h-auto space-x-1 bg-white rounded-2xl flex justify-evenly items-center py-8 mb-8">
 
-            <div className="h-[470px] w-[400px] bg-[#141415] rounded-xl shadow-2xl ">
+            <div className="h-[500px] w-[400px] bg-[#141415] rounded-xl shadow-2xl flex flex-col justify-between items-center py-10">
+              <div className="text-start w-full pl-6">
+                <h1 className="text-3xl font-bold text-white">Basic</h1>
+                <h1 className="flex text-[44px] font-bold text-white pt-1">₹1000<p className="font-thin">/mo</p></h1>
+              </div>
+              <div className="w-[280px] h-[230px] bg-white rounded-2xl flex items-center justify-center"></div>
 
-              <section>
-
-                <div className="flex flex-col">
-                  <h1 className="text-start text-3xl font-bold text-white pl-6 pt-4">Basic</h1>
-                  <h1 className="flex text-start text-[44px] font-bold text-white pt-1 pl-6">₹1000<p className="font-thin">/mo</p></h1>
-                  
-                  <div className="w-[280px] h-[230px] bg-white rounded-2xl "></div>
-
-                </div>
-
-              </section>
-
+              <button className="w-[280px] h-[48px]  bg-[#146EF5] rounded-2xl text-white font-bold text-[20px]">Buy</button>
             </div>
 
-            <div className="h-[470px] w-[400px] bg-[#141415] rounded-xl shadow-2xl ">
-              <section>
+            <div className="h-[500px] w-[400px] bg-[#141415] rounded-xl shadow-2xl flex flex-col justify-between items-center py-10">
+              <div className="text-start w-full pl-6">
+                <h1 className="text-3xl font-bold text-white">Professional</h1>
+                <h1 className="flex text-[44px] font-bold text-white pt-1">₹2000<p className="font-thin">/mo</p></h1>
+              </div>
+              <div className="w-[280px] h-[230px] bg-white rounded-2xl flex items-center justify-center"></div>
 
-              <div className="flex flex-col">
-                  <h1 className="text-start text-3xl font-bold text-white pl-6 pt-4">Basic</h1>
-                  <h1 className="flex text-start text-[44px] font-bold text-white pt-1 pl-6">₹1000<p className="font-thin">/mo</p></h1>
-                  
-                  <div className="w-[280px] h-[230px] bg-white rounded-2xl "></div>
-
-                </div>
-
-
-              </section>
+              <button className="w-[280px] h-[48px]  bg-[#146EF5] rounded-2xl text-white font-bold text-[20px]">Buy</button>
             </div>
 
-            <div className="h-[470px] w-[400px] bg-[#141415] rounded-xl shadow-2xl ">
-              
-              <section>
+            <div className="h-[500px] w-[400px] bg-[#141415] rounded-xl shadow-2xl flex flex-col justify-between items-center py-10">
+              <div className="text-start w-full pl-6">
+                <h1 className="text-3xl font-bold text-white">Enterprise</h1>
+                <h1 className="flex text-[44px] font-bold text-white pt-1">₹3000<p className="font-thin">/mo</p></h1>
+              </div>
+              <div className="w-[280px] h-[230px] bg-white rounded-2xl flex items-center justify-center"></div>
 
-              <div className="flex flex-col">
-                  <h1 className="text-start text-3xl font-bold text-white pl-6 pt-4">Basic</h1>
-                  <h1 className="flex text-start text-[44px] font-bold text-white pt-1 pl-6">₹1000<p className="font-thin">/mo</p></h1>
-                  
-                  <div className="w-[280px] h-[230px] bg-white rounded-2xl "></div>
-
-                </div>
-
-
-              </section>
-
+              <button className="w-[280px] h-[48px]  bg-[#146EF5] rounded-2xl text-white font-bold text-[20px]">Buy</button>
             </div>
           </div>
         </section>
