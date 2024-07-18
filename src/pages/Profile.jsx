@@ -165,7 +165,10 @@ const Profile = () => {
 
         const { token, success } = response.data;
         if (success) {
-          window.open(`http://localhost:3000/order?token=${token}`, "_blank");
+          window.open(
+            `https://erp-phi.vercel.app/order?token=${token}`,
+            "_blank"
+          );
         } else {
           console.error("Failed to fetch token");
         }
@@ -228,7 +231,6 @@ const Profile = () => {
                       <span>{`Uploading: ${imagePercentage}% `}</span>
                     ) : imagePercentage === 100 ? (
                       <span className="text-green-600">
-                        {" "}
                         Image uploaded successfully
                       </span>
                     ) : (

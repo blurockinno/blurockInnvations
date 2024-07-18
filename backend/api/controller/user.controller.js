@@ -307,3 +307,27 @@ export const updateUser = async (req, res) => {
     res.status(500).json({ error: "Internal server error." });
   }
 };
+
+//verify owner
+export const verifyEmail = async (req, res) => {
+  try {
+    const { token } = req.query;
+    console.log(token)
+
+    const user = await User.findOne({ verificationToken: token });
+
+    if (user) {
+      // Mark the user as verified and clear the verification token
+      user.isVerified = true;
+      user.verificationToken = null;
+      await user.save();
+
+      res.send("Email verified successfully!");
+    } else {
+      res.status(404).send("Invalid verification token.");
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
