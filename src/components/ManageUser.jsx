@@ -23,8 +23,7 @@ const ManageUser = () => {
         const response = await axios.get("/api/v1/user/all");
 
         const { users } = response.data;
-        console.log(users)
-        const filterUserByCompany = users.filter((user)=> user.companyId === currentUser.companyId)
+        const filterUserByCompany = users.filter((user)=> user.companyId === currentUser?.companyId)
         setAllUser(filterUserByCompany);
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -37,7 +36,7 @@ const ManageUser = () => {
     };
 
     fetchAllUsers();
-  }, [isLoding]);
+  }, [isLoding, currentUser?.companyId]);
 
   useEffect(() => {
     const filterUser = allUser.filter((user) => user._id === userId);
@@ -80,6 +79,7 @@ const ManageUser = () => {
         companyId: currentUser.companyId,
         status,
         softwareName,
+        companyName : currentUser?.companyName
       });
 
       const { success, message } = response.data;

@@ -1,10 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice";
+import {  useNavigate } from "react-router-dom";
+import {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+} from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 
 import path from "/assets/path.svg";
+import toast, { Toaster } from "react-hot-toast";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -33,8 +38,8 @@ const SignIn = () => {
         password: formData.password,
       });
       console.log("Sign In Successful:", response.data);
-      const { user } = response.data;
-      console.log(user);
+      const { user, message } = response.data;
+      toast.success(message)
       dispatch(signInSuccess(user));
       navigate("/");
     } catch (error) {
@@ -43,6 +48,7 @@ const SignIn = () => {
         "Error during sign in:",
         error.response?.data?.message || error.message
       );
+      toast.error( error.response?.data?.message)
     } finally {
       setLoading(false);
     }
@@ -50,6 +56,7 @@ const SignIn = () => {
 
   return (
     <>
+      <Toaster />
       <div
         className="w-full h-auto bg-[#141415] plus-jakarta-sans"
         style={{

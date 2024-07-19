@@ -94,7 +94,6 @@ const Header = () => {
               <NavLink
                 to="/profile"
                 className="hover:underline"
-                activeClassName="underline"
               >
                 <img
                   src={currentUser.profilePicture}

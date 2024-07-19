@@ -61,6 +61,10 @@ const authSchema = new mongoose.Schema(
     tempPassword: {
       type: String,
     },
+    role: {
+      type: String,
+      default: "Owner",
+    },
     subscription: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Subscription",

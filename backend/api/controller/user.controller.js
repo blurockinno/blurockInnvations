@@ -119,7 +119,7 @@ export const google = async (req, res, next) => {
 
 // User Registration Controller
 export const registerUser = async (req, res) => {
-  const { fullName, companyId, email, role, status, softwareName } = req.body;
+  const { fullName, companyId, email, role, status, softwareName, companyName } = req.body;
 
   try {
     // Validate input
@@ -154,6 +154,7 @@ export const registerUser = async (req, res) => {
       role,
       status,
       softwareName,
+      companyName
     });
 
     // Save the user to the database
