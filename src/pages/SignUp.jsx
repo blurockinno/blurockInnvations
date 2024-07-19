@@ -2,10 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import path from "/assets/path.svg";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { signUpFailure, signUpStart, signUpSucess } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
+import toast, { Toaster } from "react-hot-toast";
 
 const SignUp = () => {
   const dispatch =  useDispatch()
@@ -57,7 +56,7 @@ const SignUp = () => {
       console.log("Sign Up Successful:", message, success);
       if (success) {
         
-        alert(message);
+        toast.success(message);
         navigate("/success");
       }
     } catch (error) {
@@ -74,7 +73,7 @@ const SignUp = () => {
 
   return (
     <>
-      <ToastContainer />
+      <Toaster />
       <div
         className="w-full h-auto bg-[#141415] plus-jakarta-sans flex flex-col md:flex-row justify-between  "
         style={{
