@@ -34,7 +34,6 @@ const userSchema = new mongoose.Schema(
     },
     softwareName: {
       type: String,
-      required: true,
     },
     companyName:{
       type: String
