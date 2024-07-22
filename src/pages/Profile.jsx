@@ -163,10 +163,10 @@ const Profile = () => {
         // Fetch token from the server
         const response = await axios.post("/api/v1/user/verifyUser");
 
-        const { token, success } = response.data;
+        const {success } = response.data;
         if (success) {
           window.open(
-            `https://erp-phi.vercel.app/order?token=${token}`,
+            `https://erp-phi.vercel.app`,
             "_blank"
           );
         } else {
