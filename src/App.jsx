@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Blog from './pages/BlogPage';
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import SignIn from "./pages/SignIn";
@@ -45,6 +46,7 @@ function App() {
         <Route path="/solution" element={<Solution />} />
         <Route path="/help" element={<Help />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/blog" element={<Blog />} />
         <Route path="/success" element={<SignupSuccess />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
