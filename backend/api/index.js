@@ -10,6 +10,7 @@ import userRoute from "./routes/user.route.js";
 import authRoute  from "./routes/auth.route.js"
 import subscriptionRoute  from "./routes/subscription.route.js"
 import contactUsRoute from "./routes/contactus.route.js"
+import PracticeRoute from "./routes/practice.route.js"
 
 // Initialize express app
 const app = express();
@@ -45,6 +46,9 @@ app.use(`/api/v1/user`, userRoute);
 
 //contactUs route
 app.use(`/api/v1/contact-us`, contactUsRoute);
+
+//practice Route
+app.use(`/api/v1/practice`, PracticeRoute)
 
 // Start the server
 const PORT = process.env.PORT || 3000;

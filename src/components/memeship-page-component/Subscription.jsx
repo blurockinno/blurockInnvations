@@ -6,7 +6,7 @@ const Subscription = () => {
           Subscription <h1 className="text-[#146EF5]">Plans</h1>
         </h1>
         <section className="flex justify-center">
-          <div className="w-full h-auto space-x-1 bg-white rounded-2xl flex justify-evenly items-center py-8 mb-8">
+          <div className="w-full h-auto space-x-9 bg-white rounded-2xl flex justify-evenly items-center py-4 mb-2">
 
             <div className="h-[500px] w-[400px] bg-[#141415] rounded-xl shadow-2xl flex flex-col justify-between items-center py-10">
               <div className="text-start w-full pl-6">
