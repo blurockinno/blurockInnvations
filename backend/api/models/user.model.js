@@ -34,7 +34,9 @@ const userSchema = new mongoose.Schema(
     },
     softwareName: {
       type: String,
-      required: true,
+    },
+    companyName:{
+      type: String
     },
     profilePicture: {
       type: String,
@@ -105,7 +107,7 @@ userSchema.post("save", async (doc) => {
       <p>Login in credential</p>
       <p>Email: ${doc.email}</br>Password: ${doc.tempPassword}</p>
       <p>Your account has been successfully created. Please click the link below to verify your email:</p>
-      <a href="http://localhost:4000/api/v1/auth/verify-email?token=${doc.verificationToken}">Verify Email</a>
+      <a href="http://localhost:4000/api/v1/user/verify-email?token=${doc.verificationToken}">Verify Email</a>
       <p>If you did not create an account on our platform, please disregard this email.</p>
       <p>Best regards,<br> The Platform Team</p>
     </div>

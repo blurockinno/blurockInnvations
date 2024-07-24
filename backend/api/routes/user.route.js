@@ -6,6 +6,7 @@ import {
   registerUser,
   removeUser,
   updateUser,
+  verifyEmail,
   verifyUser,
 } from "../controller/user.controller.js";
 
@@ -19,5 +20,8 @@ router.post("/verifyUser", verifyUser);
 router.get("/all", getAllUsers);
 router.put("/:id", updateUser);
 router.delete("/:id", removeUser);
+
+//router for verify email
+router.get("/verify-email", verifyEmail)
 
 export default router;

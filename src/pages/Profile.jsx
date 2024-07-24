@@ -163,9 +163,12 @@ const Profile = () => {
         // Fetch token from the server
         const response = await axios.post("/api/v1/user/verifyUser");
 
-        const { token, success } = response.data;
+        const {success } = response.data;
         if (success) {
-          window.open(`http://localhost:3000/order?token=${token}`, "_blank");
+          window.open(
+            `https://erp-phi.vercel.app`,
+            "_blank"
+          );
         } else {
           console.error("Failed to fetch token");
         }
@@ -228,7 +231,6 @@ const Profile = () => {
                       <span>{`Uploading: ${imagePercentage}% `}</span>
                     ) : imagePercentage === 100 ? (
                       <span className="text-green-600">
-                        {" "}
                         Image uploaded successfully
                       </span>
                     ) : (

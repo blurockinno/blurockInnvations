@@ -16,6 +16,7 @@ import Help from "./pages/Help";
 import Contact from "./pages/Contact";
 import { useEffect, useState } from "react";
 import SplashScreen from "./components/splashscreen/SplashScreen";
+import SignupSuccess from "./components/common/SignupSuccess";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -46,6 +47,7 @@ function App() {
         <Route path="/help" element={<Help />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/success" element={<SignupSuccess />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/our-product" element={<OurProduct />} />
