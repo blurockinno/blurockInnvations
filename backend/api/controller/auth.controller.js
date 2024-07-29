@@ -54,6 +54,7 @@ export const registration = async (req, res) => {
     // Generate unique company ID and temporary password
     let companyId = companyName.slice(0, 5).split(" ").join("") + uuidv4();
     let tempPassword = companyName.slice(0, 5).split(" ").join("") + "7823";
+    
 
     // Encrypt password
     const hashPassword = await bcrypt.hash(tempPassword, 10);
@@ -152,6 +153,7 @@ export const login = async (req, res) => {
 export const verifyEmail = async (req, res) => {
   try {
     const { token } = req.query;
+    console.log(token)
 
     const user = await AuthUser.findOne({ verificationToken: token });
 

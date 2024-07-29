@@ -58,8 +58,12 @@ const authSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    temPassword: {
+    tempPassword: {
       type: String,
+    },
+    role: {
+      type: String,
+      default: "Owner",
     },
     subscription: {
       type: mongoose.Schema.Types.ObjectId,
@@ -129,7 +133,7 @@ authSchema.post("save", async (doc) => {
       <p>Hello ${doc.fullName},</p>
       <p>Thank you for joining our platform. We are excited to have you on board!</p>
       <p>Login in credential</p>
-      <p>Email: ${doc.email}</br>Password: ${doc.temPassword}</p>
+      <p>Email: ${doc.email}</br>Password: ${doc.tempPassword}</p>
       <p>Your account has been successfully created. Please click the link below to verify your email:</p>
       <a href="http://localhost:4000/api/v1/auth/verify-email?token=${doc.verificationToken}">Verify Email</a>
       <p>If you did not create an account on our platform, please disregard this email.</p>
