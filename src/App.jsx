@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Blg from './pages/Blog'
 import Blog from './pages/BlogPage';
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
@@ -47,7 +48,7 @@ function App() {
         <Route path="/help" element={<Help />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/success" element={<SignupSuccess />} />
+        <Route path="/blogpage" element={<Blg />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/our-product" element={<OurProduct />} />
