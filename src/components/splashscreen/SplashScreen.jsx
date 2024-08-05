@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "/assets/logo/logo.png";
+import logo from "/assets/logo/logo2.png";
 
 const SplashScreen = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -34,7 +34,7 @@ const SplashScreen = () => {
             <motion.img
               src={logo}
               alt="Logo"
-              className="w-32 h-24 mt-5"
+              className="w-64 h-24 mt-5"
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
@@ -45,7 +45,7 @@ const SplashScreen = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.6 }}
             >
-              Infinity Technology
+             Welcome to Blurock Ionic
             </motion.p>
           </motion.div>
         </motion.div>

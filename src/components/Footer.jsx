@@ -14,11 +14,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:px-20 ">
           {/* Services Section */}
           <div className="mb-4 flex flex-col ">
-            <h3 className="text-lg font-bold mb-2">Blurock Innovation</h3>
+            <h3 className="text-lg font-bold mb-2">Blurock Ionic</h3>
             <ul className="text-gray-400">
               <li className="mb-2">
                 <a href="#" className=" text-justify">
-                  Blurock innovation always open door to a realm of limitless
+                  Blurock Ionic always open door to a realm of limitless
                   possibilities, where imagination knows no bounds.
                 </a>
               </li>
@@ -131,7 +131,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <p className="text-sm text-gray-400 text-center md:text-left">
-            © 2024 Blurock Infinity Technology. All rights reserved.
+            © 2024 Blurock Ionic. All rights reserved.
           </p>
         </div>
       </div>
