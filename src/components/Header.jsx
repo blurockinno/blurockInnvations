@@ -39,7 +39,7 @@ const Header = () => {
               className="h-8 w-14"
             />
             <p className="hidden md:block">
-              <span className="space-x-2">Infinity Technology</span>
+              <span className="space-x-2">Blurock Innotech</span>
               <span className="text-[8px] relative top-4 -left-16">
                 Blurock Wealth
               </span>
