@@ -42,11 +42,16 @@ const WhatWeProvideSection = () => {
               key={index}
               className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4 flex mt-10"
             >
-              <div className="bg-[#1D1F20] p-6 rounded-lg shadow-lg flex flex-col h-full cursor-pointer hover:shadow-lg transform transition-transform duration-300 hover:-translate-y-2">
+              <div
+                className="bg-[#1D1F20] p-6 rounded-lg shadow-lg flex flex-col h-full cursor-pointer hover:shadow-lg transform transition-transform duration-300 hover:-translate-y-2"
+                style={{ willChange: "transform" }}
+              >
                 <img
                   src={service.imageUrl}
                   alt={service.title}
                   className="w-full h-36 rounded-t-lg"
+                  width="100%"
+                  height="144px"
                 />
                 <div className="p-4 flex-grow">
                   <h3 className="text-2xl font-bold mb-2 text-white">
