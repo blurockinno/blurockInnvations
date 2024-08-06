@@ -3,66 +3,81 @@ import { ArrowRight } from "lucide-react";
 
 const Help = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const [isClicked, setIsClicked] = useState(false);
 
   const toggleAccordion = (index) => {
     if (activeIndex === index) {
       setActiveIndex(null);
     } else {
       setActiveIndex(index);
+      setIsClicked(true);
     }
   };
 
   const items = [
     {
       question: "1. What is the Order Management System (OMS)?",
-      answer: "The OMS is a comprehensive solution designed to streamline and automate the order processing workflow, ensuring efficient management of orders from placement to fulfillment."
+      answer:
+        "The OMS is a comprehensive solution designed to streamline and automate the order processing workflow, ensuring efficient management of orders from placement to fulfillment.",
     },
     {
       question: "2. What are the subscription plans available?",
-      answer: "We offer three subscription plans: Basic, Professional, and Enterprise. Each plan provides different levels of features and support to suit various business needs."
+      answer:
+        "We offer three subscription plans: Basic, Professional, and Enterprise. Each plan provides different levels of features and support to suit various business needs.",
     },
     {
       question: "3. What is your cancellation policy?",
-      answer: "We understand that things change. You can cancel your plan at any time and we'll refund you the difference already paid.",
+      answer:
+        "We understand that things change. You can cancel your plan at any time and we'll refund you the difference already paid.",
     },
     {
       question: "4. Can other info be added to an invoice?",
-      answer: "At the moment, the only way to add additional information to invoices is to add the information to the workspace's name manually.",
+      answer:
+        "At the moment, the only way to add additional information to invoices is to add the information to the workspace's name manually.",
     },
     {
       question: "5. How does bill works?",
-      answer: "Plans are per workspace, not per account. You can upgrade one workspace, and still have any number of free workspaces.",
+      answer:
+        "Plans are per workspace, not per account. You can upgrade one workspace, and still have any number of free workspaces.",
     },
     {
       question: "6. Is there a free trial available?",
-      answer: "Yes, you can try us for free for 30 days. If you want, we'll provide you with a free 30-minute onboarding call to get you up and running.",
+      answer:
+        "Yes, you can try us for free for 30 days. If you want, we'll provide you with a free 30-minute onboarding call to get you up and running.",
     },
     {
       question: "7. Can I change my plan later?",
-      answer: "Of course you can! Our pricing scales with your company. Chat to our friendly team to find a solution that works for you as you grow.",
-    }
+      answer:
+        "Of course you can! Our pricing scales with your company. Chat to our friendly team to find a solution that works for you as you grow.",
+    },
   ];
 
   const updates = [
     {
       question: "1. How long do I have access to theme updates and support?",
-      answer: "Yes, you can try us for free for 30 days. If you want, we'll provide you with a free 30-minute onboarding call to get you up and running.",
+      answer:
+        "Yes, you can try us for free for 30 days. If you want, we'll provide you with a free 30-minute onboarding call to get you up and running.",
     },
     {
       question: "2. What kind of support do you offer",
-      answer: "Of course you can! Our pricing scales with your company. Chat to our friendly team to find a solution that works for you as you grow.",
+      answer:
+        "Of course you can! Our pricing scales with your company. Chat to our friendly team to find a solution that works for you as you grow.",
     },
     {
-      question: "3. How do I get support if I encounter a problem with my theme?",
-      answer: "We understand that things change. You can cancel your plan at any time and we'll refund you the difference already paid.",
+      question:
+        "3. How do I get support if I encounter a problem with my theme?",
+      answer:
+        "We understand that things change. You can cancel your plan at any time and we'll refund you the difference already paid.",
     },
     {
       question: "4. How often do you release theme updates?",
-      answer: "At the moment, the only way to add additional information to invoices is to add the information to the workspace's name manually.",
+      answer:
+        "At the moment, the only way to add additional information to invoices is to add the information to the workspace's name manually.",
     },
     {
       question: "5. What happens if my support and updates expire?",
-      answer: "Plans are per workspace, not per account. You can upgrade one workspace, and still have any number of free workspaces.",
+      answer:
+        "Plans are per workspace, not per account. You can upgrade one workspace, and still have any number of free workspaces.",
     },
   ];
 
@@ -99,7 +114,13 @@ const Help = () => {
                 <span className="font-medium hover:text-[#146ef5] cursor-pointer">
                   {item.question}
                 </span>
-                <ArrowRight />
+                <ArrowRight
+                  className={`${
+                    isClicked && activeIndex === index
+                      ? "rotate-90"
+                      : "rotate-0"
+                  }`}
+                />
               </button>
               {activeIndex === index && (
                 <div className="p-6">
@@ -129,7 +150,13 @@ const Help = () => {
                 <span className="font-medium pr-4 hover:text-[#146ef5] cursor-pointer">
                   {item.question}
                 </span>
-                <ArrowRight className="h-24 w-24" />
+                <ArrowRight
+                  className={`${
+                    isClicked && activeIndex === index
+                      ? "rotate-90"
+                      : "rotate-0"
+                  }`}
+                />
               </button>
               {activeIndex === index && (
                 <div className="p-6">

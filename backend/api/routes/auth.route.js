@@ -5,7 +5,7 @@ import { login, registration, updateDetails, verifyEmail } from "../controller/a
 const router = express.Router();
 
 router.post("/sign-in", login);
-router.post("/sign-up", registration);
+router.post("/sign-up", registration);  
 // router.post("/google", google);
 router.put("/:id",  updateDetails);
 //verify email
