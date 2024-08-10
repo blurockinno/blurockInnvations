@@ -6,6 +6,7 @@ import {
   Youtube,
   YoutubeIcon,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -35,14 +36,14 @@ const Footer = () => {
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#" className="hover:text-gray-300">
+                <Link to={"/contact"} className="hover:text-gray-300">
                   Contact Us
-                </a>
+                </Link>
               </li>
               <li className="mb-2">
-                <a href="#" className="hover:text-gray-300">
+                <Link to={"/privacy-policy"} className="hover:text-gray-300">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -52,19 +53,19 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-2">Company</h3>
             <ul className="text-gray-400">
               <li className="mb-2">
-                <a href="#" className="hover:text-gray-300">
+                <Link to={"/about"} href="#" className="hover:text-gray-300">
                   About us
-                </a>
+                </Link>
               </li>
               <li className="mb-2">
-                <a href="#" className="hover:text-gray-300">
+                <Link to={"/career"} href="#" className="hover:text-gray-300">
                   Careers
-                </a>
+                </Link>
               </li>
               <li className="mb-2">
-                <a href="#" className="hover:text-gray-300">
-                  Press
-                </a>
+                <Link to={"/blog"} href="#" className="hover:text-gray-300">
+                  Blog
+                </Link>
               </li>
             </ul>
           </div>
