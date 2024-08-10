@@ -1,37 +1,37 @@
 import ProfileCard from "./ProfileCard";
 import avatar from "/assets/avatar.jpg";
 import aryan from "/assets/team-members/sai.jpeg";
-import biruly from "/assets/team-members/biruly.png";
+import biruly from "/assets/team-members/biruly.jpeg";
 import rishabh from "/assets/team-members/rishabh.jpeg";
 
 const TeamMembers = () => {
   const members = [
     {
-      image: avatar,
-      name: "Jatinder Goswami",
-      designation: "Founder",
-      social: {
-        facebook: "https://facebook.com",
-        twitter: "https://twitter.com",
-        linkedin: "https://linkedin.com",
-        instagram: "https://instagram.com",
-      },
-    },
-    {
-      image: avatar,
-      name: "Devinder Goswami",
-      designation: "CEO",
-      social: {
-        facebook: "https://facebook.com",
-        twitter: "https://twitter.com",
-        linkedin: "https://linkedin.com",
-        instagram: "https://instagram.com",
-      },
-    },
-    {
       image: biruly,
       name: "Bhagwan Biruly",
       designation: "Technical Product Manager",
+      social: {
+        facebook: "https://facebook.com",
+        twitter: "https://twitter.com",
+        linkedin: "https://linkedin.com",
+        instagram: "https://instagram.com",
+      },
+    },
+    {
+      image: aryan,
+      name: "Sai Aryan Goswami",
+      designation: "Software Developer",
+      social: {
+        facebook: "https://facebook.com",
+        twitter: "https://twitter.com",
+        linkedin: "https://linkedin.com",
+        instagram: "https://instagram.com",
+      },
+    },
+    {
+      image: rishabh,
+      name: "Rishabh Parashar",
+      designation: "Software Developer",
       social: {
         facebook: "https://facebook.com",
         twitter: "https://twitter.com",
@@ -62,28 +62,7 @@ const TeamMembers = () => {
         instagram: "https://instagram.com",
       },
     },
-    {
-      image: aryan,
-      name: "Sai Aryan Goswami",
-      designation: "Software Developer",
-      social: {
-        facebook: "https://facebook.com",
-        twitter: "https://twitter.com",
-        linkedin: "https://linkedin.com",
-        instagram: "https://instagram.com",
-      },
-    },
-    {
-      image: rishabh,
-      name: "Rishabh Parashar",
-      designation: "Software Developer",
-      social: {
-        facebook: "https://facebook.com",
-        twitter: "https://twitter.com",
-        linkedin: "https://linkedin.com",
-        instagram: "https://instagram.com",
-      },
-    },
+
     {
       image: avatar,
       name: "Navnit Kumar Singh",
@@ -113,7 +92,7 @@ const TeamMembers = () => {
 
       <div className=" md:py-10">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-20">
             {members.map((member, index) => (
               <ProfileCard
                 key={index}

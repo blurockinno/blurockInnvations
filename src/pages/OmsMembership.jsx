@@ -132,7 +132,7 @@ const OmsMembership = () => {
       className="bg-no-repeat bg-[#141415] plus-jakarta-sans h-auto px-10 md:px-24"
       style={{ backgroundImage: `url(${BG5})` }}
     >
-      <OmsMemebershipCard handleOnPaymentSend={handleOnSubscribe} />
+      {/* <OmsMemebershipCard handleOnPaymentSend={handleOnSubscribe} /> */}
       <Hero />
       <Features />
       <Demo />

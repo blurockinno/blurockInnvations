@@ -4,10 +4,10 @@ import CountUp from "react-countup";
 
 const Stats = () => {
   const stats = [
-    { label: "Team members", value: 390 },
-    { label: "Years of experience", value: 12 },
-    { label: "New raised funds", value: 12, prefix: "$", suffix: "m" },
-    { label: "Lovely customers", value: 20000, suffix: "k+" },
+    { label: "Team members", value: +9 },
+    { label: "Years of experience", value: +2 },
+    { label: "New raised funds", value: 0, prefix: "$", suffix: "m" },
+    { label: "Lovely customers", value: 2, suffix: "+" },
   ];
 
   const variants = {
