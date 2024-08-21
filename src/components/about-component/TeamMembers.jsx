@@ -1,5 +1,5 @@
 import ProfileCard from "./ProfileCard";
-import avatar from "/assets/avatar.jpg";
+import avatar from "/assets/avatar.png";
 import aryan from "/assets/team-members/sai.jpeg";
 import biruly from "/assets/team-members/biruly.jpeg";
 import rishabh from "/assets/team-members/rishabh.jpeg";

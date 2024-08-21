@@ -6,6 +6,7 @@ import team from "/assets/team-work.jpg";
 import ContactType from "../components/contact-component/ContactType";
 import AddressAndLocation from "../components/contact-component/AddressAndLocation";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +14,7 @@ const Contact = () => {
     email: "",
     message: "",
   });
-  
+
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -28,26 +29,32 @@ const Contact = () => {
     setLoading(true);
 
     try {
-      // Handle form submission (e.g., send data to backend)
-      console.log("Form Data:", formData);
-
       // Example: Send form data using axios
-      const response = await axios.post("/api/v1/contact-us/contactus", formData);
-      console.log("Server Response:", response.data);
+      const response = await axios.post(
+        "/api/v1/contact-us/contactus",
+        formData
+      );
 
-      // Simulate loading delay
-      setTimeout(() => {
+      const { success, message } = response.data;
+      console.log(success, message);
+
+      if (success) {
         setLoading(false);
-        alert("Form submitted successfully!");
-      }, 1500);
+        toast.success("Thank you for find us.");
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+      }
     } catch (error) {
-      console.error("Error submitting form:", error);
       setLoading(false);
       alert("Error submitting form. Please try again later.");
     }
   };
   return (
     <>
+      <Toaster />
       <div
         className="h-screen mx-auto bg-[#141415] plus-jakarta-sans"
         style={{
@@ -137,7 +144,6 @@ const Contact = () => {
                     placeholder="Your Name"
                     value={formData.name}
                     onChange={handleChange}
-                    
                   />
                 </div>
                 <div className="mb-4">
@@ -155,7 +161,6 @@ const Contact = () => {
                     placeholder="Your Email"
                     value={formData.email}
                     onChange={handleChange}
-                    
                   />
                 </div>
                 <div className="mb-6">
@@ -172,7 +177,6 @@ const Contact = () => {
                     placeholder="Your Message"
                     value={formData.message}
                     onChange={handleChange}
-                    
                   />
                 </div>
                 <div className="flex items-center justify-center">
@@ -215,7 +219,6 @@ const Contact = () => {
           description="Our support team is available to answer your questions, and provide technical help."
         />
       </div>
-
       <AddressAndLocation />
     </>
   );
