@@ -12,7 +12,19 @@ const HeroRight = () =>{
                         <div className="border-2 h-[100px] w-[250px] rounded-sm"></div>
                         <div className="flex-col">
                             <h2 className="text-[25px] font-bold text-white">Evolutionizing Order management </h2>
-                            <p className="text-[13px] font-semibold">Sandeep Sahay</p>
+                            <p className="text-[13px] font-semibold text-slate-500">Sandeep Sahay</p>
+                        </div>
+                    </div>
+                    
+                </section>
+
+                <section>
+
+                    <div className="flex space-x-10">
+                        <div className="border-2 h-[100px] w-[250px] rounded-sm"></div>
+                        <div className="flex-col">
+                            <h2 className="text-[25px] font-bold text-white">Evolutionizing Order management </h2>
+                            <p className="text-[13px] font-semibold text-slate-500">Sandeep Sahay</p>
                         </div>
                     </div>
                     
@@ -24,7 +36,7 @@ const HeroRight = () =>{
                         <div className="border-2 h-[100px] w-[250px] rounded-sm"></div>
                         <div className="flex-col">
                             <h2 className="text-[25px] font-bold text-white">Evolutionizing Order management </h2>
-                            <p className="text-[13px] font-semibold">Sandeep Sahay</p>
+                            <p className="text-[13px] font-semibold text-slate-500">Sandeep Sahay</p>
                         </div>
                     </div>
                     
@@ -36,19 +48,7 @@ const HeroRight = () =>{
                         <div className="border-2 h-[100px] w-[250px] rounded-sm"></div>
                         <div className="flex-col">
                             <h2 className="text-[25px] font-bold text-white">Evolutionizing Order management </h2>
-                            <p className="text-[13px] font-semibold">Sandeep Sahay</p>
-                        </div>
-                    </div>
-                    
-                </section>
-
-                <section className=" ">
-
-                    <div className="flex space-x-10">
-                        <div className="border-2 h-[100px] w-[250px] rounded-sm"></div>
-                        <div className="flex-col">
-                            <h2 className="text-[25px] font-bold text-white">Evolutionizing Order management </h2>
-                            <p className="text-[13px] font-semibold">Sandeep Sahay</p>
+                            <p className="text-[13px] font-semibold text-slate-500">Sandeep Sahay</p>
                         </div>
                     </div>
                     
