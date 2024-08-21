@@ -62,6 +62,14 @@ const Header = () => {
               Solution
             </NavLink>
             <NavLink
+              to="/service"
+              className={`hover:text-[#146EF5] ${
+                currentPage === "/service" ? "text-[#146ef5]" : null
+              }`}
+            >
+              Services
+            </NavLink>
+            <NavLink
               to="/help"
               className={`hover:text-[#146EF5] ${
                 currentPage === "/help" ? "text-[#146ef5]" : null

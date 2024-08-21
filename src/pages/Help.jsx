@@ -64,8 +64,7 @@ const Help = () => {
         "Of course you can! Our pricing scales with your company. Chat to our friendly team to find a solution that works for you as you grow.",
     },
     {
-      question:
-        "3. How do I get support if I encounter a problem with my theme?",
+      question: "3. How can I get support if I encounter theme issue?",
       answer:
         "We understand that things change. You can cancel your plan at any time and we'll refund you the difference already paid.",
     },
@@ -111,17 +110,18 @@ const Help = () => {
                 className="w-full flex justify-between items-center text-left p-4 focus:outline-none focus:bg-gray-200 focus:text-[#146ef5] rounded-lg"
                 onClick={() => toggleAccordion(index)}
               >
-                <span className="font-medium hover:text-[#146ef5] cursor-pointer">
+                <span className="font-medium hover:text-[#146ef5] cursor-pointer flex-grow">
                   {item.question}
                 </span>
                 <ArrowRight
-                  className={`${
+                  className={`flex-shrink-0 ${
                     isClicked && activeIndex === index
                       ? "rotate-90"
                       : "rotate-0"
                   }`}
                 />
               </button>
+
               {activeIndex === index && (
                 <div className="p-6">
                   <p className="text-gray-400">{item.answer}</p>
@@ -144,20 +144,21 @@ const Help = () => {
           {updates.map((item, index) => (
             <div key={index} className="text-[#141415] rounded-lg mb-4">
               <button
-                className="w-full flex justify-between items-center text-left py-3 px-6 focus:outline-none focus:bg-gray-200 focus:text-[#146ef5] rounded-lg"
+                className="w-full flex justify-between items-center text-left p-4 focus:outline-none focus:bg-gray-200 focus:text-[#146ef5] rounded-lg"
                 onClick={() => toggleAccordion(index)}
               >
-                <span className="font-medium pr-4 hover:text-[#146ef5] cursor-pointer">
+                <span className="font-medium hover:text-[#146ef5] cursor-pointer flex-grow">
                   {item.question}
                 </span>
                 <ArrowRight
-                  className={`${
+                  className={`flex-shrink-0 ${
                     isClicked && activeIndex === index
                       ? "rotate-90"
                       : "rotate-0"
                   }`}
                 />
               </button>
+
               {activeIndex === index && (
                 <div className="p-6">
                   <p className="text-gray-400">{item.answer}</p>
