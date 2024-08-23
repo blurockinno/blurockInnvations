@@ -16,7 +16,7 @@ import Help from "./pages/Help";
 import Contact from "./pages/Contact";
 import { useEffect, useState } from "react";
 import SplashScreen from "./components/splashscreen/SplashScreen";
-import SignupSuccess from "./components/common/SignupSuccess";
+import NotFound from "./components/pagenotfound/NotFound";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -51,6 +51,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/our-product" element={<OurProduct />} />
         </Route>
+        <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
       </Routes>
       <Footer />
     </BrowserRouter>

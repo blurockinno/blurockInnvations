@@ -159,25 +159,27 @@ const Profile = () => {
   //handle on open now
   const handleOnOpenNow = async (productName) => {
     if (productName === "order management system") {
-      try {
-        // Fetch token from the server
-        const response = await axios.post("/api/v1/user/verifyUser");
-
-        const {success } = response.data;
-        if (success) {
-          window.open(
-            `https://erp-phi.vercel.app`,
-            "_blank"
-          );
-        } else {
-          console.error("Failed to fetch token");
-        }
-      } catch (error) {
-        console.error("Error fetching token:", error);
-      }
-    } else {
-      console.log("Please provide a valid link for the product:", productName);
+      window.open(`https://erp-phi.vercel.app/`, "_blank");
     }
+    //   try {
+    //     // Fetch token from the server
+    //     const response = await axios.post("/api/v1/user/verifyUser");
+
+    //     const {success } = response.data;
+    //     if (success) {
+    //       window.open(
+    //         `https://erp-phi.vercel.app/`,
+    //         "_blank"
+    //       );
+    //     } else {
+    //       console.error("Failed to fetch token");
+    //     }
+    //   } catch (error) {
+    //     console.error("Error fetching token:", error);
+    //   }
+    // } else {
+    //   console.log("Please provide a valid link for the product:", productName);
+    // }
   };
 
   //handle for logout

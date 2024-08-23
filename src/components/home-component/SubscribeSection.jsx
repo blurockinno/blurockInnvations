@@ -32,7 +32,7 @@ const SubscribeSection = () => {
           />
           <button
             type="submit"
-            className="bg-[#141415] hover:bg-[#1D1F20] hover:text-white text-[#146ef5] px-4 py-3 rounded-md mt-3 sm:mt-0  transition duration-300 ease-in-out"
+            className="bg-[#141415] hover:bg-[#1D1F20] hover:text-white text-[#ffffff] px-4 py-3 rounded-md mt-3 sm:mt-0  transition duration-300 ease-in-out"
           >
             Stay in the loop
           </button>

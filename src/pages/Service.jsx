@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import card from "/assets/card_bg.jpg";
 import service from "/assets/service.png";
+import path from "/assets/path.svg";
 import { motion, useInView } from "framer-motion";
 import wd from "/assets/development.png";
 import md from "/assets/app-development.png";
@@ -54,9 +55,9 @@ const Service = () => {
   ];
   return (
     <>
-      <div className="container mx-auto mt-[88px] bg-black">
+      <div className="plus-jakarta-sans bg-[#141415]">
         <section
-          className="text-center mb-12"
+          className="text-center mb-12 plus-jakarta-sans"
           style={{
             backgroundImage: `linear-gradient(45deg,
         rgba(0, 0, 0, 200.605),
@@ -66,7 +67,7 @@ const Service = () => {
             backgroundSize: "cover",
           }}
         >
-          <div className=" h-auto items-center">
+          <div className=" h-auto items-center plus-jakarta-sans">
             <div className="flex justify-between items-center gap-4">
               {/* First set of bars */}
               <motion.div
@@ -77,7 +78,7 @@ const Service = () => {
                   repeat: Infinity,
                   repeatType: "reverse",
                 }}
-                className="h-20 w-[10%] flex flex-col mt-10"
+                className="h-20 w-[10%] flex flex-col mt-10 plus-jakarta-sans"
               >
                 <div className="h-7 bg-gradient-to-l from-yellow-100 rounded-tr-full rounded-br-full"></div>
               </motion.div>
@@ -96,7 +97,7 @@ const Service = () => {
                 <div className="h-7 bg-gradient-to-r from-yellow-100 rounded-tl-full rounded-bl-full"></div>
               </motion.div>
             </div>
-            <h1 className="text-4xl font-bold mb-4 uppercase text-white  ">
+            <h1 className="text-4xl font-bold mb-4 uppercase text-white plus-jakarta-sans ">
               Transforming businesses through technology
             </h1>
             <p className="text-lg  text-gray-100 ">
@@ -165,32 +166,25 @@ const Service = () => {
               {services.map((service, index) => (
                 <motion.div
                   key={service.title}
-                  className={`p-10 shadow-lg  text-center rounded-lg border  bg-gradient-to-t from-white ${
+                  className={`p-10 shadow-lg plus-jakarta-sans  text-center rounded-lg border border-gray-700  ${
                     index % 2 ? "from-blue-300" : null
                   }`}
                   initial={{ y: 50, opacity: 0 }}
                   animate={isInView ? { y: 0, opacity: 1 } : {}}
                   transition={{ duration: 1, delay: 1.5 + index * 0.3 }}
-                  style={{
-                    backgroundImage: `linear-gradient(45deg,
-                    rgba(0, 0, 255, 0.6),
-                    rgba(255, 255, 255, 0.9)), url(${card})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                  }}
+                 
                 >
                   <div className="mb-4">
                     <img
                       src={service.icon}
                       alt={service.title}
-                      className="w-24 h-24 mx-auto"
+                      className="w-24 h-24 mx-auto plus-jakarta-sans"
                     />
                   </div>
                   <h3 className="text-xl font-bold mb-2 text-white">
                     {service.title}
                   </h3>
-                  <p className="text-gray-100">{service.description}</p>
+                  <p className="text-gray-400">{service.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -198,7 +192,7 @@ const Service = () => {
         </motion.section>
         {/* service setion end */}
 
-        <ContactUsSection />
+        {/* <ContactUsSection /> */}
       </div>
     </>
   );

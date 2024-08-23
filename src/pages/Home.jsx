@@ -34,7 +34,7 @@ const Home = () => {
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
-                className="text-3xl lg:text-7xl mb-4 font-semibold text-white"
+                className="text-5xl lg:text-7xl mb-4 font-semibold text-white"
               >
                 Full-suite software development for{" "}
                 <span className="text-[#146EF5]">businesses</span>
@@ -59,7 +59,7 @@ const Home = () => {
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 3 }}
-                className="relative px-8 py-4 rounded-md hover:text-white bg-white isolation-auto z-10 border hover:border-white-600 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full before:bg-blue-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
+                className="relative px-8 py-2 rounded-md hover:text-white bg-white isolation-auto z-10 border hover:border-white-600 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full before:bg-blue-600 before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
               >
                 Get Started
               </motion.button>

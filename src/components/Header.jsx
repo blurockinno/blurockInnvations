@@ -33,14 +33,10 @@ const Header = () => {
             to={"/home"}
             className="text-xl font-bold cursor-pointer flex gap-5"
           >
-            <img
-              src={logo}
-              alt="Blurock infinity technology"
-              className="h-8 w-14"
-            />
+            <img src={logo} alt="Blurock Ionic " className="h-10 w-28" />
             <p className="hidden md:block">
-              <span className="space-x-2">Infinity Technology</span>
-              <span className="text-[8px] relative top-4 -left-16">
+              {/* <span className="space-x-2">Blurock</span> */}
+              <span className="text-[8px] relative top-6 -left-20">
                 Blurock Wealth
               </span>
               <br />
@@ -64,6 +60,14 @@ const Header = () => {
               }`}
             >
               Solution
+            </NavLink>
+            <NavLink
+              to="/service"
+              className={`hover:text-[#146EF5] ${
+                currentPage === "/service" ? "text-[#146ef5]" : null
+              }`}
+            >
+              Services
             </NavLink>
             <NavLink
               to="/help"
@@ -91,10 +95,7 @@ const Header = () => {
             </NavLink>
 
             {currentUser ? (
-              <NavLink
-                to="/profile"
-                className="hover:underline"
-              >
+              <NavLink to="/profile" className="hover:underline">
                 <img
                   src={currentUser.profilePicture}
                   alt="profile picture"
