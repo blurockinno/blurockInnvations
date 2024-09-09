@@ -35,7 +35,6 @@ const Header = () => {
           >
             <img src={logo} alt="Blurock Ionic " className="h-10 w-28" />
             <p className="hidden md:block">
-              {/* <span className="space-x-2">Blurock</span> */}
               <span className="text-[8px] relative top-6 -left-20">
                 Blurock Wealth
               </span>
@@ -93,6 +92,16 @@ const Header = () => {
             >
               Contact us
             </NavLink>
+
+            {/* External Link for Events */}
+            <a
+              href="https://externaleventsite.com" // replace with your external link
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#146EF5]"
+            >
+              Events
+            </a>
 
             {currentUser ? (
               <NavLink to="/profile" className="hover:underline">
@@ -170,6 +179,18 @@ const Header = () => {
             >
               Contact
             </NavLink>
+
+            {/* External Link for Events*/}
+            <a
+              href="https://jayy.mmm.page/events" // replace with your external link
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#146EF5]"
+              onClick={handleToggleMenu}
+            >
+              Events
+            </a>
+
             {currentUser ? (
               <NavLink to="/profile" onClick={handleToggleMenu}>
                 <div className="flex gap-4">
