@@ -95,7 +95,7 @@ const Header = () => {
 
             {/* External Link for Events */}
             <a
-              href="https://externaleventsite.com" // replace with your external link
+              href="https://jayy.mmm.page/events" 
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#146EF5]"
