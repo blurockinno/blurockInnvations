@@ -191,9 +191,9 @@ const Subscription = () => {
                 </ul>
               </div>
 
-              <button className="w-[280px] h-[48px]  bg-[#146EF5] rounded-2xl text-white font-bold text-[20px]">
-                Buy Now
-              </button>
+
+              <button className="w-[280px] h-[48px]  bg-[#146EF5] hover:bg-[#1159c5] rounded-2xl text-white font-bold text-[20px]">Buy Now</button>
+
             </div>
 
             <div className="h-[500px] w-[400px] bg-[#141415] rounded-xl shadow-2xl flex flex-col justify-between items-center py-10">
@@ -205,9 +205,9 @@ const Subscription = () => {
               </div>
               <div className="w-[280px] h-[230px] bg-white rounded-2xl flex items-center justify-center"></div>
 
-              <button className=" flex text-center items-center justify-center w-[280px] h-[48px]  bg-[#146EF5] rounded-2xl text-white font-bold text-[20px]">
-                Buy Now
-              </button>
+
+              <button className=" flex text-center items-center justify-center w-[280px] h-[48px]  bg-[#146EF5] rounded-2xl text-white font-bold text-[20px] hover:bg-[#1159c5]">Buy Now</button>
+
             </div>
 
             <div className="h-[500px] w-[400px] bg-[#141415] rounded-xl shadow-2xl flex flex-col justify-between items-center py-10">
@@ -219,9 +219,8 @@ const Subscription = () => {
               </div>
               <div className="w-[280px] h-[230px] bg-white rounded-2xl flex items-center justify-center"></div>
 
-              <button className="w-[280px] h-[48px]  bg-[#146EF5] rounded-2xl text-white font-bold text-[20px]">
-                Buy Now
-              </button>
+              <button className="w-[280px] h-[48px]  bg-[#146EF5] hover:bg-[#1159c5] rounded-2xl text-white font-bold text-[20px]">Buy Now</button>
+
             </div>
           </div>
         </section> */}
