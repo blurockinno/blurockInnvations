@@ -33,6 +33,7 @@ import PaymentHistory from "../components/PaymentHistory";
 import SubscriptionPlanPurchaseHistory from "../components/SubscriptionPlanPurchaseHistory";
 import Setting from "../components/Setting";
 import ManageUser from "../components/ManageUser";
+import ManageBlog from "../components/ManageBlog"
 import {
   currentSubscriptionCheckFailure,
   currentSubscriptionCheckStart,
@@ -196,7 +197,7 @@ const Profile = () => {
   }
 
   return (
-    <div className=" mx-auto p-2 h-screen">
+    <div className=" mx-auto p-2">
       <div className="bg-white   flex gap-10">
         <div className="w-full md:w-[80%]   md:h-auto mb-20 bg-gray-50">
           {/* profile page  */}
@@ -365,6 +366,19 @@ const Profile = () => {
           )}
           {/* manage user end */}
 
+          {/* manage Blog (only shows if user is admin) */}
+          {tab === "manage blogs" && isTabOpen && currentUser.isAdmin && (
+            <>
+              <div className="p-4">
+                <h1 className="bg-blue-100 px-10 py-2 text-black text-xl ">
+                  Manage Blogs
+                </h1>
+              </div>
+              <ManageBlog />
+            </>
+          )}
+          {/* manage Blog end */}
+
           {/* settting page  */}
           {tab === "setting" && isTabOpen && (
             <>
@@ -437,6 +451,14 @@ const Profile = () => {
               text="Manage User"
               handleOnOpenTab={() => handleToOpenTab("manage user")}
             />
+            {/* {(only shows if user is admin)} */}
+            {(currentUser.isAdmin) ? (
+              <SidebarLink
+              icon={<UserPlus />}
+              text="Manage Blogs"
+              handleOnOpenTab={() => handleToOpenTab("manage blogs")}
+            />
+            ) : (<></>)}
             <SidebarLink
               icon={<Settings />}
               text="Settings"

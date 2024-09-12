@@ -1,5 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Blog from './pages/BlogPage';
+import Blg from './pages/Blog'
+import BlogPost from './pages/BlogPost';
+import BlogUpdate from './pages/BlogUpdate';
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import SignIn from "./pages/SignIn";
@@ -47,6 +50,9 @@ function App() {
         <Route path="/help" element={<Help />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<Blg />} />
+        <Route path="/blogpost" element={<BlogPost />} />
+        <Route path="/blogupdate/:id" element={<BlogUpdate />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/our-product" element={<OurProduct />} />

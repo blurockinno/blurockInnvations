@@ -10,6 +10,7 @@ import userRoute from "./routes/user.route.js";
 import authRoute  from "./routes/auth.route.js"
 import subscriptionRoute  from "./routes/subscription.route.js"
 import contactUsRoute from "./routes/contactus.route.js"
+import blogRoute from "./routes/blog.route.js"
 // import PracticeRoute from "./routes/practice.route.js"
 
 // Initialize express app
@@ -46,6 +47,9 @@ app.use(`/api/v1/user`, userRoute);
 
 //contactUs route
 app.use(`/api/v1/contact-us`, contactUsRoute);
+
+//blog route
+app.use(`/api/v1/blog`, blogRoute);
 
 //practice Route
 // app.use(`/api/v1/practice`, PracticeRoute)
