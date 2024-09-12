@@ -9,6 +9,9 @@ import { app } from "../firebase";
 import axios from "axios";
 import BigBlog from "../components/BigBlog";
 import SmallBlog from "../components/SmallBlog";
+import HeroLeft from "@/components/BlogPageComp/HeroLeft";
+import HeroRight from "@/components/BlogPageComp/HeroRight";
+
 
 const Blog = ()=>{
     const [blogs, setBlogs] = useState([]);
@@ -34,7 +37,7 @@ const Blog = ()=>{
     }, [isLoading]);
 
     return(
-        <div  className="bg-no-repeat bg-[#141415] plus-jakarta-sans h-auto px-10 md:px-24 "
+        <div  className="bg-no-repeat bg-[#141415] plus-jakarta-sans h-auto "
         style={{ backgroundImage: `url(${BG5})` }}>
 
             <section className="flex flex-col justify-center items-center text-center">
@@ -42,10 +45,15 @@ const Blog = ()=>{
 
                 <p className="text-[18px] text-white font-semibold mb-40">Optimize your business operations with OMS by Infinity Technologies, a comprehensive solution for seamless order processing, real-time inventory tracking, and detailed analytics. Enhance efficiency and customer satisfaction with our user-friendly and scalable system.</p>
             </section>
-            {/* only loads if blogs are fetched */}
+            <div className="flex space-x-28 md:px-28 py-20 ">
+                <HeroLeft></HeroLeft>
+                <HeroRight></HeroRight>
+
+            </div>
+            {/* only loads if blogs are fetched
             {(blogs.length > 0) ? (
                 <BigBlog blog={blogs[0]}/>
-            ) : (<></>)}
+            ) : (<></>)} */}
 
             {/* only loads if blogs are fetched */}
             {(blogs.length > 0) ? (
@@ -77,6 +85,8 @@ const Blog = ()=>{
 
             </section>
             ) : (<></>)}
+            
+           
         </div>
     )
 }
