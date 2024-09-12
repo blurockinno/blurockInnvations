@@ -23,6 +23,12 @@ const authSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    // to check if user is admin
+    isAdmin: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
     password: {
       type: String,
     },
