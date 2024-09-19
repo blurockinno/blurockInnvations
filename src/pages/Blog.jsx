@@ -16,13 +16,13 @@ const Blg = () => {
         title: "loading...",
         fullName: "loading...",
         blog: "loading...",
-        blogPicture: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+        blogPicture: "https://cdn.pixabay.com/photo/2015/12/22/04/00/photo-1103594_1280.png",
         views: 0,
-        likes: 0, // Add a field for the number of likes
-        likedBy: [], // Track users who have liked the post
+        likes: 0,
+        likedBy: [],
         comments: [],
     });
-    const [isLiked, setIsLiked] = useState(false); // Track if the current user has liked the post
+    const [isLiked, setIsLiked] = useState(false);
     const [commentTitle, setCommentTitle] = useState("");
     const [commentContent, setCommentContent] = useState("");
 
