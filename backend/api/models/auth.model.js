@@ -24,7 +24,7 @@ const authSchema = new mongoose.Schema(
       required: true,
     },
     // to check if user is admin
-    isAdmin: {
+    isSysAdministrator: {
       type: Boolean,
       default: false,
       required: true,

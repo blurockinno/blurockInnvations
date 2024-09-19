@@ -1,16 +1,25 @@
-import BGB from "../../../../blurockInnvations/public/assets/bg_home.jpg"
+import React, {useState,useEffect,useRef} from 'react'
+import axios from 'axios'
+import { useNavigate,useParams,Link } from 'react-router-dom';
 
-const HeroLeft = () =>{
+
+const HeroLeft = (props) =>{
+    const blog = props.blog;
+
+    function limitString(text, wordLimit, charLimit) {
+        return text.trim().split(/\s+/).slice(0, wordLimit).join(' ').slice(0, charLimit) + (text.length > charLimit || text.split(/\s+/).length > wordLimit ? '...' : '');
+    }
+    const title = limitString(blog.title, 6, 50);
+
     return(
         <div>
-            <div className="h-[450px] w-[700px] bg-[#141415] border-[#146EF5] border-4 rounded-xl text-center">
-                <div className="bg-cover h-full w-full rounded-xl"  style={{ backgroundImage: `url(${BGB})` }}></div>
+            <div className="h-[450px] w-[700px] text-center">
+                <div className="bg-cover h-full w-full rounded-xl"  style={{ backgroundImage: `url(${blog.blogPicture})` }}></div>
 
             </div>
-            <h1 className="text-[39px] text-center font-bold text-white mr-[15px] mt-10">Order Management System : <br />A software solution to all your clutured orders</h1>
+            <h1 className="text-[39px] text-center font-bold text-white mr-[15px] mt-10">{title}</h1>
         </div>
     )
 }
- 
 
 export default HeroLeft;

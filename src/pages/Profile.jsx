@@ -367,7 +367,7 @@ const Profile = () => {
           {/* manage user end */}
 
           {/* manage Blog (only shows if user is admin) */}
-          {tab === "manage blogs" && isTabOpen && currentUser.isAdmin && (
+          {tab === "manage blogs" && isTabOpen && currentUser.isSysAdministrator && (
             <>
               <div className="p-4">
                 <h1 className="bg-blue-100 px-10 py-2 text-black text-xl ">
@@ -452,7 +452,7 @@ const Profile = () => {
               handleOnOpenTab={() => handleToOpenTab("manage user")}
             />
             {/* {(only shows if user is admin)} */}
-            {(currentUser.isAdmin) ? (
+            {(currentUser.isSysAdministrator) ? (
               <SidebarLink
               icon={<UserPlus />}
               text="Manage Blogs"
