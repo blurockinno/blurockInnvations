@@ -1,0 +1,20 @@
+.comment-input{
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    box-sizing: border-box;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    padding: 0;
+    resize: none;
+    outline: none;
+    -webkit-appearance: none;
+    width: 101%;
+    height: auto;
+
+    color: white;
+    background-color: #363636;
+    padding: 0.5rem;
+}

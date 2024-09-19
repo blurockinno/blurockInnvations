@@ -112,6 +112,83 @@ export const getBlog= async (req, res) =>{
     }
 }
 
+//post comment
+export const postComment= async (req, res) => {
+    try {
+      const postId = req.params.id;
+      const { fullName, email, content, profilePicture } = req.body;
+  
+      const blogPost = await Blogs.findByIdAndUpdate(
+        postId,
+        {
+          $push: {
+            comments: { fullName, email, content, profilePicture }
+          }
+        },
+        { new: true }
+      );
+  
+      if (!blogPost) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+  
+      res.json(blogPost);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+};
+
+// Like a blog post
+export const likeBlogPost = async (req, res) => {
+    try {
+      const postId = req.params.id;
+      const { userId } = req.body;
+  
+      const blogPost = await Blogs.findByIdAndUpdate(
+        postId,
+        {
+          $addToSet: { likedBy: userId },
+          $inc: { likes: 1 },
+        },
+        { new: true }
+      );
+  
+      if (!blogPost) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+  
+      res.json({ message: 'Blog liked successfully', blogPost });
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+};
+  
+// Unlike a blog post
+export const unlikeBlogPost = async (req, res) => {
+    try {
+      const postId = req.params.id;
+      const { userId } = req.body;
+  
+      const blogPost = await Blogs.findByIdAndUpdate(
+        postId,
+        {
+          $pull: { likedBy: userId },
+          $inc: { likes: -1 },
+        },
+        { new: true }
+      );
+  
+      if (!blogPost) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+  
+      res.json({ message: 'Blog unliked successfully', blogPost });
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
+  
+
 //update blog
 export const updateBlog= async (req, res) =>{
     try {

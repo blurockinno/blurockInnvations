@@ -27,7 +27,7 @@ const BlogUpdate = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        if (!currentUser.isAdmin){
+        if (!currentUser.isSysAdministrator){
           navigate('/');
         }
         const response = await axios.get(`/api/v1/blog/updategetblog/${id}`);
@@ -127,7 +127,7 @@ const BlogUpdate = () => {
               <img
                 src={formData.blogPicture}
                 alt="Blog"
-                className="w-full h-full rounded-full object-cover"
+                className="flex-shrink-0 flex flex-col justify-center items-center h-64 w-64 pt-3 m-10 bg-[#121214a9] rounded-full hover:bg-[#121214] cursor-pointer bg-cover bg-center"
               />
             ) : (
               <Camera className="text-white w-[40px] h-[40px]" />

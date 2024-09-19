@@ -74,7 +74,7 @@ const ManageBlogs = () => {
                 fill: true,
                 borderColor: 'rgba(80,80,80,1)',
                 borderWidth: 2,
-                tension: 0.1,
+                tension: 0,
               }
             ],
           },

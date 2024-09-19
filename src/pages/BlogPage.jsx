@@ -18,7 +18,7 @@ const Blog = ()=>{
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
-      // Fetch all blogs
+    // Fetch all blogs
     useEffect(() => {
         const fetchAllBlogs = async () => {
         try {
@@ -37,19 +37,22 @@ const Blog = ()=>{
     }, [isLoading]);
 
     return(
-        <div  className="bg-no-repeat bg-[#141415] plus-jakarta-sans h-auto "
+        <div  className="bg-no-repeat bg-[#141415] plus-jakarta-sans h-auto px-10 md:px-24 "
         style={{ backgroundImage: `url(${BG5})` }}>
 
             <section className="flex flex-col justify-center items-center text-center">
                 <div className="text-[60px] text-[#146EF5] font-bold mt-16 mb-7">Blog Page</div>
 
-                <p className="text-[18px] text-white font-semibold mb-40">Optimize your business operations with OMS by Infinity Technologies, a comprehensive solution for seamless order processing, real-time inventory tracking, and detailed analytics. Enhance efficiency and customer satisfaction with our user-friendly and scalable system.</p>
+                {/* <p className="text-[18px] text-white font-semibold mb-40">Optimize your business operations with OMS by Infinity Technologies, a comprehensive solution for seamless order processing, real-time inventory tracking, and detailed analytics. Enhance efficiency and customer satisfaction with our user-friendly and scalable system.</p> */}
             </section>
-            <div className="flex space-x-28 md:px-28 py-20 ">
-                <HeroLeft></HeroLeft>
-                <HeroRight></HeroRight>
 
-            </div>
+            {(blogs.length > 0) ? (
+                <div className="flex space-x-28 md:px-28 py-20 ">
+                    <HeroLeft blog={blogs[0]}/>
+                    <HeroRight />
+                </div>
+            ) : (<></>)}
+
             {/* only loads if blogs are fetched
             {(blogs.length > 0) ? (
                 <BigBlog blog={blogs[0]}/>
