@@ -40,8 +40,26 @@ export const getBlogs= async (req, res) =>{
         //fetch all blogs
         const allBlogs = await Blogs.find();
         console.log(allBlogs);
-        
-        res.status(200).json({success:true, message:"blogs retrieved successfully", blogs: allBlogs});
+
+        const now = new Date();
+        const past48Hours = new Date(now.getTime() - 48 * 60 * 60 * 1000);
+
+        // Filter and count views within the last 48 hours for each blog
+        const featuredBlogs = allBlogs
+        .map((blog) => {
+        const recentViewsCount = blog.viewHistory.filter(
+            (view) => view.timestamp >= past48Hours
+        ).length;
+
+        return {
+            ...blog._doc,
+            recentViewsCount, // Add a new field for recent views count
+        };
+        })
+        .sort((a, b) => b.recentViewsCount - a.recentViewsCount) // Sort by recent views in descending order
+        .slice(0, 4);
+
+        res.status(200).json({success:true, message:"blogs retrieved successfully", blogs: allBlogs.slice(0,10), featured: featuredBlogs});
     } catch (error){
         console.error(error);
         res.status(500).json({ error: "Internal Server Error" });
@@ -57,7 +75,7 @@ export const getBlogsProfile= async (req, res) =>{
         const blogs = await Blogs.find({email: email});
         const blogsCount = blogs.length;
         const totalViews = blogs.reduce((sum, blog) => sum + blog.views, 0);
-        // const totalComments = blogs.reduce((sum, blog) => sum + blog.comments.length, 0);
+        const totalComments = blogs.reduce((sum, blog) => sum + blog.comments.length, 0);
         const allViewHistory = blogs.reduce((history, blog) => {
             return history.concat(blog.viewHistory);
         }, []);
@@ -70,6 +88,7 @@ export const getBlogsProfile= async (req, res) =>{
             views: totalViews,
             // comments: totalComments,
             viewHistory: allViewHistory,
+            comments: totalComments,
         });
     } catch (error){
         console.error(error);

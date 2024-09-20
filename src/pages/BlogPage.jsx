@@ -15,6 +15,7 @@ import HeroRight from "@/components/BlogPageComp/HeroRight";
 
 const Blog = ()=>{
     const [blogs, setBlogs] = useState([]);
+    const [featured, setFeatured] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -23,9 +24,8 @@ const Blog = ()=>{
         const fetchAllBlogs = async () => {
         try {
             const response = await axios.get("/api/v1/blog/getBlogs");
-            console.log(response.data.blogs);
-            console.log([1,2].slice(2,4));
             setBlogs(response.data.blogs.reverse());
+            setFeatured(response.data.featured);
         } catch (error) {
             console.error("Error fetching blogs:", error);
         } finally {
@@ -47,18 +47,12 @@ const Blog = ()=>{
             </section>
 
             {(blogs.length > 0) ? (
-                <div className="flex space-x-28 md:px-28 py-20 ">
+                <div className="flex justify-center space-x-24 md:px-28 py-20">
                     <HeroLeft blog={blogs[0]}/>
-                    <HeroRight />
+                    <HeroRight blogs={featured}/>
                 </div>
             ) : (<></>)}
 
-            {/* only loads if blogs are fetched
-            {(blogs.length > 0) ? (
-                <BigBlog blog={blogs[0]}/>
-            ) : (<></>)} */}
-
-            {/* only loads if blogs are fetched */}
             {(blogs.length > 0) ? (
             <section className="boxes1 space-y-20 pb-16 ml-16 mr-16">
 

@@ -12,13 +12,15 @@ const HeroLeft = (props) =>{
     const title = limitString(blog.title, 6, 50);
 
     return(
-        <div>
-            <div className="h-[450px] w-[700px] text-center">
-                <div className="bg-cover h-full w-full rounded-xl"  style={{ backgroundImage: `url(${blog.blogPicture})` }}></div>
+        <Link to={`/blog/${blog._id}`} className='mt-8'>
+            <div>
+                <div className="h-[450px] w-[700px] text-center">
+                    <div className="bg-cover h-full w-full rounded-xl"  style={{ backgroundImage: `url(${blog.blogPicture})` }}></div>
 
+                </div>
+                <h1 className="text-[39px] text-center font-bold text-white mr-[15px] mt-10">{title}</h1>
             </div>
-            <h1 className="text-[39px] text-center font-bold text-white mr-[15px] mt-10">{title}</h1>
-        </div>
+        </Link>
     )
 }
 

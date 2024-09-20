@@ -44,6 +44,7 @@ const Blg = () => {
             try {
                 const response = await axios.get(`/api/v1/blog/getBlog/${id}`);
                 setBlog(response.data.blog);
+                console.log("hi");
 
                 // Check if the current user has already liked the blog post
                 if (response.data.blog.likedBy.includes(currentUser._id)) {
@@ -131,7 +132,7 @@ const Blg = () => {
                 </section>
                 <p className="mx-20 my-14 mb-8 text-white text-[25px] text-justify">{blog.blog}</p>
 
-                <section className="m-6 mx-20">
+                <section className="m-6 mx-20 mb-16">
                     <hr className="h-[3px] mx-6 bg-[white] rounded-lg" />
                     <section className="flex mt-6">
                         <div className="flex justify-center items-center bg-[#242424] p-2 py-0 rounded-xl">

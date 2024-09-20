@@ -33,6 +33,7 @@ const ManageBlogs = () => {
     count: 0,
     views: 0,
     viewHistory: {},
+    comments: 0,
   });
   const [viewHistory, setViewHistory] = useState(undefined);
   const [isLoading, setIsLoading] = useState(false);
@@ -50,23 +51,45 @@ const ManageBlogs = () => {
 
         //setting data up for graph
         const views = response.data.viewHistory;
+
         const viewsPerDay = views.reduce((acc, view) => {
-          const date = new Date(view.timestamp).toLocaleDateString();
+          const date = new Date(view.timestamp).toISOString().slice(0, 10);
           if (!acc[date]) {
-              acc[date] = 1;
+            acc[date] = 1;
           } else {
-              acc[date] += 1;
+            acc[date] += 1;
           }
           return acc;
         }, {});
 
-        const timestamps = Object.keys(viewsPerDay).sort((a, b) => new Date(a) - new Date(b));
-        
-        const viewCounts = timestamps.map(date => viewsPerDay[date]);
+        const endDate = new Date();
+        const todayDateUTC = new Date(endDate.toISOString().slice(0, 10));
+        console.log("Today Date (UTC):", todayDateUTC);
+
+        const startDateUTC = new Date(todayDateUTC);
+        startDateUTC.setDate(todayDateUTC.getDate() - 14);
+        console.log("Start Date (15 days ago):", startDateUTC.toISOString().slice(0, 10));
+
+        const getAllDatesInRange = (start, end) => {
+          const dates = [];
+          let currentDate = new Date(start);
+          
+          while (currentDate <= end) {
+            dates.push(new Date(currentDate).toISOString().slice(0, 10));
+            currentDate.setDate(currentDate.getDate() + 1);
+          }
+          return dates;
+        };
+
+        let allDates = getAllDatesInRange(startDateUTC, todayDateUTC);
+        console.log("All dates in range:", allDates);
+
+        const viewCounts = allDates.map(date => viewsPerDay[date] || 0);
+        console.log("View counts for last 15 days:", viewCounts);
 
         setViewHistory({
           data: {
-            labels: timestamps,
+            labels: allDates,
             datasets: [
               {
                 label: 'Views Per Day',
@@ -78,14 +101,15 @@ const ManageBlogs = () => {
               }
             ],
           },
-          // removing background grid
           options: {
             scales: {
-              x: {grid: {display: false,},},
-              y: {grid: {display: false,},},
+              x: { grid: { display: false } },
+              y: { grid: { display: false } },
             },
           },
         });
+
+
 
       } catch (error) {
         console.error("Error fetching blogs:", error);
@@ -114,17 +138,28 @@ const ManageBlogs = () => {
   return (
     <div className="container mx-auto p-4">
       {/* Analytics UI not finished */}
-      <div className="flex">
-        <div className="">
-          <p className="py-3 px-4 uppercase font-bold text-3xl">Total Blogs: {analytics.count}</p>
-          <p className="py-3 px-4 uppercase font-bold text-3xl">Total Views: {analytics.views}</p>
-        </div>
-        <div className="w-[600px] border-4 border-blue-500 rounded-lg">
-          <p className="py-3 px-4 pt-6 uppercase font-semibold text-2xl text-center ">Views Analytics Graph</p>
+      <div className="flex mb-3">
+        <div className="w-[850px] border-4 border-blue-500 rounded-lg">
+          <p className="py-3 px-4 pt-6 uppercase font-semibold text-2xl text-white text-center bg-blue-500">Views Analytics Graph</p>
           {(viewHistory !== undefined) ? (
-            <Line data={viewHistory.data} options={viewHistory.options} />
+              <Line data={viewHistory.data} options={viewHistory.options} />
           ) : (<p>No data available</p>)}
         </div>
+        <div className="ml-12">
+          <div className="flex flex-col mb-4 rounded-lg border-4 border-blue-500">
+              <p className="text-center text-white bg-blue-500 py-3 px-4 uppercase font-bold text-xl">Total Blogs:</p>
+              <p className="text-center my-6 uppercase font-semibold text-5xl"> {analytics.count}</p>
+          </div>
+          <div className="flex flex-col mb-4 rounded-lg border-4 border-blue-500">
+              <p className="text-center text-white bg-blue-500 py-3 px-4 uppercase font-bold text-xl">Total Views: </p>
+              <p className="text-center my-6 uppercase font-semibold text-5xl"> {analytics.views}</p>
+          </div>
+          <div className="flex flex-col rounded-lg border-4 border-blue-500">
+              <p className="text-center text-white bg-blue-500 py-3 px-4 uppercase font-bold text-xl">Total Comments:</p>
+              <p className="text-center my-6 uppercase font-semibold text-5xl"> {analytics.comments}</p>
+          </div>
+        </div>
+        
       </div>
       <div className="flex justify-end p-2">
         <Link to='/blogpost'>
