@@ -137,7 +137,6 @@ const ManageBlogs = () => {
 
   return (
     <div className="container mx-auto p-4">
-      {/* Analytics UI not finished */}
       <div className="flex mb-3">
         <div className="w-[850px] border-4 border-blue-500 rounded-lg">
           <p className="py-3 px-4 pt-6 uppercase font-semibold text-2xl text-white text-center bg-blue-500">Views Analytics Graph</p>
